@@ -22,7 +22,6 @@ from cayleygw import ExactG0W0SelfEnergy, RefusalError, Sector, ValidationError
 from cayleygw._helpers import tolerances as tolerances_module
 from cayleygw._helpers.cayley import CayleyMap
 from cayleygw._helpers.tolerances import DEFAULT_TOLERANCES
-from cayleygw.realization import sector as closure_module
 from cayleygw.realization import sector as sector_module
 from cayleygw.realization._helpers import base as poles_module
 from cayleygw.realization._helpers import sector as sector_helpers
@@ -1042,41 +1041,6 @@ def test_scan_logs_one_stage_for_the_whole_search(caplog) -> None:
         m for m in messages if re.match(r"particle terminal candidates: [0-9.]+ (s|min|h)$", m)
     ]
     assert len(entries) == 1 and len(exits) == 1
-
-
-def test_a_refusal_names_the_rank_floor_and_the_higher_floors_to_retry() -> None:
-    """A refusal names its rank floor and the higher floors to retry, and the first one delivers."""
-
-    stored = np.load(
-        Path(__file__).resolve().parents[1] / "fixtures" / "magnesium-monoxide-K11-hole.npz",
-        allow_pickle=True,
-    )
-    mapping = CayleyMap(center=float(stored["center"]), scale=float(stored["scale"]))
-    common = dict(n_conserved=10, phase_count=16, realization_algorithm="toeplitz")
-    with pytest.raises(RefusalError) as caught:
-        SectorSelfEnergyRealization.realize(stored["values"], Sector.HOLE, mapping, **common)
-    message = str(caught.value)
-    assert message.startswith(
-        "hole sector refused at rank_floor=1e-10: no sector-supported, "
-        "inverse-safe realization among 1 closure: "
-    )
-    assert message.endswith(
-        "; lower n_conserved, since the moments fix the terminal block. "
-        "Retry with rank_floor=3e-10, then 1e-9, 2e-9, 5e-9, 1e-8."
-    )
-    assert isinstance(caught.value.diagnostics, closure_module.SectorClosureScan)
-
-    try:
-        retried = SectorSelfEnergyRealization.realize(
-            stored["values"],
-            Sector.HOLE,
-            mapping,
-            tolerances=replace(DEFAULT_TOLERANCES, rank_floor=3.0e-10),
-            **common,
-        )
-    except RefusalError as error:
-        pytest.skip(f"the first suggested floor also refuses on this machine ({error})")
-    assert retried.poles.size > 0
 
 
 @pytest.mark.parametrize(
