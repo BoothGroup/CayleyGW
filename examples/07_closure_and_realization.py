@@ -19,7 +19,6 @@ from pyscf import gto, scf
 
 from cayleygw import CayleyGW, enable_logging, reconstruction_test
 
-
 # --- controls ---------------------------------------------------------------
 ATOM = "O 0 0 0.1173; H 0 0.7572 -0.4692; H 0 -0.7572 -0.4692"  # geometry, Angstrom
 BASIS = "cc-pvdz"  # orbital basis
@@ -53,8 +52,12 @@ def main() -> None:
     report = []  # printed after the log, as one section
 
     # --- terminal selection -------------------------------------------------
-    report.append("terminal closure: candidates realized per sector, selected phase (rad), frontier energies")
-    report.append("  selection    phases   hole realized/phase   particle realized/phase      IP (eV)    EA (eV)   seconds")
+    report.append(
+        "terminal closure: candidates realized per sector, selected phase (rad), frontier energies"
+    )
+    report.append(
+        "  selection    phases   hole realized/phase   particle realized/phase      IP (eV)    EA (eV)   seconds"
+    )
     for selection in ("restricted", "scan"):
         for count in TERMINAL_PHASE_COUNTS:
             started = time.perf_counter()
@@ -79,9 +82,13 @@ def main() -> None:
 
     # --- realization backend and the reconstruction test ---------------------
     report.append("")
-    report.append("realization backend: the algorithm each sector ended on, its terminal dimension,")
+    report.append(
+        "realization backend: the algorithm each sector ended on, its terminal dimension,"
+    )
     report.append("the frontier energies and the reconstruction test of the conserved moments")
-    report.append("  requested    hole        particle    terminal      IP (eV)    EA (eV)   reconstruction")
+    report.append(
+        "  requested    hole        particle    terminal      IP (eV)    EA (eV)   reconstruction"
+    )
     hamiltonians = {}
     for realization in REALIZATIONS:
         ip, ea = frontier(gw.kernel(N_CONSERVED, realization=realization, n_ip=1, n_ea=1))
@@ -99,7 +106,10 @@ def main() -> None:
     report.append("")
     # The poles, closure phase, moment error and marginal flags are in the log's sector table.
     report.append("sector diagnostics of the default realization:")
-    for name, sector in (("hole", hamiltonians["auto"].hole), ("particle", hamiltonians["auto"].particle)):
+    for name, sector in (
+        ("hole", hamiltonians["auto"].hole),
+        ("particle", hamiltonians["auto"].particle),
+    ):
         report.append(
             f"  {name:<9} terminal dimension {sector.terminal_dimension},"
             f" discarded pole weight {sector.discarded_total_weight:.2e}"
@@ -107,7 +117,9 @@ def main() -> None:
             f" conservation ratio {sector.maximum_conservation_ratio:.2e} of tolerance"
         )
 
-    print(f"\n{'=' * 78}\nResults: H2O/{BASIS} G0W0@RHF, terminal closure and realization backend\n{'=' * 78}")
+    print(
+        f"\n{'=' * 78}\nResults: H2O/{BASIS} G0W0@RHF, terminal closure and realization backend\n{'=' * 78}"
+    )
     print("\n".join(report))
 
 

@@ -33,7 +33,6 @@ from cayleygw._helpers.tolerances import RELATIVE_TOLERANCE
 from cayleygw.contour import EllipseContour
 from cayleygw.screening import ProjectedRPAResolvent
 
-
 OMEGA_P = 1.0
 N_MAX = 4
 # Water/STO-3G excitations span 1 to 21 Hartree, so the ellipse is eccentric and needs many nodes.
@@ -105,9 +104,7 @@ def test_tda_and_rpa_couplings_differ_by_the_gap_weight(water_rhf) -> None:
         Screening.TDA,
     )
     np.testing.assert_allclose(
-        np.linalg.eigvalsh(
-            np.diag(tda.particle_hole_gaps) + tda.v_matrix @ tda.v_matrix.T
-        ),
+        np.linalg.eigvalsh(np.diag(tda.particle_hole_gaps) + tda.v_matrix @ tda.v_matrix.T),
         energies,
         atol=3.0e-12,
     )
@@ -314,10 +311,10 @@ def test_tda_workflow_completes_a_hermitian_upfolded_solution(
         assert ipea.electron_affinities.size == 1, model
         assert ipea.removal_pole_energies[0] < ipea.addition_pole_energies[0]
     # RPA and TDA are different approximations, so their IPs must differ.
-    assert abs(
-        results["rpa"].ionization_potentials[0]
-        - results["tda"].ionization_potentials[0]
-    ) > 1.0e-5
+    assert (
+        abs(results["rpa"].ionization_potentials[0] - results["tda"].ionization_potentials[0])
+        > 1.0e-5
+    )
 
 
 @pytest.mark.pyscf
@@ -355,12 +352,8 @@ def _run_pyscf_drpa(mean_field, *, frozen, nstates):
 def _pyscf_amplitude_matrices(direct_rpa):
     """Stack PySCF's per-state alpha-spin amplitudes into mode columns."""
 
-    x_amplitudes = np.column_stack(
-        [np.asarray(state[0]).reshape(-1) for state in direct_rpa.xy]
-    )
-    y_amplitudes = np.column_stack(
-        [np.asarray(state[1]).reshape(-1) for state in direct_rpa.xy]
-    )
+    x_amplitudes = np.column_stack([np.asarray(state[0]).reshape(-1) for state in direct_rpa.xy])
+    y_amplitudes = np.column_stack([np.asarray(state[1]).reshape(-1) for state in direct_rpa.xy])
     return x_amplitudes, y_amplitudes
 
 
@@ -376,9 +369,7 @@ def _casida_blocks(reference, eri, gaps):
 
     occupied = np.asarray(reference.occupied_positions)
     virtual = np.asarray(reference.virtual_positions)
-    kernel = 2.0 * eri[np.ix_(occupied, virtual, occupied, virtual)].reshape(
-        gaps.size, gaps.size
-    )
+    kernel = 2.0 * eri[np.ix_(occupied, virtual, occupied, virtual)].reshape(gaps.size, gaps.size)
     return np.diag(gaps) + kernel, kernel
 
 
@@ -528,9 +519,7 @@ def test_noninteracting_limit_reduces_to_independent_transitions(
 ) -> None:
     adapter = RestrictedPySCFAdapter(water_rks_hf, frozen=1)
     nmo = adapter.reference.nmo
-    gaps, energies, x_plus_y = solve_response(
-        adapter.reference, np.zeros((nmo, nmo, nmo, nmo))
-    )
+    gaps, energies, x_plus_y = solve_response(adapter.reference, np.zeros((nmo, nmo, nmo, nmo)))
 
     np.testing.assert_allclose(
         energies,
@@ -619,8 +608,7 @@ def _eigenspace_projector_residual(ours, theirs, energies):
             residual = float(
                 np.max(
                     np.abs(
-                        ours[:, block] @ ours[:, block].T
-                        - theirs[:, block] @ theirs[:, block].T
+                        ours[:, block] @ ours[:, block].T - theirs[:, block] @ theirs[:, block].T
                     )
                 )
             )
@@ -667,9 +655,7 @@ def test_energies_and_amplitudes_match_pyscf_dtda(
         atol=3.0e-11,
         rtol=0.0,
     )
-    pyscf_x = np.column_stack(
-        [np.asarray(state[0]).reshape(-1) for state in pyscf_result.xy]
-    )
+    pyscf_x = np.column_stack([np.asarray(state[0]).reshape(-1) for state in pyscf_result.xy])
     residual = _eigenspace_projector_residual(
         amplitudes / math.sqrt(2.0),
         pyscf_x,
@@ -837,12 +823,8 @@ def test_auxiliary_linear_system_is_explicitly_verified() -> None:
     resolvent = _synthetic_resolvent()
     zeta = 0.93 + 0.36j
     projected = resolvent.woodbury(zeta)
-    inverse_free = 1.0 / (
-        zeta**2 - np.square(resolvent.particle_hole_gaps)
-    )
-    q_matrix = resolvent.v_matrix.T @ (
-        inverse_free[:, None] * resolvent.v_matrix
-    )
+    inverse_free = 1.0 / (zeta**2 - np.square(resolvent.particle_hole_gaps))
+    q_matrix = resolvent.v_matrix.T @ (inverse_free[:, None] * resolvent.v_matrix)
     np.testing.assert_allclose(
         (np.eye(q_matrix.shape[0]) - 2.0 * q_matrix) @ projected,
         q_matrix,
@@ -974,10 +956,7 @@ def test_prohibited_free_and_interacting_nodes_raise_structured_diagnostics() ->
     ) as free_error:
         resolvent.woodbury(free_node)
     assert free_error.value.zeta == free_node
-    assert (
-        free_error.value.free_pole_distance
-        <= free_error.value.pole_threshold
-    )
+    assert free_error.value.free_pole_distance <= free_error.value.pole_threshold
     assert free_error.value.rpa_pole_distance >= 0.0
 
     # Inside the certified interval, a real node may sit on the interacting spectrum.
@@ -988,10 +967,7 @@ def test_prohibited_free_and_interacting_nodes_raise_structured_diagnostics() ->
     ) as rpa_error:
         resolvent.woodbury(rpa_node)
     assert rpa_error.value.zeta == rpa_node
-    assert (
-        rpa_error.value.rpa_pole_distance
-        <= rpa_error.value.pole_threshold
-    )
+    assert rpa_error.value.rpa_pole_distance <= rpa_error.value.pole_threshold
     assert "exclusion threshold" in str(rpa_error.value)
 
 
@@ -1074,9 +1050,7 @@ def test_real_arithmetic_gram_matches_the_complex_product_to_a_few_ulp(
 
     resolvent = _synthetic_resolvent()
     power = resolvent.screening.spectral_parameter_power
-    weights = 1.0 / (
-        zeta**power - np.power(np.asarray(resolvent.particle_hole_gaps), power)
-    )
+    weights = 1.0 / (zeta**power - np.power(np.asarray(resolvent.particle_hole_gaps), power))
     coupling = resolvent.v_matrix.astype(np.complex128)
     exact = coupling.conj().T @ (weights[:, None] * coupling)
     split = _weighted_gram(resolvent.v_matrix, weights)
@@ -1099,9 +1073,7 @@ def test_the_row_blocked_gram_agrees_with_the_single_block_one() -> None:
     reference += 1j * (coupling.T @ (weights.imag[:, None] * coupling))
     np.testing.assert_allclose(blocked, reference, rtol=1.0e-13, atol=1.0e-10)
     small = resolvent_module._weighted_gram(coupling[:100], weights[:100])
-    exact = (coupling[:100].T @ (weights.real[:100, None] * coupling[:100])).astype(
-        np.complex128
-    )
+    exact = (coupling[:100].T @ (weights.real[:100, None] * coupling[:100])).astype(np.complex128)
     exact += 1j * (coupling[:100].T @ (weights.imag[:100, None] * coupling[:100]))
     np.testing.assert_array_equal(small, exact)
 
@@ -1114,17 +1086,12 @@ def _squared_rpa_matrix(reference, eri):
 
     occupied = np.asarray(reference.occupied_positions)
     virtual = np.asarray(reference.virtual_positions)
-    gaps = (
-        reference.mo_energy[virtual][None, :]
-        - reference.mo_energy[occupied][:, None]
-    ).reshape(-1)
-    coulomb = eri[np.ix_(occupied, virtual, occupied, virtual)].reshape(
-        gaps.size, gaps.size
+    gaps = (reference.mo_energy[virtual][None, :] - reference.mo_energy[occupied][:, None]).reshape(
+        -1
     )
+    coulomb = eri[np.ix_(occupied, virtual, occupied, virtual)].reshape(gaps.size, gaps.size)
     square_root = np.sqrt(gaps)
-    return np.diag(np.square(gaps)) + 4.0 * (
-        square_root[:, None] * coulomb * square_root[None, :]
-    )
+    return np.diag(np.square(gaps)) + 4.0 * (square_root[:, None] * coulomb * square_root[None, :])
 
 
 @pytest.mark.pyscf
@@ -1161,9 +1128,10 @@ def test_resolvent_coupling_reproduces_the_dense_squared_rpa_matrix(
     else:
         eri = adapter.build_full_integrals()
         tolerance = 2.0e-12
-    reconstructed_squared = np.diag(
-        np.square(resolvent.particle_hole_gaps)
-    ) + 2.0 * resolvent.v_matrix @ resolvent.v_matrix.T
+    reconstructed_squared = (
+        np.diag(np.square(resolvent.particle_hole_gaps))
+        + 2.0 * resolvent.v_matrix @ resolvent.v_matrix.T
+    )
 
     np.testing.assert_allclose(
         reconstructed_squared,
@@ -1281,9 +1249,7 @@ def test_moments_are_covariant_under_degenerate_orbital_rotations() -> None:
         integrals,
     )
     mapping = CayleyMap(center=0.0, scale=0.73)
-    original = ExactG0W0SelfEnergy.from_integrals(reference, integrals).cayley_moments(
-        mapping, 8
-    )
+    original = ExactG0W0SelfEnergy.from_integrals(reference, integrals).cayley_moments(mapping, 8)
     rotated = ExactG0W0SelfEnergy.from_integrals(
         rotated_reference, rotated_integrals
     ).cayley_moments(mapping, 8)

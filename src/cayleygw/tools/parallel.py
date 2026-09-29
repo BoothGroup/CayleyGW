@@ -8,11 +8,11 @@ sets the limit through ``threadpoolctl``.
 
 from __future__ import annotations
 
+import threading
 from collections import deque
 from concurrent.futures import Future, ThreadPoolExecutor
 from contextlib import contextmanager
 from itertools import islice
-import threading
 from typing import Any, Callable, Iterator, Literal, Sequence
 
 from .._helpers.tools.threadpool import (
@@ -21,7 +21,6 @@ from .._helpers.tools.threadpool import (
     _threadpool_controller,
 )
 from .._helpers.validate import _check
-
 
 __all__ = [
     "ambient_native_threads",
@@ -198,7 +197,8 @@ def evaluate_by_index(
             return results, failures
 
         with ThreadPoolExecutor(max_workers=n_workers) as executor:
-            # Bounded window: an unread future holds its result, so queuing every index holds them all.
+            # Bounded window: an unread future holds its result, so queuing every index holds
+            # them all.
             remaining = iter(indices)
             in_flight: deque[tuple[Future, int]] = deque()
             window = 2 * n_workers

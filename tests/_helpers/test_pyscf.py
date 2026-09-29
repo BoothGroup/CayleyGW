@@ -11,7 +11,6 @@ from pyscf import scf
 from cayleygw import ValidationError
 from cayleygw._helpers.pyscf import RestrictedPySCFAdapter
 
-
 pytestmark = pytest.mark.pyscf
 
 
@@ -107,9 +106,7 @@ def test_frozen_core_orbitals(water_rhf) -> None:
 def test_full_integrals_match_direct_pyscf_transform_and_symmetry(h2_rhf) -> None:
     adapter = RestrictedPySCFAdapter(h2_rhf)
     full = adapter.build_full_integrals()
-    direct = np.asarray(
-        h2_rhf.mol.intor("int2e", aosym="s1")
-    ).reshape((h2_rhf.mol.nao_nr(),) * 4)
+    direct = np.asarray(h2_rhf.mol.intor("int2e", aosym="s1")).reshape((h2_rhf.mol.nao_nr(),) * 4)
     coefficients = adapter.reference.mo_coeff
     independently_transformed = np.einsum(
         "up,vq,wr,xs,uvwx->pqrs",
@@ -162,9 +159,7 @@ def test_density_fitting_error_is_quantified_against_full_integrals(h2_rhf_df) -
     difference = _reconstruct(fitted) - full
     max_abs_error = float(np.max(np.abs(difference)))
     rms_error = float(np.sqrt(np.mean(np.square(difference))))
-    relative_frobenius_error = float(
-        np.linalg.norm(difference) / np.linalg.norm(full)
-    )
+    relative_frobenius_error = float(np.linalg.norm(difference) / np.linalg.norm(full))
 
     assert 0.0 < max_abs_error < 3.0e-3
     assert 0.0 < rms_error < max_abs_error

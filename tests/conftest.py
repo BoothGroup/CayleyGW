@@ -16,6 +16,7 @@ from types import SimpleNamespace
 # Set before NumPy loads: the references are single-threaded and "auto" reads it.
 os.environ.setdefault("OMP_NUM_THREADS", "1")
 
+import drift
 import numpy as np
 import pytest
 from pyscf import dft, gto, lib, scf
@@ -26,8 +27,6 @@ from cayleygw import (
     build_upfolded_hamiltonian,
     diagonalize_upfolded,
 )
-
-import drift
 
 
 def pytest_terminal_summary(terminalreporter) -> None:
@@ -318,9 +317,7 @@ def dyson_greens_function(problem, frequency):
     result = np.empty(values.shape + identity.shape, dtype=np.complex128)
     for index in np.ndindex(values.shape):
         inverse_green = (
-            complex(values[index]) * identity
-            - problem.physical_matrix
-            - self_energy[index]
+            complex(values[index]) * identity - problem.physical_matrix - self_energy[index]
         )
         result[index] = np.linalg.solve(inverse_green, identity)
     return result
@@ -332,9 +329,7 @@ def _upfolded_greens_function(problem, frequency):
     values = np.asarray(frequency, dtype=np.complex128)
     matrix = problem.matrix
     identity = np.eye(problem.dimension, dtype=np.complex128)
-    result = np.empty(
-        values.shape + (problem.nphysical, problem.nphysical), dtype=np.complex128
-    )
+    result = np.empty(values.shape + (problem.nphysical, problem.nphysical), dtype=np.complex128)
     for index in np.ndindex(values.shape):
         solution = np.linalg.solve(
             complex(values[index]) * identity - matrix,

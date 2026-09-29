@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from importlib import metadata
 import math
-from pathlib import Path
 import subprocess
 import threading
-from typing import Any, Callable, TYPE_CHECKING, TypeVar
+from importlib import metadata
+from pathlib import Path
+from typing import TYPE_CHECKING, Any, Callable, TypeVar
 
 import numpy as np
 from rich import box
@@ -75,8 +75,18 @@ def _frontier(result: Any) -> list[tuple[str, float, float, int]]:
     """Return ``(label, energy, weight, state)`` for every IP, then every EA."""
 
     sides = (
-        ("IP", result.ionization_potentials, result.ip_physical_weights, result.ip_eigenvalue_indices),
-        ("EA", result.electron_affinities, result.ea_physical_weights, result.ea_eigenvalue_indices),
+        (
+            "IP",
+            result.ionization_potentials,
+            result.ip_physical_weights,
+            result.ip_eigenvalue_indices,
+        ),
+        (
+            "EA",
+            result.electron_affinities,
+            result.ea_physical_weights,
+            result.ea_eigenvalue_indices,
+        ),
     )
     return [
         (f"{name} {position}", *row)
@@ -138,8 +148,7 @@ def _moments_summary(moments: Any, total: float, bare: bool) -> list[RenderableT
         message = f"Moments {orders} built at N_q = {moments.n_q} in {_duration(total)}."
     else:
         message = (
-            f"Moments {orders} [good]converged[/] at N_q = {moments.n_q} "
-            f"in {_duration(total)}."
+            f"Moments {orders} [good]converged[/] at N_q = {moments.n_q} in {_duration(total)}."
         )
     contour = moments.contour
     bounds = moments.rpa_spectral_bounds
@@ -162,8 +171,7 @@ def _upfolded_summary(hamiltonian: Any, total: float, bare: bool) -> list[Render
     """Return the line and sector table of the upfolded summary panel."""
 
     message = (
-        f"Upfolded Hamiltonian of dimension {hamiltonian.dimension} "
-        f"built in {_duration(total)}."
+        f"Upfolded Hamiltonian of dimension {hamiltonian.dimension} built in {_duration(total)}."
     )
     table = _table("Sectors")
     table.add_column("Sector", justify="right")

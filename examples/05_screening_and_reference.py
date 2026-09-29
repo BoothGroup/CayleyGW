@@ -16,7 +16,6 @@ from pyscf import dft, gto, scf
 
 from cayleygw import CayleyGW, enable_logging
 
-
 # --- controls ---------------------------------------------------------------
 ATOM = "N 0 0 0; N 0 0 1.098"  # geometry, Angstrom
 BASIS = "cc-pvdz"  # orbital basis
@@ -75,7 +74,9 @@ def main() -> None:
         f" {XC.upper()} {np.float64(reference.gap) * HARTREE_TO_EV:.3f} eV"
     )
 
-    print(f"\n{'=' * 78}\nResults: N2/{BASIS} frontier energies in eV by screening, reference and frozen core\n{'=' * 78}")
+    print(
+        f"\n{'=' * 78}\nResults: N2/{BASIS} frontier energies in eV by screening, reference and frozen core\n{'=' * 78}"
+    )
     print("\n".join(report))
 
 

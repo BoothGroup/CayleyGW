@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
 import math
-from typing import Any, TYPE_CHECKING
+from dataclasses import dataclass, field
+from typing import TYPE_CHECKING, Any
 
 import numpy as np
 from numpy.typing import NDArray
@@ -47,9 +47,7 @@ def _block_toeplitz(values: ComplexArray) -> ComplexArray:
             column_slice = slice(column * block, (column + 1) * block)
             difference = column - row
             result[row_slice, column_slice] = (
-                values[difference]
-                if difference >= 0
-                else values[-difference].conj().T
+                values[difference] if difference >= 0 else values[-difference].conj().T
             )
     return result
 
@@ -100,18 +98,14 @@ def _moment_acceptance_thresholds(
     else:
         thresholds = absolute_tolerance + base * scales
     if _rank_was_deflated(normalization, diagnostics):
-        thresholds += 2.0 * (
-            limits.ABSOLUTE_TOLERANCE + limits.RELATIVE_TOLERANCE * (1.0 + scales)
-        )
+        thresholds += 2.0 * (limits.ABSOLUTE_TOLERANCE + limits.RELATIVE_TOLERANCE * (1.0 + scales))
         orders = np.arange(values.shape[0], dtype=np.float64)
         shift_bounds = (
             orders
             * diagnostics.determined_shift_residual
             * math.sqrt(1.0 + diagnostics.gram_residual)
         )
-        thresholds += projection_scale * (
-            diagnostics.gram_residual + shift_bounds
-        )
+        thresholds += projection_scale * (diagnostics.gram_residual + shift_bounds)
     return _check.readonly_real(thresholds, "moment acceptance thresholds")
 
 
@@ -176,9 +170,7 @@ class _UnitarityCertificate:
             math.sqrt(s0_square),
             float(np.linalg.norm(a, ord="fro")),
             float(np.linalg.norm(nn, ord="fro")),
-            float(np.linalg.norm(
-                rr - np.eye(terminal_dimension, dtype=np.complex128), ord="fro"
-            )),
+            float(np.linalg.norm(rr - np.eye(terminal_dimension, dtype=np.complex128), ord="fro")),
         )
         return cls(
             s0_square=s0_square,
@@ -200,9 +192,7 @@ class _UnitarityCertificate:
         identity = np.eye(t.shape[0], dtype=np.complex128)
         c = t @ self.nn @ th + t @ th - identity
         ch = c.conj().T
-        cross = (
-            np.trace(t @ self.ag) + np.trace(th @ self.rh) + np.trace(c @ self.rg)
-        )
+        cross = np.trace(t @ self.ag) + np.trace(th @ self.rh) + np.trace(c @ self.rg)
         rah = self.ra.conj().T
         # ||Y||**2 = sum_ij tr(gl[i][j] gr[j][i]), gl = Yl.H Yl fixed, gr = Yr Yr.H.
         gl = (
@@ -252,20 +242,11 @@ def _validated_realization(
     matrix = fixed_matrix.copy()
     if terminal.shape[0]:
         # As in block-CMV, ``U`` holds the adjoint of the Verblunsky terminal.
-        matrix += (
-            terminal_left_basis
-            @ terminal.conj().T
-            @ terminal_right_adjoint
-        )
+        matrix += terminal_left_basis @ terminal.conj().T @ terminal_right_adjoint
     matrix = _seal(matrix, "matrix")
-    unitarity_threshold = limits.ROUNDOFF_TOLERANCE * max(
-        1.0, math.sqrt(matrix.shape[0])
-    )
+    unitarity_threshold = limits.ROUNDOFF_TOLERANCE * max(1.0, math.sqrt(matrix.shape[0]))
     # Trust the closed form while its roundoff, eps * scale**2, is far below threshold**2.
-    if (
-        certificate is not None
-        and certificate.scale <= 1.0e3 * unitarity_threshold
-    ):
+    if certificate is not None and certificate.scale <= 1.0e3 * unitarity_threshold:
         unitarity_residual = certificate.residual(terminal)
     else:
         # Subtract the identity in place: the same arithmetic, two fewer D x D arrays.
@@ -453,10 +434,7 @@ def _shift_completion(
         part and the residual of the provisional shift.
     """
 
-    blocks = tuple(
-        root[:, index * rank : (index + 1) * rank]
-        for index in range(order + 1)
-    )
+    blocks = tuple(root[:, index * rank : (index + 1) * rank] for index in range(order + 1))
     selector = _check.readonly_complex(blocks[0], "selector")
     dimension = root.shape[0]
     if order == 0:
@@ -469,9 +447,7 @@ def _shift_completion(
         domain = np.concatenate(blocks[:-1], axis=1)
         target = np.concatenate(blocks[1:], axis=1)
         cross = target @ domain.conj().T
-        left, singular_values, right_adjoint = np.linalg.svd(
-            cross, full_matrices=True
-        )
+        left, singular_values, right_adjoint = np.linalg.svd(cross, full_matrices=True)
         domain_rank = min(dimension, domain.shape[1])
         if domain_rank and singular_values[domain_rank - 1] <= 0.0:
             raise RefusalError(
@@ -502,15 +478,11 @@ def _shift_completion(
                 left_orientation = np.eye(terminal_dimension, dtype=complex)
                 right_orientation = np.eye(terminal_dimension, dtype=complex)
             terminal_left = terminal_left @ left_orientation
-            terminal_right_adjoint = (
-                right_orientation.conj().T @ terminal_right_adjoint
-            )
+            terminal_right_adjoint = right_orientation.conj().T @ terminal_right_adjoint
         provisional = fixed_matrix.copy()
         if terminal_left.shape[1]:
             provisional += terminal_left @ terminal_right_adjoint
-        shift_residual = float(
-            np.linalg.norm(provisional @ domain - target, ord="fro")
-        )
+        shift_residual = float(np.linalg.norm(provisional @ domain - target, ord="fro"))
         del provisional, domain, target
     return (
         selector,

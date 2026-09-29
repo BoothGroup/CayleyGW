@@ -17,7 +17,6 @@ from pyscf import gto, scf
 
 from cayleygw import CayleyGW, enable_logging
 
-
 # --- controls ---------------------------------------------------------------
 ATOM = "O 0 0 0.1173; H 0 0.7572 -0.4692; H 0 -0.7572 -0.4692"  # geometry, Angstrom
 BASIS = "cc-pvdz"  # orbital basis
@@ -42,7 +41,10 @@ def main() -> None:
         CayleyGW(mean_field, n_q=N_Q, verbose=VERBOSE).kernel(N_CONSERVED, n_ip=N_IP, n_ea=N_EA)
 
     print(f"\n{'=' * 78}\nResults: H2O/{BASIS}, one calculation under each log style\n{'=' * 78}")
-    print("styles, in the order their logs appear above: " + ", ".join(repr(style) for style in STYLES))
+    print(
+        "styles, in the order their logs appear above: "
+        + ", ".join(repr(style) for style in STYLES)
+    )
     if LOG_FILE is not None:
         print(f"log file, holding every run: {LOG_FILE}")
 

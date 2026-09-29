@@ -16,13 +16,15 @@ from pyscf import gto, scf
 
 from cayleygw import CayleyGW, enable_logging
 
-
 # --- controls ---------------------------------------------------------------
 ATOM = "C 0 0 0; O 0 0 1.128"  # geometry, Angstrom
 BASIS = "cc-pvdz"  # orbital basis
 OMEGA_P_VALUES = (0.125, 0.25, 0.5, 1.0, 2.0)  # Cayley scales in Hartree
 ORDERS = (1, 2)  # low conserved orders at which the omega_p dependence is visible
-DEEPER_IPS = (4, 5)  # further removal energies followed, counted outwards from the chemical potential
+DEEPER_IPS = (
+    4,
+    5,
+)  # further removal energies followed, counted outwards from the chemical potential
 REFERENCE_OMEGA_P = 0.5  # Cayley scale of the reference
 REFERENCE_N_CONSERVED = 9  # conserved order of the reference
 N_Q = "auto"  # contour nodes: doubled from 128 until every moment order is converged
@@ -38,7 +40,11 @@ def charged_energies(gw, n_conserved):
     charged = gw.kernel(n_conserved, n_ip=max(DEEPER_IPS), n_ea=1)
     removal = charged.ionization_potentials * HARTREE_TO_EV
     return np.array(
-        [charged.electron_affinities[0] * HARTREE_TO_EV, removal[0], *(removal[index - 1] for index in DEEPER_IPS)]
+        [
+            charged.electron_affinities[0] * HARTREE_TO_EV,
+            removal[0],
+            *(removal[index - 1] for index in DEEPER_IPS),
+        ]
     )
 
 
@@ -59,7 +65,8 @@ def main() -> None:
     report = [  # printed after the log, as one section
         f"errors in meV against n_conserved={REFERENCE_N_CONSERVED} at omega_p={REFERENCE_OMEGA_P}"
         " (IP(k) is the k-th removal energy outwards from the chemical potential):",
-        "  reference: " + ", ".join(f"{label} {value:.3f} eV" for label, value in zip(labels, reference)),
+        "  reference: "
+        + ", ".join(f"{label} {value:.3f} eV" for label, value in zip(labels, reference)),
         header,
     ]
     for omega_p in OMEGA_P_VALUES:
@@ -73,7 +80,9 @@ def main() -> None:
                 + "".join(f" {error:9.3f}" for error in errors)
             )
 
-    print(f"\n{'=' * 78}\nResults: CO/{BASIS} G0W0@RHF, the Cayley scale omega_p at low conserved order\n{'=' * 78}")
+    print(
+        f"\n{'=' * 78}\nResults: CO/{BASIS} G0W0@RHF, the Cayley scale omega_p at low conserved order\n{'=' * 78}"
+    )
     print("\n".join(report))
 
 

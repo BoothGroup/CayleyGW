@@ -15,9 +15,9 @@ in its confocal parameter.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
 import logging
 import math
+from dataclasses import dataclass, field
 from typing import Any, Literal, Self
 
 import numpy as np
@@ -86,10 +86,9 @@ class EllipseContour:
         """Return each point's normalized radius: below one inside, above one outside."""
 
         complex_points = _check.readonly_complex(points, "points")
-        values = (
-            np.square((complex_points.real - self.center) / self.horizontal_radius)
-            + np.square(complex_points.imag / self.vertical_radius)
-        )
+        values = np.square(
+            (complex_points.real - self.center) / self.horizontal_radius
+        ) + np.square(complex_points.imag / self.vertical_radius)
         values = np.asarray(values, dtype=np.float64)
         if values.ndim == 0:
             return float(values)
@@ -123,9 +122,8 @@ class EllipseContour:
             + self.horizontal_radius * np.cos(angles)
             + 1j * self.vertical_radius * np.sin(angles)
         )
-        derivatives = (
-            -self.horizontal_radius * np.sin(angles)
-            + 1j * self.vertical_radius * np.cos(angles)
+        derivatives = -self.horizontal_radius * np.sin(angles) + 1j * self.vertical_radius * np.cos(
+            angles
         )
         weights = (2.0 / (1j * count)) * derivatives
         # Conjugate partners by conjugation, not trigonometry, so they pair to the last bit.
@@ -163,9 +161,8 @@ class EllipseContour:
             + self.horizontal_radius * np.cos(angles)
             + 1j * self.vertical_radius * np.sin(angles)
         )
-        derivatives = (
-            -self.horizontal_radius * np.sin(angles)
-            + 1j * self.vertical_radius * np.cos(angles)
+        derivatives = -self.horizontal_radius * np.sin(angles) + 1j * self.vertical_radius * np.cos(
+            angles
         )
         # The end nodes exactly real, since sin(pi) is not zero in floating point.
         nodes[[0, -1]] = self.center + self.horizontal_radius, self.center - self.horizontal_radius
@@ -210,9 +207,7 @@ class EllipseContour:
         """
 
         if not isinstance(resolvent, ProjectedRPAResolvent):
-            raise ValidationError(
-                "resolvent must be a ProjectedRPAResolvent"
-            )
+            raise ValidationError("resolvent must be a ProjectedRPAResolvent")
         lower = resolvent.spectral_lower_bound
         upper = resolvent.spectral_upper_bound
         center = 0.5 * (upper + lower)
@@ -289,9 +284,7 @@ class EllipseContour:
         """
 
         order = _check.nonnegative_integer(n_max, "n_max")
-        block_size = _check.positive_integer(
-            orbital_block_size,
-            "orbital_block_size")
+        block_size = _check.positive_integer(orbital_block_size, "orbital_block_size")
         workers = _check.positive_integer(n_workers, "n_workers")
         native = _check.positive_integer(native_threads, "native_threads")
         if not isinstance(mapping, CayleyMap):
@@ -307,9 +300,7 @@ class EllipseContour:
             self.midpoint_rule(n_points) if rule == "midpoint" else self.trapezoid_rule(n_points)
         )
         stages = Stages(verbose, LOGGER)
-        projected_working = _sample_nodes(
-            resolvent, nodes, stages, workers, native, int(n_points)
-        )
+        projected_working = _sample_nodes(resolvent, nodes, stages, workers, native, int(n_points))
         totals_by_sector = _contract_moments(
             resolvent,
             mapping,

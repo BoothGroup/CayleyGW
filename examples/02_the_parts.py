@@ -23,7 +23,6 @@ from cayleygw import (
     extract_ip_ea,
 )
 
-
 # --- controls ---------------------------------------------------------------
 ATOM = "O 0 0 0.1173; H 0 0.7572 -0.4692; H 0 -0.7572 -0.4692"  # geometry, Angstrom
 BASIS = "cc-pvdz"  # orbital basis
@@ -53,9 +52,7 @@ def main() -> None:
     rows = []
     for n_conserved in ORDERS:
         # 2. C_0..C_n realized as poles and couplings; C_{n+1} is the spare that selects the closure.
-        hamiltonian = build_upfolded_hamiltonian(
-            moments, n_conserved=n_conserved, verbose=VERBOSE
-        )
+        hamiltonian = build_upfolded_hamiltonian(moments, n_conserved=n_conserved, verbose=VERBOSE)
         # 3. Every eigenvalue, with its weight on the orbitals.
         spectrum = diagonalize_upfolded(hamiltonian, verbose=VERBOSE)
         # 4. The frontier energies, counted outwards from the chemical potential.
@@ -73,7 +70,9 @@ def main() -> None:
     gw = CayleyGW(mean_field, omega_p=OMEGA_P, n_q=N_Q, verbose=VERBOSE)
     kernel = gw.kernel(N_CONSERVED_BUILT, n_ip=1, n_ea=1)
 
-    print(f"\n{'=' * 78}\nResults: H2O/{BASIS} G0W0@RHF, one moment build realized at every lower order\n{'=' * 78}")
+    print(
+        f"\n{'=' * 78}\nResults: H2O/{BASIS} G0W0@RHF, one moment build realized at every lower order\n{'=' * 78}"
+    )
     print("  n  orders used   dim      IP (eV)      EA (eV)   dIP (meV)   dEA (meV)")
     previous = None
     for n_conserved, dimension, ip, ea in rows:
@@ -95,7 +94,9 @@ def main() -> None:
             f"  n={n_conserved}: IP {abs(ip - highest_ip) * 1e3:9.3f}"
             f"   EA {abs(ea - highest_ea) * 1e3:9.3f}"
         )
-    print(f"reference HOMO-LUMO gap: {np.float64(moments.adapter.reference.gap) * HARTREE_TO_EV:.3f} eV")
+    print(
+        f"reference HOMO-LUMO gap: {np.float64(moments.adapter.reference.gap) * HARTREE_TO_EV:.3f} eV"
+    )
     print(
         f"gw.kernel({highest}) against the four calls at n={highest}:"
         f" IP {(kernel.ionization_potentials[0] * HARTREE_TO_EV - highest_ip) * 1e3:+.3f} meV,"

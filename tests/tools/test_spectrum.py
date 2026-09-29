@@ -6,6 +6,7 @@ from pathlib import Path
 
 import numpy as np
 import pytest
+from conftest import sector_source
 
 from cayleygw import (
     Sector,
@@ -17,8 +18,6 @@ from cayleygw import (
     plot_spectrum,
     reconstruction_test,
 )
-
-from conftest import sector_source
 
 
 def _source_free_problem() -> UpfoldedDysonHamiltonian:
@@ -222,19 +221,13 @@ def test_the_weight_floor_rejects_a_satellite_standing_in_for_a_quasiparticle() 
     permissive = extract_ip_ea(
         spectrum, n_ip=2, n_ea=2, chemical_potential=0.0, minimum_weight=1.0e-6
     )
-    strict = extract_ip_ea(
-        spectrum, n_ip=2, n_ea=2, chemical_potential=0.0, minimum_weight=1.0e-1
-    )
+    strict = extract_ip_ea(spectrum, n_ip=2, n_ea=2, chemical_potential=0.0, minimum_weight=1.0e-1)
     # All poles here carry full weight, so the floor changes nothing.
-    np.testing.assert_allclose(
-        permissive.removal_pole_energies, strict.removal_pole_energies
-    )
+    np.testing.assert_allclose(permissive.removal_pole_energies, strict.removal_pole_energies)
     assert permissive.minimum_weight == pytest.approx(1.0e-6)
     assert strict.minimum_weight == pytest.approx(1.0e-1)
 
     # A floor above every weight returns nothing, not the least-bad pole.
-    empty = extract_ip_ea(
-        spectrum, n_ip=2, n_ea=2, chemical_potential=0.0, minimum_weight=2.0
-    )
+    empty = extract_ip_ea(spectrum, n_ip=2, n_ea=2, chemical_potential=0.0, minimum_weight=2.0)
     assert len(empty.removal_pole_energies) == 0
     assert len(empty.addition_pole_energies) == 0

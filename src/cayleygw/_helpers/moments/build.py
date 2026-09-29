@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, NamedTuple, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, NamedTuple
 
 from ..errors import ValidationError
 from ..types import Screening
@@ -44,9 +44,7 @@ def _checked_options(
     order = conserved + 1
     automatic_n_q = n_q == "auto"
     if isinstance(n_q, str) and not automatic_n_q:
-        raise ValidationError(
-            f"n_q must be a positive integer or 'auto'; got {n_q!r}"
-        )
+        raise ValidationError(f"n_q must be a positive integer or 'auto'; got {n_q!r}")
     if automatic_n_q:
         n_q_rtol = _check.positive_real(n_q_tolerance, "n_q_tolerance")
         count = None
@@ -58,9 +56,7 @@ def _checked_options(
     level = _check.nonnegative_integer(verbose, "verbose")
     selected_omega_p = _check.positive_real(omega_p, "omega_p")
     if spectral_bound not in ("frobenius", "spectral"):
-        raise ValidationError(
-            "spectral_bound must be 'frobenius' or 'spectral'"
-        )
+        raise ValidationError("spectral_bound must be 'frobenius' or 'spectral'")
     selected_orbital_block_size = _check.positive_integer(
         contour_orbital_block_size,
         "contour_orbital_block_size",

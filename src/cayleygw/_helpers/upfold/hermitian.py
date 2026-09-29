@@ -30,8 +30,7 @@ def _validated_hermitian(
     )
     if residual > threshold:
         raise ValidationError(
-            f"{name} must be Hermitian: residual={residual:.3e}, "
-            f"threshold={threshold:.3e}"
+            f"{name} must be Hermitian: residual={residual:.3e}, threshold={threshold:.3e}"
         )
     # Symmetrized so eigh sees an exactly Hermitian matrix.
     hermitian = 0.5 * (matrix + matrix.conj().T)

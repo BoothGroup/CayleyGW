@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Any, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 import numpy as np
 from numpy.typing import ArrayLike
@@ -43,9 +43,7 @@ class SectorMomentReconstruction:
         """Whether every conserved order is within its threshold."""
 
         stop = self.conserved_order + 1
-        return bool(
-            np.all(self.absolute_errors[:stop] <= self.acceptance_thresholds[:stop])
-        )
+        return bool(np.all(self.absolute_errors[:stop] <= self.acceptance_thresholds[:stop]))
 
 
 @dataclass(frozen=True, slots=True)
@@ -119,13 +117,12 @@ class DysonSpectrum:
 
     def __post_init__(self) -> None:
         if not isinstance(self.problem, DysonProblem):
-            raise ValidationError(
-                "problem must be an UpfoldedDysonHamiltonian instance"
-            )
+            raise ValidationError("problem must be an UpfoldedDysonHamiltonian instance")
         dimension = self.problem.dimension
-        if np.shape(self.energies) != (dimension,) or np.shape(
-            self.eigenvectors
-        ) != (dimension, dimension):
+        if np.shape(self.energies) != (dimension,) or np.shape(self.eigenvectors) != (
+            dimension,
+            dimension,
+        ):
             raise ValidationError(
                 "energies and eigenvectors must have one entry and one column "
                 "per upfolded dimension"

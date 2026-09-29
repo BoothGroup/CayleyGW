@@ -43,8 +43,7 @@ class MatrixCayleyMoments:
             or values.shape[1] != values.shape[2]
         ):
             raise ValidationError(
-                "values must have shape (order + 1, nphysical, nphysical) "
-                "with positive dimensions"
+                "values must have shape (order + 1, nphysical, nphysical) with positive dimensions"
             )
         object.__setattr__(self, "values", values)
 
@@ -138,7 +137,8 @@ class BlockSchurStep:
         right_defect_basis: Orthonormal basis kept for the right defect space.
         defect_eigenvalues: Positive eigenvalues kept in each squared defect.
         rotation: Reduced Julia rotation, unitary even after rank deflation.
-        contraction_ratio: Top singular value's excess over one before projection, in units of the positivity tolerance.
+        contraction_ratio: Top singular value's excess over one before projection, in units of
+            the positivity tolerance.
     """
 
     choice_parameter: ComplexArray = field(repr=False)
@@ -216,7 +216,8 @@ class ToeplitzDiagnostics:
         eigenvalue_floor: Scale-aware floor that separates null directions from small positive ones.
         numerical_rank: Rank kept in the square-root Gram factor.
         gram_residual: Frobenius residual of the Gram square root.
-        determined_shift_residual: Frobenius residual ``||U D - R||`` on adjacent Gram block columns.
+        determined_shift_residual: Frobenius residual ``||U D - R||`` on adjacent Gram block
+            columns.
         terminal_dimension: ``D - min(D, F * r)``, left for the terminal unitary at full shift rank.
     """
 
@@ -243,7 +244,8 @@ class SectorClosureDiagnostics:
         weight_threshold: ``ABSOLUTE_TOLERANCE + RELATIVE_TOLERANCE * total_weight``.
         wrong_arc_weight: Trace weight of the wrong-arc atoms.
         near_singular_weight: Trace weight near :math:`u = 1`.
-        minimum_correct_node_distance_from_one: Closest approach to ``u = 1`` of a significant correct-arc atom.
+        minimum_correct_node_distance_from_one: Closest approach to ``u = 1`` of a significant
+            correct-arc atom.
         inverse_conditioning_penalty: Sum over atoms of weight over squared distance from ``u = 1``.
         withheld_moment_residuals: Residual of each moment above ``n_conserved``.
         withheld_relative_residuals: The same residuals over ``1 + ||C[n]||``.
@@ -331,9 +333,7 @@ class SectorClosureScan:
         if self.selected_index is None:
             return ()
         feasible = [
-            index
-            for index, candidate in enumerate(self.candidates)
-            if candidate.acceptable
+            index for index, candidate in enumerate(self.candidates) if candidate.acceptable
         ]
         feasible.sort(key=lambda index: _ranking_key(self.candidates[index]))
         return tuple(feasible)

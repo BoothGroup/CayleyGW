@@ -48,18 +48,16 @@ def solve_response(
     rpa = screening is Screening.RPA
     occupied = np.asarray(reference.occupied_positions, dtype=np.int64)
     virtual = np.asarray(reference.virtual_positions, dtype=np.int64)
-    gaps = (
-        reference.mo_energy[virtual][None, :]
-        - reference.mo_energy[occupied][:, None]
-    ).reshape(-1)
-    coulomb = np.asarray(eri)[
-        np.ix_(occupied, virtual, occupied, virtual)
-    ].reshape(gaps.size, gaps.size)
+    gaps = (reference.mo_energy[virtual][None, :] - reference.mo_energy[occupied][:, None]).reshape(
+        -1
+    )
+    coulomb = np.asarray(eri)[np.ix_(occupied, virtual, occupied, virtual)].reshape(
+        gaps.size, gaps.size
+    )
     symmetry_residual = float(np.max(np.abs(coulomb - coulomb.T)))
     if symmetry_residual > limits.ROUNDOFF_TOLERANCE:
         raise ValidationError(
-            "spatial Coulomb matrix is not symmetric; maximum residual is "
-            f"{symmetry_residual:.3e}"
+            f"spatial Coulomb matrix is not symmetric; maximum residual is {symmetry_residual:.3e}"
         )
     kernel = 2.0 * (0.5 * (coulomb + coulomb.T))
     minimum_gap = float(np.min(gaps))
@@ -87,9 +85,7 @@ def solve_response(
                 kind="rpa-instability",
             )
         energies = np.sqrt(squared_energies)
-        amplitudes = (
-            square_root[:, None] * eigenvectors / np.sqrt(energies)[None, :]
-        )
+        amplitudes = square_root[:, None] * eigenvectors / np.sqrt(energies)[None, :]
         return gaps, energies, np.ascontiguousarray(amplitudes)
 
     a_matrix = kernel
@@ -135,10 +131,9 @@ def exact_coulomb_factors(eri: FloatArray) -> FloatArray:
             f"eigenvalue is {minimum_eigenvalue:.3e} Hartree"
         )
     retained = eigenvalues > null_threshold
-    factors = (
-        np.sqrt(eigenvalues[retained])[:, None]
-        * eigenvectors[:, retained].T
-    ).reshape(-1, nmo, nmo)
+    factors = (np.sqrt(eigenvalues[retained])[:, None] * eigenvectors[:, retained].T).reshape(
+        -1, nmo, nmo
+    )
     # eigh's rotation within a degenerate eigenspace can break p <-> q per factor.
     factors = np.ascontiguousarray(0.5 * (factors + factors.swapaxes(1, 2)))
     factors.setflags(write=False)

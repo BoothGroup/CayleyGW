@@ -8,8 +8,8 @@ exact. It is the reference every approximate route is checked against.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
 import math
+from dataclasses import dataclass, field
 from typing import Any, Self
 
 import numpy as np
@@ -56,16 +56,10 @@ class SelfEnergySector:
         if poles.ndim != 1 or poles.size == 0:
             raise ValidationError("poles must be a nonempty vector")
         if couplings.ndim != 2 or couplings.shape[0] == 0:
-            raise ValidationError(
-                "couplings must have shape (nphysical, npoles)"
-            )
+            raise ValidationError("couplings must have shape (nphysical, npoles)")
         if couplings.shape[1] != poles.size:
-            raise ValidationError(
-                "couplings must contain one column per pole"
-            )
-        chemical_potential = _check.finite_real(
-            self.chemical_potential, "chemical_potential"
-        )
+            raise ValidationError("couplings must contain one column per pole")
+        chemical_potential = _check.finite_real(self.chemical_potential, "chemical_potential")
         if self.sector is Sector.HOLE and np.any(poles >= chemical_potential):
             raise ValidationError(
                 "every hole self-energy pole must lie below the chemical potential"
@@ -150,9 +144,7 @@ class SelfEnergySector:
         broadening = _check.positive_real(eta, "eta")
         values = _check.readonly_complex(frequency, "frequency")
         if np.any(values.imag != 0.0):
-            raise ValidationError(
-                "time-ordered evaluation requires real frequencies"
-            )
+            raise ValidationError("time-ordered evaluation requires real frequencies")
         shift = -1j * broadening if self.sector is Sector.HOLE else 1j * broadening
         denominator = values.real[..., None] - self.poles + shift
         result = np.einsum(
@@ -235,14 +227,8 @@ class ExactG0W0SelfEnergy:
             amplitudes,
             optimize=True,
         )
-        hole_poles = (
-            reference.mo_energy[occupied, None]
-            - energies[None, :]
-        ).reshape(-1)
-        particle_poles = (
-            reference.mo_energy[virtual, None]
-            + energies[None, :]
-        ).reshape(-1)
+        hole_poles = (reference.mo_energy[occupied, None] - energies[None, :]).reshape(-1)
+        particle_poles = (reference.mo_energy[virtual, None] + energies[None, :]).reshape(-1)
         hole_couplings = screened[:, occupied, :].reshape(reference.nmo, -1)
         particle_couplings = screened[:, virtual, :].reshape(reference.nmo, -1)
         hole = SelfEnergySector(
@@ -263,9 +249,7 @@ class ExactG0W0SelfEnergy:
             reference=reference,
             hole=hole,
             particle=particle,
-            static_correction=_check.readonly_complex(
-                static_correction, "static_correction"
-            ),
+            static_correction=_check.readonly_complex(static_correction, "static_correction"),
         )
 
     @classmethod
@@ -416,7 +400,5 @@ class ExactG0W0SelfEnergy:
                 f"diagonal quasiparticle root did not converge for orbital {orbital}"
             ) from error
         if not math.isfinite(float(root)):
-            raise ValidationError(
-                "diagonal quasiparticle solver returned a non-finite root"
-            )
+            raise ValidationError("diagonal quasiparticle solver returned a non-finite root")
         return float(root)

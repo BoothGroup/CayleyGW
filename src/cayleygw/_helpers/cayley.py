@@ -107,9 +107,7 @@ class CayleyMap:
 
         mapped = np.asarray(real_part + 1j * imaginary_part, dtype=np.complex128)
         if not np.all(np.isfinite(mapped)):
-            raise ValidationError(
-                "Cayley mapping failed to produce finite unit-circle points"
-            )
+            raise ValidationError("Cayley mapping failed to produce finite unit-circle points")
         return complex(mapped.item()) if scalar else mapped
 
     def inverse(self, point: ArrayLike) -> float | FloatArray:
@@ -145,8 +143,7 @@ class CayleyMap:
         if np.any(distance_from_one <= limits.ABSOLUTE_TOLERANCE):
             minimum = float(np.min(distance_from_one))
             raise RefusalError(
-                "inverse Cayley map is singular at u = 1; "
-                f"minimum abs(u - 1) is {minimum:.3e}",
+                f"inverse Cayley map is singular at u = 1; minimum abs(u - 1) is {minimum:.3e}",
                 kind="cayley-singularity",
             )
 

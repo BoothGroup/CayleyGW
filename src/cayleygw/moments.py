@@ -8,8 +8,8 @@ Hartree.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
 import logging
+from dataclasses import dataclass, field
 from typing import Any, Literal
 
 from ._helpers.cayley import CayleyMap
@@ -24,7 +24,6 @@ from .tools.logger import Stages, summarized
 from .tools.parallel import resolve_native_threads
 from .tools.records.contour import ContourSectorMoments, SpectralBounds
 from .tools.records.moments import AutomaticNQDiagnostics, AutomaticNQSectorDiagnostics
-
 
 LOGGER = logging.getLogger(__name__)
 

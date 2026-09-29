@@ -74,9 +74,7 @@ def feasibility_violations(positive_moments: Any, sector: Sector) -> tuple[str, 
 
     # R+ C[n] R+^dagger on the retained support, when there is one.
     if retained.size:
-        pseudoinverse = np.ascontiguousarray(
-            (1.0 / np.sqrt(retained))[:, None] * basis.conj().T
-        )
+        pseudoinverse = np.ascontiguousarray((1.0 / np.sqrt(retained))[:, None] * basis.conj().T)
         normalized = np.einsum(
             "ap,kpq,bq->kab",
             pseudoinverse,
@@ -92,8 +90,7 @@ def feasibility_violations(positive_moments: Any, sector: Sector) -> tuple[str, 
     # Localizer block (i, j) is arc_sign (C[j-i+1] - C[j-i-1]) / 2i: Toeplitz, shifted.
     block = normalized.shape[1]
     localizing = np.ascontiguousarray(
-        sector.arc_sign * (toeplitz[:-block, block:] - toeplitz[block:, :-block])
-        / (2.0j)
+        sector.arc_sign * (toeplitz[:-block, block:] - toeplitz[block:, :-block]) / (2.0j)
     )
 
     failures: list[str] = []
@@ -113,7 +110,5 @@ def feasibility_violations(positive_moments: Any, sector: Sector) -> tuple[str, 
         if positivity > 1.0:
             failures.append(f"{label} positivity ({positivity:.3e} tolerances)")
     if support_violation > 1.0:
-        failures.append(
-            f"zeroth-moment support ({support_violation:.3e} tolerances)"
-        )
+        failures.append(f"zeroth-moment support ({support_violation:.3e} tolerances)")
     return tuple(failures)

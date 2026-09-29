@@ -19,7 +19,6 @@ from pyscf import dft, gto
 
 from cayleygw import CayleyGW, enable_logging
 
-
 # --- controls ---------------------------------------------------------------
 ATOM = """
 C  1.3970  0.0000 0; C  0.6985  1.2098 0; C -0.6985  1.2098 0;
@@ -53,9 +52,17 @@ def memory_estimate(n_mo, n_aux, n_q, n_conserved, block_size):
     dimension = n_mo * (2 * n_conserved + 3)  # physical block plus two full-rank sectors
     return {
         "density-fitted MO integrals (n_aux, n_mo, n_mo), real": n_aux * n_mo**2 * 8,
-        "projected resolvent at N_q/2 nodes (N_q/2, n_aux, n_aux), complex": (n_q // 2) * n_aux**2 * 16,
-        "auxiliary moments of one orbital block, both conjugate halves (2 block, n_max+1, n_aux, n_aux), complex": 2 * block_size * (n_max + 1) * n_aux**2 * 16,
-        "upfolded Hamiltonian at its largest dimension (dimension, dimension), complex": dimension**2 * 16,
+        "projected resolvent at N_q/2 nodes (N_q/2, n_aux, n_aux), complex": (n_q // 2)
+        * n_aux**2
+        * 16,
+        "auxiliary moments of one orbital block, both conjugate halves (2 block, n_max+1, n_aux, n_aux), complex": 2
+        * block_size
+        * (n_max + 1)
+        * n_aux**2
+        * 16,
+        "upfolded Hamiltonian at its largest dimension (dimension, dimension), complex": dimension
+        ** 2
+        * 16,
     }
 
 
@@ -70,7 +77,9 @@ def main() -> None:
     n_max = N_CONSERVED + 1
     # Printed before anything expensive runs, so that it can stop the job.
     print(f"{'=' * 78}\nBefore the run: the sizes that set the cost\n{'=' * 78}")
-    print(f"{molecule.natm} atoms, {molecule.nao} basis functions, {n_mo} active orbitals, {n_aux} auxiliary functions, moments C_0..C_{n_max}")
+    print(
+        f"{molecule.natm} atoms, {molecule.nao} basis functions, {n_mo} active orbitals, {n_aux} auxiliary functions, moments C_0..C_{n_max}"
+    )
     print(f"memory estimate at N_q={ESTIMATE_N_Q}, block size {CONTOUR_ORBITAL_BLOCK_SIZE}:")
     estimate = memory_estimate(n_mo, n_aux, ESTIMATE_N_Q, N_CONSERVED, CONTOUR_ORBITAL_BLOCK_SIZE)
     for name, size in estimate.items():

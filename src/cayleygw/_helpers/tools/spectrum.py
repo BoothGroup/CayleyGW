@@ -24,13 +24,9 @@ def _chemical_potential_from_problem(
         if center is not None:
             centers.append(_check.finite_real(center, "Cayley-map center"))
     if len(centers) != 2:
-        raise ValidationError(
-            "chemical_potential is required when the sectors carry no Cayley map"
-        )
+        raise ValidationError("chemical_potential is required when the sectors carry no Cayley map")
     scale = max(abs(centers[0]), abs(centers[1]))
     threshold = limits.ABSOLUTE_TOLERANCE + limits.RELATIVE_TOLERANCE * scale
     if abs(centers[0] - centers[1]) > threshold:
-        raise ValidationError(
-            "hole and particle realizations have different Cayley centers"
-        )
+        raise ValidationError("hole and particle realizations have different Cayley centers")
     return 0.5 * (centers[0] + centers[1])

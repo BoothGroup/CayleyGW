@@ -9,7 +9,6 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-
 from cayleygw import RefusalError, ValidationError
 from cayleygw._helpers.tolerances import DEFAULT_TOLERANCES, ROUNDOFF_TOLERANCE
 from cayleygw.realization import block_cmv as block_cmv_module
@@ -65,11 +64,9 @@ def test_realization_package_has_no_moment_producer_imports() -> None:
                 imports.extend(alias.name for alias in node.names)
             elif isinstance(node, ast.ImportFrom) and node.module is not None:
                 imports.append(node.module)
-        assert not any(
-            part in forbidden
-            for imported in imports
-            for part in imported.split(".")
-        ), f"{path.name} imports a moment-producing layer: {imports}"
+        assert not any(part in forbidden for imported in imports for part in imported.split(".")), (
+            f"{path.name} imports a moment-producing layer: {imports}"
+        )
 
 
 def test_matrix_moment_container_is_source_agnostic_and_read_only() -> None:
@@ -124,24 +121,16 @@ def test_first_block_parameter_fixes_adjoint_and_selector_conventions() -> None:
         normalized.values[1].conj().T,
         atol=7.0e-16,
     )
-    np.testing.assert_allclose(
-        realization.matrix[:2, :2], normalized.values[1], atol=7.0e-16
-    )
+    np.testing.assert_allclose(realization.matrix[:2, :2], normalized.values[1], atol=7.0e-16)
 
 
 def test_nonnormal_julia_rotation_keeps_left_and_right_defects_distinct() -> None:
     alpha = np.asarray([[0.15 + 0.1j, 0.42 - 0.08j], [0.03j, -0.21 + 0.17j]])
-    step = block_cmv_helpers._step_from_choice(
-        alpha.conj().T, 0, DEFAULT_TOLERANCES
-    )
+    step = block_cmv_helpers._step_from_choice(alpha.conj().T, 0, DEFAULT_TOLERANCES)
     rotation = step.rotation
     roots = np.sqrt(step.defect_eigenvalues)
-    left_defect = (
-        step.left_defect_basis * roots[None, :]
-    ) @ step.left_defect_basis.conj().T
-    right_defect = (
-        step.right_defect_basis * roots[None, :]
-    ) @ step.right_defect_basis.conj().T
+    left_defect = (step.left_defect_basis * roots[None, :]) @ step.left_defect_basis.conj().T
+    right_defect = (step.right_defect_basis * roots[None, :]) @ step.right_defect_basis.conj().T
 
     expected_left_squared = np.eye(2) - alpha.conj().T @ alpha
     expected_right_squared = np.eye(2) - alpha @ alpha.conj().T
@@ -176,9 +165,7 @@ def test_noncommuting_positive_measure_is_conserved_by_block_cmv() -> None:
     assert result.normalization.rank == 2
     assert _defect_ranks(result) == (2, 2, 2, 2, 2)
     assert not result.terminal_from_moments
-    np.testing.assert_allclose(
-        result.matrix, result._prefix.left @ result._prefix.right
-    )
+    np.testing.assert_allclose(result.matrix, result._prefix.left @ result._prefix.right)
     np.testing.assert_allclose(
         result.selector.conj().T @ result.selector,
         np.eye(2),
@@ -378,7 +365,9 @@ def test_invalid_terminal_tolerance_and_requested_order_are_rejected() -> None:
 
 def test_roundoff_singular_values_are_projected_only_within_tolerance() -> None:
     choice = np.diag([1.0 + 2.0e-9, 0.2])
-    step = block_cmv_helpers._step_from_choice(choice, 0, replace(DEFAULT_TOLERANCES, positivity=1.0e-8))
+    step = block_cmv_helpers._step_from_choice(
+        choice, 0, replace(DEFAULT_TOLERANCES, positivity=1.0e-8)
+    )
 
     assert step.defect_rank == 1
     projected = np.linalg.svd(step.choice_parameter, compute_uv=False)
@@ -411,13 +400,11 @@ def test_a_clean_contraction_stays_inside_the_ball() -> None:
     realization = BlockCMVRealization.realize(moments)
 
     assert realization.maximum_contraction_ratio <= 1.0
-    assert all(
-        step.contraction_ratio <= 1.0 for step in realization._parameters.steps
-    )
+    assert all(step.contraction_ratio <= 1.0 for step in realization._parameters.steps)
 
 
 def test_no_positivity_tolerance_can_admit_a_material_violation() -> None:
-    """However loose the positivity tolerance, the moment reconstruction check refuses a material excess."""
+    """However loose the positivity tolerance, the moment reconstruction check refuses a material excess."""  # noqa: E501
 
     node = np.exp(0.4j)
     residue = np.asarray([[1.0, 0.2j], [-0.2j, 0.5]])
@@ -426,7 +413,9 @@ def test_no_positivity_tolerance_can_admit_a_material_violation() -> None:
     outside = single_atom * ((1.0 + excess) ** np.arange(3))[:, None, None]
 
     with pytest.raises(RefusalError, match="conserve"):
-        BlockCMVRealization.realize(outside, tolerances=replace(DEFAULT_TOLERANCES, positivity=1.0e2))
+        BlockCMVRealization.realize(
+            outside, tolerances=replace(DEFAULT_TOLERANCES, positivity=1.0e2)
+        )
 
 
 def test_all_public_realization_arrays_are_read_only() -> None:
@@ -486,9 +475,7 @@ def test_reclose_block_cmv_reproduces_a_full_realization_exactly() -> None:
                 atol=1.0e-13,
                 err_msg=f"{name} differs at phase={phase}",
             )
-        np.testing.assert_allclose(
-            actual.moment_residuals, expected.moment_residuals, atol=1.0e-13
-        )
+        np.testing.assert_allclose(actual.moment_residuals, expected.moment_residuals, atol=1.0e-13)
 
 
 def test_reclose_block_cmv_returns_the_fixed_closure_after_termination() -> None:
@@ -546,9 +533,7 @@ def test_assembly_certification_falls_back_to_exact_residuals() -> None:
     not_unitary = np.eye(4, dtype=np.complex128)
     not_unitary[0, 0] = 2.0
     with pytest.raises(RefusalError, match="assembled left"):
-        _certify_assembled_factors(
-            not_unitary, unitary, not_unitary, 9.0, 0.0, 1.0e-10, 4
-        )
+        _certify_assembled_factors(not_unitary, unitary, not_unitary, 9.0, 0.0, 1.0e-10, 4)
 
 
 def test_banded_assembly_matches_the_dense_product() -> None:
@@ -559,9 +544,7 @@ def test_banded_assembly_matches_the_dense_product() -> None:
     generator = np.random.default_rng(606)
 
     def unitary(size: int) -> np.ndarray:
-        raw = generator.normal(size=(size, size)) + 1.0j * generator.normal(
-            size=(size, size)
-        )
+        raw = generator.normal(size=(size, size)) + 1.0j * generator.normal(size=(size, size))
         left_vectors, _, right_adjoint = np.linalg.svd(raw)
         return left_vectors @ right_adjoint
 
@@ -575,14 +558,10 @@ def test_banded_assembly_matches_the_dense_product() -> None:
     for index in range(len(dimensions)):
         start = int(offsets[index])
         stop = int(offsets[min(index + 2, len(dimensions))])
-        (left if index % 2 == 0 else right)[start:stop, start:stop] = unitary(
-            stop - start
-        )
+        (left if index % 2 == 0 else right)[start:stop, start:stop] = unitary(stop - start)
         spans[index % 2].append((start, stop))
 
-    banded = _block_diagonal_product(
-        left, right, tuple(spans[0]), tuple(spans[1]), dimension
-    )
+    banded = _block_diagonal_product(left, right, tuple(spans[0]), tuple(spans[1]), dimension)
     np.testing.assert_allclose(banded, left @ right, atol=1.0e-14)
 
 
@@ -592,8 +571,7 @@ def _conditioned_zeroth(rank: int, condition: float) -> np.ndarray:
     eigenvalues = np.geomspace(1.0 / condition, 1.0, rank)
     generator = np.random.default_rng(0)
     basis, _ = np.linalg.qr(
-        generator.normal(size=(rank, rank))
-        + 1.0j * generator.normal(size=(rank, rank))
+        generator.normal(size=(rank, rank)) + 1.0j * generator.normal(size=(rank, rank))
     )
     matrix = (basis * eigenvalues) @ basis.conj().T
     return np.asarray([0.5 * (matrix + matrix.conj().T)])

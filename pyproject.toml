@@ -63,3 +63,50 @@ testpaths = ["tests"]
 markers = [
     "pyscf: tests that run molecular PySCF calculations",
 ]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle
+    "F",  # pyflakes
+    "I",  # isort
+    "D",  # pydocstyle
+    "PL", # pylint
+]
+ignore = [
+    "D105",     # undocumented-magic-method: the dataclass __post_init__ validators
+    "D107",     # undocumented-public-init
+    "D202",     # blank-line-after-function: every docstring here is followed by one
+    "E731",     # lambda-assignment
+    "PLR0912",  # too-many-branches
+    "PLR0913",  # too-many-arguments
+    "PLR0915",  # too-many-statements
+    "PLR0917",  # too-many-positional-arguments
+    "PLR2004",  # magic-value-comparison
+    "PLW2901",  # redefined-loop-name
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Imports deferred on purpose: optional matplotlib, a lazy probe, an import cycle.
+"src/cayleygw/_helpers/pyscf.py" = ["PLC0415"]
+"src/cayleygw/_helpers/tools/logfile.py" = ["PLC0415"]
+"src/cayleygw/tools/spectrum.py" = ["PLC0415"]
+# Process-wide thread-limit state.
+"src/cayleygw/_helpers/tools/threadpool.py" = ["PLW0603"]
+"src/cayleygw/tools/parallel.py" = ["PLW0603"]
+"tests/**/*.py" = [
+    "D103",     # undocumented-public-function
+    "PLC0415",  # import-outside-top-level
+]
+"examples/**/*.py" = [
+    "D103",  # undocumented-public-function
+    "E501",  # line-too-long
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.isort]
+known-first-party = ["cayleygw"]

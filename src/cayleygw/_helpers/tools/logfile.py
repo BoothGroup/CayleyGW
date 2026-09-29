@@ -122,9 +122,7 @@ def _summary(event: dict, message: str) -> str:
     rows = _stage_rows(event["rows"], total, merge=False)
     width = max([len(title)] + [len(name) for name, _, _ in rows]) + 2
     lines = [message, f"  {'stage':<{width}}{'seconds':>10}  share"]
-    lines += [
-        f"  {name:<{width}}{seconds:>10.2f}  {share:5.1f}%" for name, seconds, share in rows
-    ]
+    lines += [f"  {name:<{width}}{seconds:>10.2f}  {share:5.1f}%" for name, seconds, share in rows]
     lines.append(f"  {'total wall time':<{width}}{total:>10.2f}")
     times = "\n".join(lines)
     if result is None:
@@ -147,9 +145,9 @@ def _moments(moments: Any) -> str:
     bounds = moments.rpa_spectral_bounds
     lines = [
         "build_cayley_moments: result",
-        f"  moments C_0..C_{moments.n_max}, conserved through "
-        f"C_{moments.n_conserved}, 1 spare",
-        f"  N_q {moments.n_q}, {moments.n_solved} nodes solved ({moments.quadrature_rule} rule, conjugate pairs)",
+        f"  moments C_0..C_{moments.n_max}, conserved through C_{moments.n_conserved}, 1 spare",
+        f"  N_q {moments.n_q}, {moments.n_solved} nodes solved "
+        f"({moments.quadrature_rule} rule, conjugate pairs)",
         f"  ellipse centre {contour.center:.10g} Ha, semi-axes "
         f"{contour.horizontal_radius:.10g} and {contour.vertical_radius:.10g} Ha",
     ]

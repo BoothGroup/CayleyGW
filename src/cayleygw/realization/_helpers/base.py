@@ -7,7 +7,7 @@ the caller builds them.
 from __future__ import annotations
 
 import math
-from typing import Any, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 import numpy as np
 from scipy.linalg import get_blas_funcs, schur
@@ -25,7 +25,6 @@ if TYPE_CHECKING:
     from ..base import UnitaryMomentRealization
 
 
-
 def _hermitian_square(values: ComplexArray) -> ComplexArray:
     """Return ``values.conj().T @ values`` through BLAS ``zherk``.
 
@@ -40,7 +39,7 @@ def _hermitian_square(values: ComplexArray) -> ComplexArray:
     if values.shape[0] == 0:
         # ``herk`` returns an uninitialized buffer for an empty inner dimension.
         return np.zeros((values.shape[1], values.shape[1]), dtype=np.complex128)
-    herk, = get_blas_funcs(("herk",), (values,))
+    (herk,) = get_blas_funcs(("herk",), (values,))
     # ``trans=2`` is ``'C'``; ``herk`` rejects ``'T'`` only with a message on stderr.
     upper = herk(1.0, values, trans=2, lower=0)
     return upper + np.triu(upper, 1).conj().T
@@ -61,10 +60,7 @@ def _canonical_terminal_unitary(value: Any, dimension: int) -> ComplexArray:
     else:
         matrix = _check.readonly_complex(value, "terminal_unitary")
         if matrix.shape != (dimension, dimension):
-            raise ValidationError(
-                "terminal_unitary must have shape "
-                f"({dimension}, {dimension})"
-            )
+            raise ValidationError(f"terminal_unitary must have shape ({dimension}, {dimension})")
     if dimension == 0:
         return _check.readonly_complex(matrix, "terminal_unitary")
     left_residual = _unitarity_residual(matrix)
@@ -244,9 +240,7 @@ def _unitary_eigendecomposition(
         if product is None:
             product = matrix @ vectors
         diagonal = np.einsum("ji,ji->i", vectors.conj(), product)
-        residual = float(
-            np.linalg.norm(product - vectors * diagonal[None, :], ord="fro")
-        )
+        residual = float(np.linalg.norm(product - vectors * diagonal[None, :], ord="fro"))
         return diagonal, product, residual
 
     # ``(M + M.H) / 2`` with one temporary instead of three, element for element.
@@ -267,9 +261,7 @@ def _unitary_eigendecomposition(
     values = values[order]
     # A gap ``d`` blurs eigenvectors by ``eps / d``; merge gaps below ``eps / threshold``.
     epsilon = float(np.finfo(np.float64).eps)
-    gap_threshold = min(
-        0.5, max(8.0 * epsilon, epsilon / max(residual_threshold, epsilon))
-    )
+    gap_threshold = min(0.5, max(8.0 * epsilon, epsilon / max(residual_threshold, epsilon)))
     boundaries = np.flatnonzero(np.diff(values) > gap_threshold) + 1
     clusters = np.split(np.arange(dimension), boundaries)
     largest = max((c.size for c in clusters), default=0)
@@ -418,9 +410,7 @@ def _support_compression(source: MatrixCayleyMoments) -> dict[str, Any]:
     )
     identity = np.eye(retained.size, dtype=np.complex128)
     normalization_residual = float(np.linalg.norm(normalized[0] - identity, ord="fro"))
-    support_condition = (
-        float(retained[-1] / retained[0]) if retained.size else 1.0
-    )
+    support_condition = float(retained[-1] / retained[0]) if retained.size else 1.0
     # The residual is roundoff amplified by the support condition, so allow that too.
     root_rank = max(1.0, float(np.sqrt(retained.size)))
     normalization_threshold = max(
@@ -445,9 +435,7 @@ def _support_compression(source: MatrixCayleyMoments) -> dict[str, Any]:
         values=_check.readonly_complex(normalized, "normalized values"),
         support_eigenvalues=_check.readonly_real(retained, "support_eigenvalues"),
         support_factor=_check.readonly_complex(factor, "support_factor"),
-        support_pseudoinverse=_check.readonly_complex(
-            pseudoinverse, "support_pseudoinverse"
-        ),
+        support_pseudoinverse=_check.readonly_complex(pseudoinverse, "support_pseudoinverse"),
     )
 
 
@@ -460,9 +448,7 @@ def _unit_circle_atoms(realization: UnitaryMomentRealization) -> dict[str, Any]:
         residuals = np.zeros(realization.conserved_order + 1)
         return dict(
             nodes=_check.readonly_complex(np.zeros(0), "nodes"),
-            couplings=_check.readonly_complex(
-                np.zeros((nphysical, 0)), "couplings"
-            ),
+            couplings=_check.readonly_complex(np.zeros((nphysical, 0)), "couplings"),
             trace_weights=_check.readonly_real(np.zeros(0), "trace_weights"),
             moment_residuals=_check.readonly_real(residuals, "moment_residuals"),
         )
@@ -500,9 +486,7 @@ def _unit_circle_atoms(realization: UnitaryMomentRealization) -> dict[str, Any]:
     eigendecomposition_residual = float(
         np.linalg.norm(image - eigenvectors * nodes[None, :], ord="fro")
     )
-    eigendecomposition_threshold = (
-        4.0 * limits.ROUNDOFF_TOLERANCE * matrix_scale
-    )
+    eigendecomposition_threshold = 4.0 * limits.ROUNDOFF_TOLERANCE * matrix_scale
     if eigendecomposition_residual > eigendecomposition_threshold:
         raise RefusalError(
             "projected block-CMV eigendecomposition is not accurate enough: "

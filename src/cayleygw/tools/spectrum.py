@@ -179,9 +179,7 @@ def calculate_spectrum(
         total = spectrum.spectral_function(grid, broadening=eta)
         components = np.array(
             [
-                spectrum.spectral_function(
-                    grid, broadening=eta, orbital_position=int(orbital)
-                )
+                spectrum.spectral_function(grid, broadening=eta, orbital_position=int(orbital))
                 for orbital in orbitals
             ],
             dtype=np.float64,
@@ -236,9 +234,7 @@ def plot_spectrum(
         unit = str(energy_unit).lower()
         if unit not in ("hartree", "ev"):
             raise ValidationError("energy_unit must be 'hartree' or 'ev'")
-        relative = _check.boolean(
-            relative_to_chemical_potential, "relative_to_chemical_potential"
-        )
+        relative = _check.boolean(relative_to_chemical_potential, "relative_to_chemical_potential")
         _check.boolean(show_orbitals, "show_orbitals")
         if title is not None and not isinstance(title, str):
             raise ValidationError("title must be a string or None")
@@ -295,9 +291,7 @@ def plot_spectrum(
             destination.parent.mkdir(parents=True, exist_ok=True)
             figure.savefig(destination, dpi=200)
         except (OSError, ValueError) as error:
-            raise ValidationError(
-                f"could not save spectrum plot to {destination}"
-            ) from error
+            raise ValidationError(f"could not save spectrum plot to {destination}") from error
         finally:
             figure.clear()
         return destination

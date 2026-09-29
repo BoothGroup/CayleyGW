@@ -13,7 +13,6 @@ from pyscf import gto, scf
 
 from cayleygw import CayleyGW, RefusalError, build_cayley_moments, enable_logging
 
-
 # --- controls ---------------------------------------------------------------
 ATOM = "C 0 0 0; O 0 0 1.128"  # geometry, Angstrom
 BASIS = "cc-pvdz"  # orbital basis
@@ -89,13 +88,20 @@ def main() -> None:
         if bound != moments.spectral_bound:
             # The ellipse needs only the moments, so this build is not realized.
             moments = build_cayley_moments(
-                mean_field, n_conserved=N_CONSERVED, n_q="auto", omega_p=OMEGA_P, spectral_bound=bound, **settings
+                mean_field,
+                n_conserved=N_CONSERVED,
+                n_q="auto",
+                omega_p=OMEGA_P,
+                spectral_bound=bound,
+                **settings,
             )
         bounds = moments.rpa_spectral_bounds
         contour = moments.contour
         equioscillation = contour.equioscillation_diagnostics
         report.append(f"  spectral_bound='{bound}':")
-        report.append(f"    RPA excitation energies enclosed in [{bounds.lower:.4f}, {bounds.upper:.4f}] ({bounds.source})")
+        report.append(
+            f"    RPA excitation energies enclosed in [{bounds.lower:.4f}, {bounds.upper:.4f}] ({bounds.source})"
+        )
         report.append(
             f"    c={contour.center:.4f}  a={contour.horizontal_radius:.4f}"
             f"  b={contour.vertical_radius:.4f}"

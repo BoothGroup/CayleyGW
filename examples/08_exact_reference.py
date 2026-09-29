@@ -24,7 +24,6 @@ from cayleygw import (
     extract_ip_ea,
 )
 
-
 # --- controls ---------------------------------------------------------------
 ATOM = "Li 0 0 0; H 0 0 1.595"  # geometry, Angstrom
 BASIS = "cc-pvdz"  # orbital basis; no density fitting, so every route shares the exact interaction
@@ -73,7 +72,10 @@ def main() -> None:
     energies = np.asarray(exact_spectrum.energies)
     report.append("")
     report.append("diagonal quasiparticle equation against the full solution:")
-    for name, position in (("HOMO", reference.occupied_positions[-1]), ("LUMO", reference.virtual_positions[0])):
+    for name, position in (
+        ("HOMO", reference.occupied_positions[-1]),
+        ("LUMO", reference.virtual_positions[0]),
+    ):
         diagonal = exact.diagonal_quasiparticle_energy(position)
         full = energies[int(np.argmax(orbital_weights[position]))]
         report.append(
@@ -100,16 +102,19 @@ def main() -> None:
             )
             for order in range(moments.n_max + 1)
         )
-        errors = np.concatenate(
-            (
-                charged.ionization_potentials - exact_charged.ionization_potentials,
-                charged.electron_affinities - exact_charged.electron_affinities,
+        errors = (
+            np.concatenate(
+                (
+                    charged.ionization_potentials - exact_charged.ionization_potentials,
+                    charged.electron_affinities - exact_charged.electron_affinities,
+                )
             )
-        ) * HARTREE_TO_EV * 1e3
+            * HARTREE_TO_EV
+            * 1e3
+        )
         report.append(
             f"  {n_conserved}  {moments.n_q:4d}  {gw.hamiltonian.dimension:4d}"
-            f"   {quadrature_error:14.2e}"
-            + "".join(f" {error:9.4f}" for error in errors)
+            f"   {quadrature_error:14.2e}" + "".join(f" {error:9.4f}" for error in errors)
         )
 
     print(f"\n{'=' * 78}\nResults: LiH/{BASIS} G0W0@RHF against the exact reference\n{'=' * 78}")

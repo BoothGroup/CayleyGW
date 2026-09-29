@@ -58,9 +58,7 @@ class AutomaticNQSectorDiagnostics:
             out=np.zeros_like(self.absolute_errors),
             where=self.acceptance_thresholds > 0.0,
         )
-        result[
-            (self.acceptance_thresholds == 0.0) & (self.absolute_errors > 0.0)
-        ] = np.inf
+        result[(self.acceptance_thresholds == 0.0) & (self.absolute_errors > 0.0)] = np.inf
         result.setflags(write=False)
         return result
 
@@ -92,9 +90,7 @@ class AutomaticNQDiagnostics:
     initial_n_q: int
     maximum_n_q: int
     tolerance: float
-    refinements: tuple[
-        tuple[AutomaticNQSectorDiagnostics, AutomaticNQSectorDiagnostics], ...
-    ]
+    refinements: tuple[tuple[AutomaticNQSectorDiagnostics, AutomaticNQSectorDiagnostics], ...]
 
     @property
     def selected_n_q(self) -> int:

@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from dataclasses import replace
 import inspect
+from dataclasses import replace
 from pathlib import Path
 
 import numpy as np
@@ -42,18 +42,13 @@ def _high_order_stress_moments(n_max=30):
     generator = np.random.default_rng(851)
     block = 4
     atom_count = 60
-    angles = (
-        np.linspace(0.02, np.pi - 0.02, atom_count) ** 1.3
-        / (np.pi - 0.02) ** 0.3
-    )
+    angles = np.linspace(0.02, np.pi - 0.02, atom_count) ** 1.3 / (np.pi - 0.02) ** 0.3
     nodes = np.exp(1.0j * angles)
     factors = generator.normal(size=(atom_count, block, 2)) + 1.0j * (
         generator.normal(size=(atom_count, block, 2))
     )
     factors *= np.geomspace(1.0, 1.0e-5, atom_count)[:, None, None]
-    residues = np.einsum(
-        "mai,mbi->mab", factors, factors.conj(), optimize=True
-    )
+    residues = np.einsum("mai,mbi->mab", factors, factors.conj(), optimize=True)
     residues /= np.trace(np.sum(residues, axis=0)).real / block
     return _atomic_moments(nodes, residues, n_max)
 
@@ -68,15 +63,11 @@ def test_toeplitz_avoids_inverse_defect_operations() -> None:
 
 def test_toeplitz_conserves_noncommuting_moments_and_is_unitary() -> None:
     generator = np.random.default_rng(410)
-    nodes = np.exp(
-        1.0j * np.asarray([0.17, 0.73, 1.41, 2.28, 3.36, 4.51, 5.42])
-    )
+    nodes = np.exp(1.0j * np.asarray([0.17, 0.73, 1.41, 2.28, 3.36, 4.51, 5.42]))
     factors = generator.normal(size=(nodes.size, 2, 2)) + 1.0j * (
         generator.normal(size=(nodes.size, 2, 2))
     )
-    residues = np.einsum(
-        "mij,mkj->mik", factors, factors.conj(), optimize=True
-    )
+    residues = np.einsum("mij,mkj->mik", factors, factors.conj(), optimize=True)
     moments = _atomic_moments(nodes, residues, 5)
 
     result = ToeplitzRealization.realize(moments)
@@ -108,9 +99,7 @@ def test_physical_moments_are_a_congruence_of_the_normalized_ones() -> None:
 
     normalized = realization.normalized_matrix_moments(order)
     physical = realization.matrix_moments(order)
-    np.testing.assert_allclose(
-        physical, support @ normalized @ support.conj().T, atol=1.0e-12
-    )
+    np.testing.assert_allclose(physical, support @ normalized @ support.conj().T, atol=1.0e-12)
 
     # Check against explicit powers of the matrix as well.
     matrix = np.asarray(realization.matrix)
@@ -129,9 +118,7 @@ def test_hermitian_square_agrees_with_the_general_product() -> None:
     from cayleygw.realization._helpers.base import _hermitian_square
 
     generator = np.random.default_rng(2024)
-    values = generator.normal(size=(37, 53)) + 1.0j * generator.normal(
-        size=(37, 53)
-    )
+    values = generator.normal(size=(37, 53)) + 1.0j * generator.normal(size=(37, 53))
     result = _hermitian_square(values)
 
     np.testing.assert_allclose(result, values.conj().T @ values, atol=1.0e-12)
@@ -146,9 +133,7 @@ def test_hermitian_square_agrees_with_the_general_product() -> None:
 
 def test_toeplitz_detects_clear_natural_rank_termination() -> None:
     nodes = np.exp(1.0j * np.asarray([0.3, 1.5, 4.4]))
-    vectors = np.asarray(
-        [[1.0, 0.0, 0.0], [0.4, 0.9, 0.0], [0.3j, 0.7, 0.0]]
-    )
+    vectors = np.asarray([[1.0, 0.0, 0.0], [0.4, 0.9, 0.0], [0.3j, 0.7, 0.0]])
     residues = np.einsum("mi,mj->mij", vectors, vectors.conj(), optimize=True)
     moments = _atomic_moments(nodes, residues, 8)
 
@@ -170,9 +155,7 @@ def test_toeplitz_deflates_tolerance_bounded_ambiguous_null_direction() -> None:
     assert result.diagnostics.numerical_rank < 2 * result.normalization.rank
     assert result.dimension == 1
     assert result.diagnostics.gram_residual > 0.0
-    strict = 1.0e-9 * (
-        1.0 + np.linalg.norm(moments, axis=(1, 2))
-    )
+    strict = 1.0e-9 * (1.0 + np.linalg.norm(moments, axis=(1, 2)))
     accepted = result.physical_moment_acceptance_thresholds()
     assert np.all(accepted > strict)
     assert np.max(result.moment_residuals) < np.max(accepted)
@@ -186,10 +169,7 @@ def test_cached_terminal_reclosure_changes_only_unconstrained_moments() -> None:
 
     np.testing.assert_allclose(first.matrix_moments(1), moments, atol=3.0e-15)
     np.testing.assert_allclose(second.matrix_moments(1), moments, atol=3.0e-15)
-    assert (
-        np.linalg.norm(first.matrix_moments(2)[2] - second.matrix_moments(2)[2])
-        > 0.1
-    )
+    assert np.linalg.norm(first.matrix_moments(2)[2] - second.matrix_moments(2)[2]) > 0.1
     assert first.diagnostics is second.diagnostics
     assert first._fixed_matrix is second._fixed_matrix
 
@@ -297,9 +277,7 @@ def test_unknown_realization_algorithm_names_every_accepted_value() -> None:
     moments = np.asarray([[[1.0 + 0.0j]], [[node]]])
     positional, keywords = _sector_arguments(moments)
 
-    with pytest.raises(
-        ValidationError, match="toeplitz"
-    ):
+    with pytest.raises(ValidationError, match="toeplitz"):
         SectorSelfEnergyRealization.scan_closures(
             *positional, **keywords, realization_algorithm="unknown"
         )
@@ -309,8 +287,7 @@ def test_the_endpoint_blocks_are_square_only_outside_the_band() -> None:
     """The ``(t, r)`` endpoint block is square only outside the band, where no search runs."""
 
     stored = np.load(
-        Path(__file__).resolve().parents[1] / "fixtures"
-        / "magnesium-monoxide-K11-hole.npz",
+        Path(__file__).resolve().parents[1] / "fixtures" / "magnesium-monoxide-K11-hole.npz",
         allow_pickle=True,
     )
     values = stored["values"]
@@ -354,8 +331,7 @@ def test_the_gram_thread_count_is_reachable_and_changes_no_result(monkeypatch) -
     """``gram_native_threads`` reaches the eigensolve, defaults to 1 and changes no result."""
 
     stored = np.load(
-        Path(__file__).resolve().parents[1] / "fixtures"
-        / "lithium-hydride-K3-hole.npz",
+        Path(__file__).resolve().parents[1] / "fixtures" / "lithium-hydride-K3-hole.npz",
         allow_pickle=True,
     )
     values = stored["values"]
@@ -377,7 +353,10 @@ def test_the_gram_thread_count_is_reachable_and_changes_no_result(monkeypatch) -
 
     monkeypatch.setattr(toeplitz, "build_gram_spectrum", recording)
     SectorSelfEnergyRealization.scan_closures(
-        values, Sector.HOLE, phase_count=1, native_threads=3,
+        values,
+        Sector.HOLE,
+        phase_count=1,
+        native_threads=3,
         realization_algorithm="toeplitz",
     )
     assert built == [3]
@@ -418,9 +397,7 @@ def test_closed_form_matches_the_dense_residual_on_a_perturbed_family(
     keep = dimension - terminal_dimension
     fixed = left_full[:, :keep] @ right_full[:, :keep].conj().T
     fixed = fixed + defect * generator.normal(size=(dimension, dimension))
-    left = left_full[:, keep:] + defect * generator.normal(
-        size=(dimension, terminal_dimension)
-    )
+    left = left_full[:, keep:] + defect * generator.normal(size=(dimension, terminal_dimension))
     right = right_full[:, keep:].conj().T + defect * generator.normal(
         size=(terminal_dimension, dimension)
     )

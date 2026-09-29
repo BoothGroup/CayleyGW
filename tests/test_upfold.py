@@ -3,13 +3,19 @@
 from __future__ import annotations
 
 import ast
-from dataclasses import replace
 import logging
-from pathlib import Path
 import threading
+from dataclasses import replace
+from pathlib import Path
 
 import numpy as np
 import pytest
+from conftest import (
+    _exact_upfolded,
+    _upfolded_greens_function,
+    dyson_greens_function,
+    sector_source,
+)
 from pyscf import gto, scf, tdscf
 from pyscf.gw import gw_cd, gw_exact
 
@@ -29,13 +35,6 @@ from cayleygw._helpers.cayley import CayleyMap
 from cayleygw._helpers.tolerances import DEFAULT_TOLERANCES
 from cayleygw.realization.sector import SectorSelfEnergyRealization
 from cayleygw.upfold import DysonSpectrum
-
-from conftest import (
-    _exact_upfolded,
-    _upfolded_greens_function,
-    dyson_greens_function,
-    sector_source,
-)
 
 
 def _spectral_greens_function(spectrum, frequency):
@@ -102,10 +101,7 @@ def _scalar_moments(nodes, coupling_norms, n_max):
     nodes = np.asarray(nodes, dtype=np.complex128)
     weights = np.asarray(coupling_norms, dtype=np.float64) ** 2
     return np.asarray(
-        [
-            [[np.sum(weights * nodes**order)]]
-            for order in range(n_max + 1)
-        ],
+        [[[np.sum(weights * nodes**order)]] for order in range(n_max + 1)],
         dtype=np.complex128,
     )
 
@@ -136,11 +132,7 @@ def test_dyson_layer_remains_independent_of_all_moment_producers() -> None:
             imports.extend(alias.name for alias in node.names)
         elif isinstance(node, ast.ImportFrom) and node.module is not None:
             imports.append(node.module)
-    assert not any(
-        part in forbidden
-        for imported in imports
-        for part in imported.split(".")
-    )
+    assert not any(part in forbidden for imported in imports for part in imported.split("."))
 
 
 def test_sector_sources_are_stored_as_given() -> None:
@@ -151,9 +143,7 @@ def test_sector_sources_are_stored_as_given() -> None:
 
         sector = Sector.HOLE
         poles = np.asarray([-2.0, -0.7])
-        couplings = np.asarray(
-            [[0.4 + 0.1j, 0.2], [0.05j, -0.3 + 0.2j]]
-        )
+        couplings = np.asarray([[0.4 + 0.1j, 0.2], [0.05j, -0.3 + 0.2j]])
 
     source = IndependentProducer()
     particle = sector_source(Sector.PARTICLE, [], np.zeros((2, 0)))
@@ -398,7 +388,9 @@ def test_invalid_spectrum_operations_are_rejected() -> None:
             problem=problem,
         )
     with pytest.raises(ValidationError, match="UpfoldedDysonHamiltonian"):
-        DysonSpectrum(energies=spectrum.energies, eigenvectors=spectrum.eigenvectors, problem=object())
+        DysonSpectrum(
+            energies=spectrum.energies, eigenvectors=spectrum.eigenvectors, problem=object()
+        )
 
 
 @pytest.mark.pyscf
@@ -532,15 +524,7 @@ def test_cayley_cmv_greens_function_converges_with_moment_order() -> None:
             phase_count=128,
         )
         problem = UpfoldedDysonHamiltonian([[0.1]], hole, particle)
-        errors.append(
-            float(
-                np.max(
-                    np.abs(
-                        dyson_greens_function(problem, frequencies) - target
-                    )
-                )
-            )
-        )
+        errors.append(float(np.max(np.abs(dyson_greens_function(problem, frequencies) - target))))
         dimensions.append(problem.dimension)
 
     assert dimensions == [3, 5, 7, 7]
@@ -656,9 +640,7 @@ def test_physical_weight_below_is_reported_and_never_gated() -> None:
 
     # Monotone, and saturating outside the spectral range.
     assert spectrum.physical_weight_below(-1.0e6) == 0.0
-    assert spectrum.physical_weight_below(1.0e6) == pytest.approx(
-        spectrum.nphysical, abs=1.0e-12
-    )
+    assert spectrum.physical_weight_below(1.0e6) == pytest.approx(spectrum.nphysical, abs=1.0e-12)
     energies = np.asarray(spectrum.energies)
     values = [spectrum.physical_weight_below(x) for x in np.sort(energies)]
     assert all(a <= b + 1.0e-15 for a, b in zip(values, values[1:]))
@@ -749,9 +731,9 @@ def test_terminal_selection_and_argument_validation(
         with pytest.raises(ValidationError, match="rank_floor"):
             Tolerances(rank_floor=floor)
     with pytest.raises(ValidationError, match="Tolerances"):
-        build_upfolded_hamiltonian(moments, tolerances={"rank_floor": 1.0e-10}, terminal_selection="scan")
-
-
+        build_upfolded_hamiltonian(
+            moments, tolerances={"rank_floor": 1.0e-10}, terminal_selection="scan"
+        )
 
 
 @pytest.mark.pyscf
@@ -892,9 +874,7 @@ def test_concurrent_sectors_do_not_change_the_charged_spectrum(
         "terminal_phase_count": phases,
         "native_threads": 1,
     }
-    serial = diagonalize_upfolded(
-        build_upfolded_hamiltonian(moments, n_workers=1, **common)
-    )
+    serial = diagonalize_upfolded(build_upfolded_hamiltonian(moments, n_workers=1, **common))
     parallel = diagonalize_upfolded(
         build_upfolded_hamiltonian(moments, n_workers=workers, **common)
     )
@@ -956,9 +936,7 @@ def test_sectors_actually_run_on_separate_threads(h2_rhf_df, monkeypatch) -> Non
     observed: list[bool] = []
 
     def recording(sector_moments, sector, mapping, **kwargs):
-        observed.append(
-            threading.current_thread() is threading.main_thread()
-        )
+        observed.append(threading.current_thread() is threading.main_thread())
         return original(sector_moments, sector, mapping, **kwargs)
 
     common = {
@@ -988,26 +966,18 @@ def test_sectors_actually_run_on_separate_threads(h2_rhf_df, monkeypatch) -> Non
 def test_a_lower_n_conserved_override_keeps_the_built_spare_count(h2_rhf) -> None:
     """Overriding ``n_conserved`` truncates the sequence: order n + 1 stays the spare."""
 
-    built = build_cayley_moments(
-        h2_rhf, n_conserved=3, n_q=64, omega_p=1.0
-    )
-    overridden = build_upfolded_hamiltonian(
-        built, n_conserved=2, terminal_selection="scan"
-    )
+    built = build_cayley_moments(h2_rhf, n_conserved=3, n_q=64, omega_p=1.0)
+    overridden = build_upfolded_hamiltonian(built, n_conserved=2, terminal_selection="scan")
     direct = build_upfolded_hamiltonian(
         build_cayley_moments(h2_rhf, n_conserved=2, n_q=64, omega_p=1.0),
         terminal_selection="scan",
     )
-    np.testing.assert_allclose(
-        np.asarray(overridden.matrix), np.asarray(direct.matrix)
-    )
+    np.testing.assert_allclose(np.asarray(overridden.matrix), np.asarray(direct.matrix))
 
 
 @pytest.mark.pyscf
 def test_n_conserved_override_refuses_what_the_build_did_not_conserve(h2_rhf) -> None:
-    moments = build_cayley_moments(
-        h2_rhf, n_conserved=3, n_q=64, omega_p=1.0
-    )
+    moments = build_cayley_moments(h2_rhf, n_conserved=3, n_q=64, omega_p=1.0)
     with pytest.raises(ValidationError, match="exceeds"):
         build_upfolded_hamiltonian(moments, n_conserved=9, terminal_selection="scan")
 
@@ -1017,7 +987,10 @@ def test_realization_reads_the_static_correction_the_build_carried(h2_pbe, monke
     """The realization must not touch the mean field: no DF rebuild for stored moments."""
 
     moments = build_cayley_moments(
-        h2_pbe, n_conserved=3, n_q=128, omega_p=1.0,
+        h2_pbe,
+        n_conserved=3,
+        n_q=128,
+        omega_p=1.0,
     )
     assert moments.static_correction is not None
     carried = np.array(moments.static_correction)
@@ -1048,9 +1021,7 @@ def test_a_refused_realization_still_logs_its_stages_and_summary(
     monkeypatch.setattr(SectorSelfEnergyRealization, "realize", staticmethod(refuse))
     with caplog.at_level(logging.INFO, logger="cayleygw"):
         with pytest.raises(RefusalError):
-            build_upfolded_hamiltonian(
-                moments, n_conserved=2, verbose=1, terminal_selection="scan"
-            )
+            build_upfolded_hamiltonian(moments, n_conserved=2, verbose=1, terminal_selection="scan")
     messages = [record.getMessage() for record in caplog.records]
     assert any(m.startswith("sector realizations: failed after") for m in messages)
     assert any(m.startswith("build_upfolded_hamiltonian: stage times") for m in messages)

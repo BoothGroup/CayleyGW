@@ -1,4 +1,4 @@
-"""The regression protocol, run at a tolerance against a stored reference.
+r"""The regression protocol, run at a tolerance against a stored reference.
 
 Every case runs through the public API at the protocol's settings
 (``omega_p=0.5``, ``N_q=512``, the Frobenius enclosure, ``restricted`` closure,
@@ -11,7 +11,7 @@ the terminal phase) goes to :mod:`drift`, which reports it and never gates.
 Regenerate the reference on one machine, single-threaded and serial, after a
 change meant to move the numbers::
 
-    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 \\
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 \
         CAYLEYGW_REGRESSION_CAPTURE=1 pytest -n 0 tests/test_regression.py
 
 Capture rewrites the file case by case and asserts nothing. It must not run
@@ -25,11 +25,11 @@ import json
 import os
 from pathlib import Path
 
+import drift
 import numpy as np
 import pytest
 from pyscf import dft, gto, scf
 
-import drift
 from cayleygw import (
     ExactG0W0SelfEnergy,
     Screening,
@@ -44,7 +44,6 @@ from cayleygw import (
 )
 from cayleygw._helpers.cayley import CayleyMap
 from cayleygw.realization.sector import SectorSelfEnergyRealization
-
 
 pytestmark = pytest.mark.pyscf
 
@@ -255,18 +254,29 @@ def _contour_summary(name: str, reference: str, screening: str, n_conserved: int
     summary = {
         "n_q": int(moments.n_q),
         "n_max": int(moments.n_max),
-        "n_resolvent_evaluations": int(moments.n_q // 2 if moments.conjugate_paired else moments.n_q),
+        "n_resolvent_evaluations": int(
+            moments.n_q // 2 if moments.conjugate_paired else moments.n_q
+        ),
         "chemical_potential": float(moments.chemical_potential),
-        "contour": [float(contour.center), float(contour.horizontal_radius), float(contour.vertical_radius)],
+        "contour": [
+            float(contour.center),
+            float(contour.horizontal_radius),
+            float(contour.vertical_radius),
+        ],
         "spectral_bounds": [float(bounds.lower), float(bounds.upper)],
         "static_correction_norm": float(np.linalg.norm(moments.static_correction)),
         "hole_moment_norms": [float(np.linalg.norm(block)) for block in moments.hole.moments],
-        "particle_moment_norms": [float(np.linalg.norm(block)) for block in moments.particle.moments],
+        "particle_moment_norms": [
+            float(np.linalg.norm(block)) for block in moments.particle.moments
+        ],
         "upfold": {},
     }
     for label, rank_floor in RANK_FLOORS.items():
         hamiltonian = build_upfolded_hamiltonian(
-            moments, n_conserved=n_conserved, tolerances=Tolerances(rank_floor=rank_floor), **UPFOLD_SETTINGS
+            moments,
+            n_conserved=n_conserved,
+            tolerances=Tolerances(rank_floor=rank_floor),
+            **UPFOLD_SETTINGS,
         )
         spectrum = diagonalize_upfolded(hamiltonian, native_threads=1)
         charged = extract_ip_ea(spectrum, n_ip=3, n_ea=3)
@@ -299,25 +309,51 @@ def test_contour_case(name, reference, screening, n_conserved) -> None:
     want = _expected(key)
     for field in ("n_q", "n_max", "n_resolvent_evaluations"):
         assert got[field] == want[field], f"{key}: {field} {got[field]} against {want[field]}"
-    _close(f"{key} chemical potential", got["chemical_potential"], want["chemical_potential"], DETERMINISTIC)
+    _close(
+        f"{key} chemical potential",
+        got["chemical_potential"],
+        want["chemical_potential"],
+        DETERMINISTIC,
+    )
     _close(f"{key} contour", got["contour"], want["contour"], DETERMINISTIC)
     _close(f"{key} spectral bounds", got["spectral_bounds"], want["spectral_bounds"], DETERMINISTIC)
-    _close(f"{key} static correction", got["static_correction_norm"], want["static_correction_norm"], DETERMINISTIC)
+    _close(
+        f"{key} static correction",
+        got["static_correction_norm"],
+        want["static_correction_norm"],
+        DETERMINISTIC,
+    )
     for sector in ("hole", "particle"):
-        _close(f"{key} {sector} moment norms", got[f"{sector}_moment_norms"], want[f"{sector}_moment_norms"], MOMENT_NORM, relative=True)
+        _close(
+            f"{key} {sector} moment norms",
+            got[f"{sector}_moment_norms"],
+            want[f"{sector}_moment_norms"],
+            MOMENT_NORM,
+            relative=True,
+        )
     for label in RANK_FLOORS:
         got_entry = got["upfold"][label]
         want_entry = want["upfold"][label]
         prefix = f"{key}/{label}"
         assert got_entry["reconstruction_passed"], f"{prefix}: the reconstruction test failed"
-        assert len(got_entry["ip"]) == len(want_entry["ip"]), f"{prefix}: {len(got_entry['ip'])} removal poles against {len(want_entry['ip'])}"
-        assert len(got_entry["ea"]) == len(want_entry["ea"]), f"{prefix}: {len(got_entry['ea'])} addition poles against {len(want_entry['ea'])}"
+        assert len(got_entry["ip"]) == len(want_entry["ip"]), (
+            f"{prefix}: {len(got_entry['ip'])} removal poles against {len(want_entry['ip'])}"
+        )
+        assert len(got_entry["ea"]) == len(want_entry["ea"]), (
+            f"{prefix}: {len(got_entry['ea'])} addition poles against {len(want_entry['ea'])}"
+        )
         _close(f"{prefix} IP", got_entry["ip"], want_entry["ip"], REALIZED_ENERGY)
         _close(f"{prefix} EA", got_entry["ea"], want_entry["ea"], REALIZED_ENERGY)
-        _close(f"{prefix} IP weight", got_entry["ip_weight"], want_entry["ip_weight"], REALIZED_WEIGHT)
-        _close(f"{prefix} EA weight", got_entry["ea_weight"], want_entry["ea_weight"], REALIZED_WEIGHT)
+        _close(
+            f"{prefix} IP weight", got_entry["ip_weight"], want_entry["ip_weight"], REALIZED_WEIGHT
+        )
+        _close(
+            f"{prefix} EA weight", got_entry["ea_weight"], want_entry["ea_weight"], REALIZED_WEIGHT
+        )
         drift.record(f"{prefix}.dimension", got_entry["dimension"])
-        drift.record(f"{prefix}.max_conserved_relative_error", got_entry["max_conserved_relative_error"])
+        drift.record(
+            f"{prefix}.max_conserved_relative_error", got_entry["max_conserved_relative_error"]
+        )
         for sector in ("hole", "particle"):
             _record_sector(f"{prefix}.{sector}", got_entry[sector])
 
@@ -364,7 +400,8 @@ def _exact_summary(name, basis, screening, omega_p, n_max, realize_orders) -> di
         "frontier": _frontier(untruncated.energies, untruncated.physical_weights, mu),
     }
     summary["realized"] = {}
-    # Exact moments of finitely many poles end the Schur recursion on the ball; roundoff lands past it.
+    # Exact moments of finitely many poles end the Schur recursion on the ball; roundoff
+    # lands past it.
     exact_tolerances = Tolerances(positivity=10.0 * Tolerances().positivity)
     for n_conserved in realize_orders:
         sectors = {}
@@ -392,7 +429,9 @@ def _exact_summary(name, basis, screening, omega_p, n_max, realize_orders) -> di
             "frontier": _frontier(spectrum.energies, spectrum.physical_weights, mu),
         }
     contour = build_cayley_moments(
-        mf, n_conserved=n_max - 1, screening=screening,
+        mf,
+        n_conserved=n_max - 1,
+        screening=screening,
         **{**MOMENT_SETTINGS, "omega_p": omega_p},
     )
     summary["contour_vs_exact"] = {
@@ -403,7 +442,10 @@ def _exact_summary(name, basis, screening, omega_p, n_max, realize_orders) -> di
             )
             for order in range(n_max + 1)
         )
-        for sector, built in ((Sector.HOLE, contour.hole.moments), (Sector.PARTICLE, contour.particle.moments))
+        for sector, built in (
+            (Sector.HOLE, contour.hole.moments),
+            (Sector.PARTICLE, contour.particle.moments),
+        )
     }
     return summary
 
@@ -415,23 +457,62 @@ def test_exact_case(key) -> None:
         _store_case(key, got)
         return
     want = _expected(key)
-    _close(f"{key} chemical potential", got["chemical_potential"], want["chemical_potential"], DETERMINISTIC)
-    _close(f"{key} static correction", got["static_correction_norm"], want["static_correction_norm"], DETERMINISTIC)
+    _close(
+        f"{key} chemical potential",
+        got["chemical_potential"],
+        want["chemical_potential"],
+        DETERMINISTIC,
+    )
+    _close(
+        f"{key} static correction",
+        got["static_correction_norm"],
+        want["static_correction_norm"],
+        DETERMINISTIC,
+    )
     for sector in ("hole", "particle"):
         assert got[sector]["npoles"] == want[sector]["npoles"], f"{key}: {sector} pole count"
-        _close(f"{key} {sector} pole range", got[sector]["pole_range"], want[sector]["pole_range"], DETERMINISTIC)
-        _close(f"{key} {sector} zeroth moment", got[sector]["zeroth_moment_norm"], want[sector]["zeroth_moment_norm"], DETERMINISTIC)
-        _close(f"{key} {sector} Cayley moment norms", got["cayley_moment_norms"][sector], want["cayley_moment_norms"][sector], MOMENT_NORM, relative=True)
+        _close(
+            f"{key} {sector} pole range",
+            got[sector]["pole_range"],
+            want[sector]["pole_range"],
+            DETERMINISTIC,
+        )
+        _close(
+            f"{key} {sector} zeroth moment",
+            got[sector]["zeroth_moment_norm"],
+            want[sector]["zeroth_moment_norm"],
+            DETERMINISTIC,
+        )
+        _close(
+            f"{key} {sector} Cayley moment norms",
+            got["cayley_moment_norms"][sector],
+            want["cayley_moment_norms"][sector],
+            MOMENT_NORM,
+            relative=True,
+        )
         assert got["contour_vs_exact"][sector] < QUADRATURE, (
-            f"{key}: {sector} contour moments {got['contour_vs_exact'][sector]:.2e} from the exact ones at N_q={N_Q}"
+            f"{key}: {sector} contour moments {got['contour_vs_exact'][sector]:.2e} "
+            f"from the exact ones at N_q={N_Q}"
         )
         drift.record(f"{key}.{sector}.contour_vs_exact", got["contour_vs_exact"][sector])
     assert got["untruncated"]["nstates"] == want["untruncated"]["nstates"]
-    _compare_frontier(f"{key} untruncated", got["untruncated"]["frontier"], want["untruncated"]["frontier"], DETERMINISTIC, DETERMINISTIC)
+    _compare_frontier(
+        f"{key} untruncated",
+        got["untruncated"]["frontier"],
+        want["untruncated"]["frontier"],
+        DETERMINISTIC,
+        DETERMINISTIC,
+    )
     assert set(got["realized"]) == set(want["realized"])
     for order, got_entry in got["realized"].items():
         prefix = f"{key}/n{order}"
-        _compare_frontier(prefix, got_entry["frontier"], want["realized"][order]["frontier"], REALIZED_ENERGY, REALIZED_WEIGHT)
+        _compare_frontier(
+            prefix,
+            got_entry["frontier"],
+            want["realized"][order]["frontier"],
+            REALIZED_ENERGY,
+            REALIZED_WEIGHT,
+        )
         drift.record(f"{prefix}.dimension", got_entry["dimension"])
         for sector in ("hole", "particle"):
             _record_sector(f"{prefix}.{sector}", got_entry[sector])

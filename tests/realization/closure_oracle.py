@@ -37,7 +37,6 @@ from cayleygw.realization.block_cmv import BlockCMVRealization
 from cayleygw.realization.toeplitz import ToeplitzRealization
 from cayleygw.tools.records.realization import SectorClosureDiagnostics
 
-
 ObjectiveBackend: TypeAlias = Literal["block-cmv", "toeplitz"]
 
 
@@ -126,9 +125,7 @@ class ClosureObjective:
         dimension = self._require_free_terminal()
         values = np.asarray(phases, dtype=np.float64).reshape(-1)
         if values.size != dimension:
-            raise ValidationError(
-                f"phases must have length {dimension}, got {values.size}"
-            )
+            raise ValidationError(f"phases must have length {dimension}, got {values.size}")
         if not np.all(np.isfinite(values)):
             raise ValidationError("phases must be finite")
         return np.diag(np.exp(1.0j * values)).astype(np.complex128)
@@ -140,17 +137,12 @@ class ClosureObjective:
         matrix = np.asarray(generator, dtype=np.complex128)
         if matrix.shape != (dimension, dimension):
             raise ValidationError(
-                f"generator must have shape ({dimension}, {dimension}), "
-                f"got {matrix.shape}"
+                f"generator must have shape ({dimension}, {dimension}), got {matrix.shape}"
             )
-        if not np.all(np.isfinite(matrix.real)) or not np.all(
-            np.isfinite(matrix.imag)
-        ):
+        if not np.all(np.isfinite(matrix.real)) or not np.all(np.isfinite(matrix.imag)):
             raise ValidationError("generator must be finite")
         skew_residual = float(np.linalg.norm(matrix + matrix.conj().T))
-        threshold = ROUNDOFF_TOLERANCE * max(
-            1.0, float(np.linalg.norm(matrix))
-        )
+        threshold = ROUNDOFF_TOLERANCE * max(1.0, float(np.linalg.norm(matrix)))
         if skew_residual > threshold:
             raise ValidationError(
                 "generator must be skew-Hermitian within block_cmv_unitarity: "
@@ -168,9 +160,7 @@ class ClosureObjective:
 
         dimension = self._require_free_terminal()
         if not isinstance(generator, np.random.Generator):
-            raise ValidationError(
-                "generator must be a numpy.random.Generator"
-            )
+            raise ValidationError("generator must be a numpy.random.Generator")
         sample = generator.normal(size=(dimension, dimension)) + 1.0j * generator.normal(
             size=(dimension, dimension)
         )
@@ -255,9 +245,7 @@ class ClosureObjective:
         """Return the scan's own ranking key for one evaluated candidate."""
 
         if not isinstance(candidate, SectorClosureDiagnostics):
-            raise ValidationError(
-                "candidate must be a SectorClosureDiagnostics instance"
-            )
+            raise ValidationError("candidate must be a SectorClosureDiagnostics instance")
         return _ranking_key(candidate)
 
 
@@ -283,39 +271,25 @@ def build_closure_objective(
     if not isinstance(sector, Sector):
         raise ValidationError("sector must be a Sector value")
     if backend not in ("block-cmv", "toeplitz"):
-        raise ValidationError(
-            "backend must be 'block-cmv' or 'toeplitz'"
-        )
+        raise ValidationError("backend must be 'block-cmv' or 'toeplitz'")
     _check.tolerances(tolerances)
-    source = (
-        moments
-        if isinstance(moments, MatrixCayleyMoments)
-        else MatrixCayleyMoments(moments)
-    )
+    source = moments if isinstance(moments, MatrixCayleyMoments) else MatrixCayleyMoments(moments)
     if n_conserved is None:
         fitted_order = source.n_max
     else:
         if isinstance(n_conserved, bool) or not isinstance(n_conserved, int):
-            raise ValidationError(
-                "n_conserved must be a nonnegative integer"
-            )
+            raise ValidationError("n_conserved must be a nonnegative integer")
         if n_conserved < 0:
-            raise ValidationError(
-                "n_conserved must be a nonnegative integer"
-            )
+            raise ValidationError("n_conserved must be a nonnegative integer")
         if n_conserved > source.n_max:
-            raise ValidationError(
-                "n_conserved cannot exceed the highest supplied moment order"
-            )
+            raise ValidationError("n_conserved cannot exceed the highest supplied moment order")
         fitted_order = int(n_conserved)
     if minimum_node_distance is None:
         minimum_distance = ABSOLUTE_TOLERANCE
     else:
         value = float(minimum_node_distance)
         if not np.isfinite(value) or value <= 0.0:
-            raise ValidationError(
-                "minimum_node_distance must be a positive finite number"
-            )
+            raise ValidationError("minimum_node_distance must be a positive finite number")
         minimum_distance = value
 
     fitted = MatrixCayleyMoments(source.values[: fitted_order + 1])
