@@ -1,0 +1,65 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cayleygw"
+version = "1.0.0"
+description = "Cayley-moment G0W0 for closed-shell molecules on top of PySCF"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [
+    { name = "Marcus K. Allen", email = "marcus.allen@kcl.ac.uk" },
+    { name = "George H. Booth", email = "george.booth@kcl.ac.uk" },
+]
+keywords = ["GW", "moment-conserving GW", "Cayley transform", "quantum chemistry", "PySCF"]
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Chemistry",
+    "Topic :: Scientific/Engineering :: Physics",
+]
+dependencies = [
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "pyscf>=2.7",
+    # Required, not optional: it holds every stage to `native_threads` BLAS and
+    # LAPACK threads, and an unbounded native layer makes the block-Toeplitz
+    # rank test, and therefore the realization, depend on the machine.
+    "threadpoolctl>=3.1",
+    # Draws the console log in both styles.
+    "rich>=13",
+]
+
+[project.optional-dependencies]
+plot = [
+    "matplotlib>=3.8",
+]
+test = [
+    "matplotlib>=3.8",
+    "pytest>=8",
+]
+
+[project.urls]
+Repository = "https://github.com/mkakcl/cayleygw"
+Paper = "https://arxiv.org/abs/2609.29271"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-ra --strict-config --strict-markers"
+pythonpath = ["src", "."]
+testpaths = ["tests"]
+markers = [
+    "pyscf: tests that run molecular PySCF calculations",
+]

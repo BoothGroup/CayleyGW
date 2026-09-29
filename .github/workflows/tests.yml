@@ -1,0 +1,39 @@
+name: tests
+
+on:
+  pull_request:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.13"]
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install package and test dependencies
+        run: python -m pip install ".[test]"
+      - name: Run tests
+        # tests/conftest.py's autouse fixture pins PySCF and OpenMP to one
+        # thread but not OpenBLAS, which then defaults to the runner's core
+        # count.  Several realization tests assert structural counts of a
+        # rank-floor ladder whose attempts sit at numerical thresholds, and
+        # those counts move with BLAS summation order: the same code yields 1,
+        # 2 or 4 scored attempts at 4, 1 and 12 OpenBLAS threads on one machine.
+        # Pinning here makes a run reproducible; it does not by itself make the
+        # hard-coded counts right.  These must be set in the environment
+        # because numpy reads them at import, which conftest is too late for.
+        env:
+          OMP_NUM_THREADS: 1
+          OPENBLAS_NUM_THREADS: 1
+          MKL_NUM_THREADS: 1
+          NUMEXPR_NUM_THREADS: 1
+          VECLIB_MAXIMUM_THREADS: 1
+        run: pytest
+

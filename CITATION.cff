@@ -1,0 +1,46 @@
+cff-version: 1.2.0
+message: "If you use cayleygw in published work, please cite the paper below."
+title: cayleygw
+type: software
+version: 1.0.0
+license: Apache-2.0
+repository-code: https://github.com/mkakcl/cayleygw
+abstract: >-
+  Cayley-moment G0W0 for closed-shell molecules on top of PySCF: the
+  self-energy spectral moments after a Cayley transform, built by contour
+  quadrature around the RPA spectrum and realized as a Hermitian upfolded
+  Hamiltonian with explicit pole energies and weights.
+keywords:
+  - GW approximation
+  - moment-conserving GW
+  - Cayley transform
+  - quantum chemistry
+  - PySCF
+authors:
+  - family-names: Allen
+    given-names: Marcus K.
+    email: marcus.allen@kcl.ac.uk
+    affiliation: Department of Physics, King's College London
+  - family-names: Booth
+    given-names: George H.
+    email: george.booth@kcl.ac.uk
+    affiliation: Department of Physics, King's College London
+preferred-citation:
+  type: article
+  title: Full-frequency GW from Cayley-transformed self-energy moments
+  journal: arXiv preprint
+  year: 2026
+  month: 9
+  url: https://arxiv.org/abs/2609.29271
+  doi: 10.48550/arXiv.2609.29271
+  identifiers:
+    - type: other
+      value: "arXiv:2609.29271"
+      description: The arXiv identifier.
+  authors:
+    - family-names: Allen
+      given-names: Marcus K.
+      affiliation: Department of Physics, King's College London
+    - family-names: Booth
+      given-names: George H.
+      affiliation: Department of Physics, King's College London

@@ -1,0 +1,5466 @@
+{
+ "cases": {
+  "contour/CO/cc-pvdz/pbe/rpa/n2": {
+   "chemical_potential": -0.1866984272203549,
+   "contour": [
+    11.903499034070293,
+    11.77117695992444,
+    1.7318411006700696
+   ],
+   "hole_moment_norms": [
+    2.0061121487779188,
+    1.9979339653054928,
+    1.9765943419437892,
+    1.9496595787183835
+   ],
+   "n_max": 3,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.1559764865581985,
+    1.140291860099578,
+    1.0997991682545774,
+    1.04890822844931
+   ],
+   "spectral_bounds": [
+    0.2604181091653297,
+    23.546579958975258
+   ],
+   "static_correction_norm": 2.8478609007451876,
+   "upfold": {
+    "default": {
+     "dimension": 196,
+     "ea": [
+      -0.1302830418194377,
+      -0.13028304181944203,
+      -0.3662477724199756
+     ],
+     "ea_weight": [
+      0.9209912323833644,
+      0.920991232383367,
+      0.9321196575474198
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.0862681998628963e-05,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.787398565289648,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.47908035750165545,
+      0.5824978401680743,
+      0.5824978401680801
+     ],
+     "ip_weight": [
+      0.8699155586230939,
+      0.8076562337120969,
+      0.8076562337121281
+     ],
+     "max_conserved_relative_error": 1.634048640391235e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 4.187879098424106e-06,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.483514895586853,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 196,
+     "ea": [
+      -0.1302830418194377,
+      -0.13028304181944203,
+      -0.3662477724199756
+     ],
+     "ea_weight": [
+      0.9209912323833644,
+      0.920991232383367,
+      0.9321196575474198
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.0862681998628963e-05,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.787398565289648,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.47908035750165545,
+      0.5824978401680743,
+      0.5824978401680801
+     ],
+     "ip_weight": [
+      0.8699155586230939,
+      0.8076562337120969,
+      0.8076562337121281
+     ],
+     "max_conserved_relative_error": 1.634048640391235e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 4.187879098424106e-06,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.483514895586853,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/CO/cc-pvdz/pbe/rpa/n5": {
+   "chemical_potential": -0.1866984272203549,
+   "contour": [
+    11.903499034070293,
+    11.77117695992444,
+    1.7318411006700696
+   ],
+   "hole_moment_norms": [
+    2.0061121487779188,
+    1.9979339653054928,
+    1.9765943419437892,
+    1.9496595787183835,
+    1.9245491211352752,
+    1.9048858215803157,
+    1.8900524792917506
+   ],
+   "n_max": 6,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.1559764865581985,
+    1.140291860099578,
+    1.0997991682545774,
+    1.04890822844931,
+    0.9984983172234663,
+    0.9491128172074718,
+    0.8951467950348346
+   ],
+   "spectral_bounds": [
+    0.2604181091653297,
+    23.546579958975258
+   ],
+   "static_correction_norm": 2.847860900745185,
+   "upfold": {
+    "default": {
+     "dimension": 364,
+     "ea": [
+      -0.13027866677168604,
+      -0.13027866677170713,
+      -0.36399738080250754
+     ],
+     "ea_weight": [
+      0.9208495344934735,
+      0.9208495344940248,
+      0.9338246236641512
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 4.492223291647839e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.718369429834794,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.4790985029547667,
+      0.5824762758094474,
+      0.5824762758098146
+     ],
+     "ip_weight": [
+      0.8699278481704269,
+      0.8048685605579124,
+      0.8048685605678477
+     ],
+     "max_conserved_relative_error": 6.84702630757417e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.0997701933091883e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.569417819708449,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 364,
+     "ea": [
+      -0.13027866677168604,
+      -0.13027866677170713,
+      -0.36399738080250754
+     ],
+     "ea_weight": [
+      0.9208495344934735,
+      0.9208495344940248,
+      0.9338246236641512
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 4.492223291647839e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.718369429834794,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.4790985029547667,
+      0.5824762758094474,
+      0.5824762758098146
+     ],
+     "ip_weight": [
+      0.8699278481704269,
+      0.8048685605579124,
+      0.8048685605678477
+     ],
+     "max_conserved_relative_error": 6.84702630757417e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.0997701933091883e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.569417819708449,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/CO/cc-pvdz/pbe/rpa/n8": {
+   "chemical_potential": -0.1866984272203549,
+   "contour": [
+    11.903499034070293,
+    11.77117695992444,
+    1.7318411006700696
+   ],
+   "hole_moment_norms": [
+    2.0061121487779188,
+    1.9979339653054928,
+    1.9765943419437892,
+    1.9496595787183835,
+    1.9245491211352752,
+    1.9048858215803157,
+    1.8900524792917506,
+    1.8774163970722828,
+    1.8649103835558485,
+    1.852211190170593
+   ],
+   "n_max": 9,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.1559764865581985,
+    1.140291860099578,
+    1.0997991682545774,
+    1.04890822844931,
+    0.9984983172234663,
+    0.9491128172074718,
+    0.8951467950348346,
+    0.8338316255033943,
+    0.7693101006070595,
+    0.7097146521500746
+   ],
+   "spectral_bounds": [
+    0.2604181091653297,
+    23.546579958975258
+   ],
+   "static_correction_norm": 2.847860900745185,
+   "upfold": {
+    "default": {
+     "dimension": 415,
+     "ea": [
+      -0.13027866632917467,
+      -0.13027866632917545,
+      -0.3639977555874226
+     ],
+     "ea_weight": [
+      0.9208495132742129,
+      0.920849513274243,
+      0.9338302122485146
+     ],
+     "hole": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 6.262815247479387e-05,
+      "npoles": 195,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "ip": [
+      0.47909850331922604,
+      0.5824761173112809,
+      0.5824761173116633
+     ],
+     "ip_weight": [
+      0.8699278566628783,
+      0.8048617586691795,
+      0.8048617586861058
+     ],
+     "max_conserved_relative_error": 3.874717997251453e-11,
+     "particle": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 3.1709239405860456e-05,
+      "npoles": 192,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 454,
+     "ea": [
+      -0.13027866629951382,
+      -0.1302786662995184,
+      -0.36399775271512963
+     ],
+     "ea_weight": [
+      0.9208495125510703,
+      0.9208495125510971,
+      0.9338301598941219
+     ],
+     "hole": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 7.705532381984505e-07,
+      "npoles": 213,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "ip": [
+      0.47909850330222753,
+      0.5824761163466466,
+      0.5824761163470502
+     ],
+     "ip_weight": [
+      0.869927856472338,
+      0.8048617331790375,
+      0.8048617331938045
+     ],
+     "max_conserved_relative_error": 2.1130617811481077e-13,
+     "particle": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.0393599902200215e-06,
+      "npoles": 213,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/CO/cc-pvdz/pbe/tda/n2": {
+   "chemical_potential": -0.1866984272203549,
+   "contour": [
+    15.533669473677856,
+    15.40135994475166,
+    1.982342277261188
+   ],
+   "hole_moment_norms": [
+    2.977677403995439,
+    2.9669251298734163,
+    2.9384907411025596,
+    2.901666641414618
+   ],
+   "n_max": 3,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.7385538795422681,
+    1.7185026746761023,
+    1.6660233865997058,
+    1.5984865228354013
+   ],
+   "spectral_bounds": [
+    0.2604181091653297,
+    30.806920838190383
+   ],
+   "static_correction_norm": 2.847860900745185,
+   "upfold": {
+    "default": {
+     "dimension": 196,
+     "ea": [
+      -0.12874300811914757,
+      -0.12874300811914963,
+      -0.31925662618370754
+     ],
+     "ea_weight": [
+      0.8956743071762854,
+      0.8956743071762859,
+      0.10083966747208403
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.1191480635186819e-05,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.793534488441191,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.46343111753287874,
+      0.5768576422041826,
+      0.5768576422041867
+     ],
+     "ip_weight": [
+      0.8445462977425858,
+      0.7843452381865098,
+      0.7843452381865367
+     ],
+     "max_conserved_relative_error": 1.5075205010906648e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 5.257230311402356e-06,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.4896508187383954,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 196,
+     "ea": [
+      -0.12874300811914757,
+      -0.12874300811914963,
+      -0.31925662618370754
+     ],
+     "ea_weight": [
+      0.8956743071762854,
+      0.8956743071762859,
+      0.10083966747208403
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.1191480635186819e-05,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.793534488441191,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.46343111753287874,
+      0.5768576422041826,
+      0.5768576422041867
+     ],
+     "ip_weight": [
+      0.8445462977425858,
+      0.7843452381865098,
+      0.7843452381865367
+     ],
+     "max_conserved_relative_error": 1.5075205010906648e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 5.257230311402356e-06,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.4896508187383954,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/CO/cc-pvdz/pbe/tda/n5": {
+   "chemical_potential": -0.1866984272203549,
+   "contour": [
+    15.533669473677856,
+    15.40135994475166,
+    1.982342277261188
+   ],
+   "hole_moment_norms": [
+    2.977677403995439,
+    2.9669251298734163,
+    2.9384907411025596,
+    2.901666641414618,
+    2.866218681540305,
+    2.8379672999073726,
+    2.817515737780083
+   ],
+   "n_max": 6,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.7385538795422681,
+    1.7185026746761023,
+    1.6660233865997058,
+    1.5984865228354013,
+    1.5305542034637165,
+    1.4657749918109098,
+    1.3991408981428228
+   ],
+   "spectral_bounds": [
+    0.2604181091653297,
+    30.806920838190383
+   ],
+   "static_correction_norm": 2.847860900745185,
+   "upfold": {
+    "default": {
+     "dimension": 364,
+     "ea": [
+      -0.12873734316599494,
+      -0.12873734316600113,
+      -0.3578270332436279
+     ],
+     "ea_weight": [
+      0.895514505572839,
+      0.8955145055728776,
+      0.9133279286070457
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 2.893874212862647e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.739845160865193,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.46343091147309157,
+      0.5767708136721653,
+      0.5767708136723882
+     ],
+     "ip_weight": [
+      0.8443974422733301,
+      0.7815235032788607,
+      0.7815235032827605
+     ],
+     "max_conserved_relative_error": 3.9197355650491265e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.2997618966187496e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.5862916083751912,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 364,
+     "ea": [
+      -0.12873734316599494,
+      -0.12873734316600113,
+      -0.3578270332436279
+     ],
+     "ea_weight": [
+      0.895514505572839,
+      0.8955145055728776,
+      0.9133279286070457
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 2.893874212862647e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.739845160865193,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.46343091147309157,
+      0.5767708136721653,
+      0.5767708136723882
+     ],
+     "ip_weight": [
+      0.8443974422733301,
+      0.7815235032788607,
+      0.7815235032827605
+     ],
+     "max_conserved_relative_error": 3.9197355650491265e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.2997618966187496e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.5862916083751912,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/CO/cc-pvdz/pbe/tda/n8": {
+   "chemical_potential": -0.1866984272203549,
+   "contour": [
+    15.533669473677856,
+    15.40135994475166,
+    1.982342277261188
+   ],
+   "hole_moment_norms": [
+    2.977677403995439,
+    2.9669251298734163,
+    2.9384907411025596,
+    2.901666641414618,
+    2.866218681540305,
+    2.8379672999073726,
+    2.817515737780083,
+    2.8020192993984847,
+    2.787977769368258,
+    2.7731949094286903
+   ],
+   "n_max": 9,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.7385538795422681,
+    1.7185026746761023,
+    1.6660233865997058,
+    1.5984865228354013,
+    1.5305542034637165,
+    1.4657749918109098,
+    1.3991408981428228,
+    1.3256790342937228,
+    1.2457402307954142,
+    1.1644754324573476
+   ],
+   "spectral_bounds": [
+    0.2604181091653297,
+    30.806920838190383
+   ],
+   "static_correction_norm": 2.847860900745185,
+   "upfold": {
+    "default": {
+     "dimension": 415,
+     "ea": [
+      -0.12873734247843632,
+      -0.1287373424784367,
+      -0.35782741187199807
+     ],
+     "ea_weight": [
+      0.8955144814771152,
+      0.8955144814771431,
+      0.9133284941836523
+     ],
+     "hole": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 7.09868470648671e-05,
+      "npoles": 195,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "ip": [
+      0.4634309119007892,
+      0.5767707931822846,
+      0.5767707931823953
+     ],
+     "ip_weight": [
+      0.8443974508480084,
+      0.7815220587932825,
+      0.781522058797057
+     ],
+     "max_conserved_relative_error": 5.276758275633504e-11,
+     "particle": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 3.936471346249796e-05,
+      "npoles": 192,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 452,
+     "ea": [
+      -0.12873734245264276,
+      -0.12873734245266194,
+      -0.35782740843683947
+     ],
+     "ea_weight": [
+      0.8955144809104281,
+      0.8955144809109638,
+      0.9133284713580617
+     ],
+     "hole": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.0566682034466836e-06,
+      "npoles": 213,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "ip": [
+      0.4634309118824054,
+      0.5767707926327015,
+      0.5767707926334248
+     ],
+     "ip_weight": [
+      0.8443974506631843,
+      0.7815220465178923,
+      0.7815220465411834
+     ],
+     "max_conserved_relative_error": 2.358642223740021e-13,
+     "particle": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.1852083357451852e-06,
+      "npoles": 211,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/CO/cc-pvdz/rhf/rpa/n2": {
+   "chemical_potential": -0.1970957917871538,
+   "contour": [
+    13.351555640224989,
+    12.923512459334562,
+    2.654076829626411
+   ],
+   "hole_moment_norms": [
+    2.163085912089561,
+    2.1598987182531957,
+    2.15070659673316,
+    2.1365498119765385
+   ],
+   "n_max": 3,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.2743314432572266,
+    1.2688573392294247,
+    1.2529251834219388,
+    1.2279196108283301
+   ],
+   "spectral_bounds": [
+    0.7035103181597672,
+    25.99960096229021
+   ],
+   "static_correction_norm": 0.0,
+   "upfold": {
+    "default": {
+     "dimension": 196,
+     "ea": [
+      -0.13072070310464418,
+      -0.13072070310464856,
+      -0.3685996810371712
+     ],
+     "ea_weight": [
+      0.963904565347461,
+      0.9639045653474628,
+      0.9888594510207555
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 4.912800981182297e-06,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.5128160042581182,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.5283107491319079,
+      0.6151763659505683,
+      0.6151763659505715
+     ],
+     "ip_weight": [
+      0.9478047138594862,
+      0.9435462328359562,
+      0.9435462328359551
+     ],
+     "max_conserved_relative_error": 1.0379739645227206e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 5.780089338990268e-06,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.761165418194154,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 196,
+     "ea": [
+      -0.13072070310464418,
+      -0.13072070310464856,
+      -0.3685996810371712
+     ],
+     "ea_weight": [
+      0.963904565347461,
+      0.9639045653474628,
+      0.9888594510207555
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 4.912800981182297e-06,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.5128160042581182,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.5283107491319079,
+      0.6151763659505683,
+      0.6151763659505715
+     ],
+     "ip_weight": [
+      0.9478047138594862,
+      0.9435462328359562,
+      0.9435462328359551
+     ],
+     "max_conserved_relative_error": 1.0379739645227206e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 5.780089338990268e-06,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.761165418194154,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/CO/cc-pvdz/rhf/rpa/n5": {
+   "chemical_potential": -0.1970957917871538,
+   "contour": [
+    13.351555640224989,
+    12.923512459334562,
+    2.654076829626411
+   ],
+   "hole_moment_norms": [
+    2.163085912089561,
+    2.1598987182531957,
+    2.15070659673316,
+    2.1365498119765385,
+    2.1189492005470996,
+    2.099634217221677,
+    2.080249154991765
+   ],
+   "n_max": 6,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.2743314432572266,
+    1.2688573392294247,
+    1.2529251834219388,
+    1.2279196108283301,
+    1.1958747156860319,
+    1.1591091817191175,
+    1.1198106053713555
+   ],
+   "spectral_bounds": [
+    0.7035103181597672,
+    25.99960096229021
+   ],
+   "static_correction_norm": 0.0,
+   "upfold": {
+    "default": {
+     "dimension": 364,
+     "ea": [
+      -0.13072095240282794,
+      -0.13072095240282847,
+      -0.3685999983667429
+     ],
+     "ea_weight": [
+      0.963905689993594,
+      0.9639056899936297,
+      0.9888610644300017
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.845313290906428e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.538893677652174,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.5283119531647578,
+      0.6151754469563978,
+      0.615175446956415
+     ],
+     "ip_weight": [
+      0.9478100373399183,
+      0.9435402176130843,
+      0.9435402176133059
+     ],
+     "max_conserved_relative_error": 2.7203781348132078e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.1469900496138724e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.7550294950426117,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 364,
+     "ea": [
+      -0.13072095240282794,
+      -0.13072095240282847,
+      -0.3685999983667429
+     ],
+     "ea_weight": [
+      0.963905689993594,
+      0.9639056899936297,
+      0.9888610644300017
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.845313290906428e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.538893677652174,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.5283119531647578,
+      0.6151754469563978,
+      0.615175446956415
+     ],
+     "ip_weight": [
+      0.9478100373399183,
+      0.9435402176130843,
+      0.9435402176133059
+     ],
+     "max_conserved_relative_error": 2.7203781348132078e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.1469900496138724e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.7550294950426117,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/CO/cc-pvdz/rhf/rpa/n8": {
+   "chemical_potential": -0.1970957917871538,
+   "contour": [
+    13.351555640224989,
+    12.923512459334562,
+    2.654076829626411
+   ],
+   "hole_moment_norms": [
+    2.163085912089561,
+    2.1598987182531957,
+    2.15070659673316,
+    2.1365498119765385,
+    2.1189492005470996,
+    2.099634217221677,
+    2.080249154991765,
+    2.062103829031836,
+    2.046023072735791,
+    2.0323198326302685
+   ],
+   "n_max": 9,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.2743314432572266,
+    1.2688573392294247,
+    1.2529251834219388,
+    1.2279196108283301,
+    1.1958747156860319,
+    1.1591091817191175,
+    1.1198106053713555,
+    1.079663617114042,
+    1.039621656466554,
+    0.9998908467953724
+   ],
+   "spectral_bounds": [
+    0.7035103181597672,
+    25.99960096229021
+   ],
+   "static_correction_norm": 0.0,
+   "upfold": {
+    "default": {
+     "dimension": 361,
+     "ea": [
+      -0.13072095240579185,
+      -0.13072095240579648,
+      -0.36859999837308577
+     ],
+     "ea_weight": [
+      0.963905690023079,
+      0.9639056900230789,
+      0.9888610645296191
+     ],
+     "hole": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 0.00012616879550469864,
+      "npoles": 166,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "ip": [
+      0.528311953165001,
+      0.6151754469750939,
+      0.6151754469750957
+     ],
+     "ip_weight": [
+      0.9478100373448993,
+      0.943540217799076,
+      0.9435402177990784
+     ],
+     "max_conserved_relative_error": 1.0743353366883156e-11,
+     "particle": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 0.0001315202726665748,
+      "npoles": 167,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 402,
+     "ea": [
+      -0.1307209524035072,
+      -0.13072095240351367,
+      -0.3685999983716487
+     ],
+     "ea_weight": [
+      0.9639056900024963,
+      0.9639056900024994,
+      0.9888610645100817
+     ],
+     "hole": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 5.767779445152159e-07,
+      "npoles": 188,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "ip": [
+      0.5283119531649212,
+      0.6151754469557728,
+      0.6151754469557746
+     ],
+     "ip_weight": [
+      0.947810037343315,
+      0.9435402175957169,
+      0.9435402175957027
+     ],
+     "max_conserved_relative_error": 1.49083487557689e-13,
+     "particle": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.1701639753852883e-06,
+      "npoles": 186,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/CO/cc-pvdz/rhf/tda/n2": {
+   "chemical_potential": -0.1970957917871538,
+   "contour": [
+    16.873023699510913,
+    16.445499934750845,
+    3.0002175111475253
+   ],
+   "hole_moment_norms": [
+    2.908180770929835,
+    2.9042798512456334,
+    2.8930087476727264,
+    2.8755880364129394
+   ],
+   "n_max": 3,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.7139051056616113,
+    1.7072853324856974,
+    1.6879990835230212,
+    1.657669785978573
+   ],
+   "spectral_bounds": [
+    0.7035103181597672,
+    33.04253708086206
+   ],
+   "static_correction_norm": 0.0,
+   "upfold": {
+    "default": {
+     "dimension": 196,
+     "ea": [
+      -0.12883388195426973,
+      -0.12883388195427017,
+      -0.3655361002415485
+     ],
+     "ea_weight": [
+      0.9545961455817362,
+      0.9545961455817371,
+      0.9863962370221475
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.1832399354883397e-05,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.509748042682347,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.5203545967039521,
+      0.6126289633874473,
+      0.6126289633874482
+     ],
+     "ip_weight": [
+      0.9367415565677343,
+      0.9301280737141513,
+      0.9301280737141504
+     ],
+     "max_conserved_relative_error": 1.5918248444311595e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 7.073650604000297e-06,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.7642333797699252,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 196,
+     "ea": [
+      -0.12883388195426973,
+      -0.12883388195427017,
+      -0.3655361002415485
+     ],
+     "ea_weight": [
+      0.9545961455817362,
+      0.9545961455817371,
+      0.9863962370221475
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.1832399354883397e-05,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.509748042682347,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.5203545967039521,
+      0.6126289633874473,
+      0.6126289633874482
+     ],
+     "ip_weight": [
+      0.9367415565677343,
+      0.9301280737141513,
+      0.9301280737141504
+     ],
+     "max_conserved_relative_error": 1.5918248444311595e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 7.073650604000297e-06,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.7642333797699252,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/CO/cc-pvdz/rhf/tda/n5": {
+   "chemical_potential": -0.1970957917871538,
+   "contour": [
+    16.873023699510913,
+    16.445499934750845,
+    3.0002175111475253
+   ],
+   "hole_moment_norms": [
+    2.908180770929835,
+    2.9042798512456334,
+    2.8930087476727264,
+    2.8755880364129394,
+    2.853818372607102,
+    2.829778327827556,
+    2.80549045683816
+   ],
+   "n_max": 6,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.7139051056616113,
+    1.7072853324856974,
+    1.6879990835230212,
+    1.657669785978573,
+    1.6186971846243452,
+    1.5738468288642922,
+    1.525776157901744
+   ],
+   "spectral_bounds": [
+    0.7035103181597672,
+    33.04253708086206
+   ],
+   "static_correction_norm": 0.0,
+   "upfold": {
+    "default": {
+     "dimension": 364,
+     "ea": [
+      -0.128834088328151,
+      -0.1288340883281538,
+      -0.36553648325315524
+     ],
+     "ea_weight": [
+      0.9545968757592113,
+      0.9545968757591737,
+      0.9863983416102761
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 2.5220785259309504e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.5281558121369745,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.5203557300026639,
+      0.6126279576572552,
+      0.6126279576572747
+     ],
+     "ip_weight": [
+      0.9367461342991934,
+      0.9301217628098363,
+      0.9301217628099916
+     ],
+     "max_conserved_relative_error": 3.418861792394253e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.5921434079703404e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.750427552678955,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 364,
+     "ea": [
+      -0.128834088328151,
+      -0.1288340883281538,
+      -0.36553648325315524
+     ],
+     "ea_weight": [
+      0.9545968757592113,
+      0.9545968757591737,
+      0.9863983416102761
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 2.5220785259309504e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.5281558121369745,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.5203557300026639,
+      0.6126279576572552,
+      0.6126279576572747
+     ],
+     "ip_weight": [
+      0.9367461342991934,
+      0.9301217628098363,
+      0.9301217628099916
+     ],
+     "max_conserved_relative_error": 3.418861792394253e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.5921434079703404e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.750427552678955,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/CO/cc-pvdz/rhf/tda/n8": {
+   "chemical_potential": -0.1970957917871538,
+   "contour": [
+    16.873023699510913,
+    16.445499934750845,
+    3.0002175111475253
+   ],
+   "hole_moment_norms": [
+    2.908180770929835,
+    2.9042798512456334,
+    2.8930087476727264,
+    2.8755880364129394,
+    2.853818372607102,
+    2.829778327827556,
+    2.80549045683816,
+    2.7826252899737423,
+    2.762303640541911,
+    2.745030574277935
+   ],
+   "n_max": 9,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.7139051056616113,
+    1.7072853324856974,
+    1.6879990835230212,
+    1.657669785978573,
+    1.6186971846243452,
+    1.5738468288642922,
+    1.525776157901744,
+    1.476597759880528,
+    1.4275885267852555,
+    1.3791254694082662
+   ],
+   "spectral_bounds": [
+    0.7035103181597672,
+    33.04253708086206
+   ],
+   "static_correction_norm": 0.0,
+   "upfold": {
+    "default": {
+     "dimension": 363,
+     "ea": [
+      -0.12883408833162105,
+      -0.1288340883316306,
+      -0.36553648326056415
+     ],
+     "ea_weight": [
+      0.954596875794173,
+      0.9545968757941722,
+      0.9863983417249025
+     ],
+     "hole": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 0.00012252133268481722,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "ip": [
+      0.5203557300029245,
+      0.6126279576778088,
+      0.6126279576778091
+     ],
+     "ip_weight": [
+      0.9367461343045635,
+      0.9301217630080055,
+      0.9301217630080103
+     ],
+     "max_conserved_relative_error": 9.996240213601777e-12,
+     "particle": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 0.0001393699603145551,
+      "npoles": 167,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 402,
+     "ea": [
+      -0.12883408832902177,
+      -0.1288340883290274,
+      -0.36553648325886606
+     ],
+     "ea_weight": [
+      0.9545968757706764,
+      0.9545968757706762,
+      0.9863983417025752
+     ],
+     "hole": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 7.841991740998605e-07,
+      "npoles": 188,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "ip": [
+      0.5203557300028494,
+      0.6126279576565167,
+      0.6126279576565197
+     ],
+     "ip_weight": [
+      0.9367461343027895,
+      0.9301217627911982,
+      0.9301217627912168
+     ],
+     "max_conserved_relative_error": 1.158490042239287e-13,
+     "particle": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.0372404951032663e-06,
+      "npoles": 186,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/H2O/cc-pvdz/pbe/rpa/n2": {
+   "chemical_potential": -0.09535353788099221,
+   "contour": [
+    11.876258028794748,
+    11.74490991523189,
+    1.7270985653529234
+   ],
+   "hole_moment_norms": [
+    1.8858639320220971,
+    1.8798354534130393,
+    1.8639809432763248,
+    1.8429318889669704
+   ],
+   "n_max": 3,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.132048237278463,
+    1.1228016086524863,
+    1.0971375400305303,
+    1.059649960932652
+   ],
+   "spectral_bounds": [
+    0.2590277451828995,
+    23.493488312406598
+   ],
+   "static_correction_norm": 2.481802808622688,
+   "upfold": {
+    "default": {
+     "dimension": 168,
+     "ea": [
+      -0.16751889578524873,
+      -0.23819498016744572,
+      -0.6952159382339024
+     ],
+     "ea_weight": [
+      0.9725378153856553,
+      0.9627188184345715,
+      0.5063890804030867
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 6.286890766521058e-06,
+      "npoles": 72,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.9806801445632387,
+      "terminal_dimension": 24
+     },
+     "ip": [
+      0.4119115784091921,
+      0.4931009571138562,
+      0.6496943753841324
+     ],
+     "ip_weight": [
+      0.8735102568731183,
+      0.8223239865910387,
+      0.8325036417919867
+     ],
+     "max_conserved_relative_error": 9.678732109198543e-15,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 4.815871847180246e-06,
+      "npoles": 72,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.287165354737491,
+      "terminal_dimension": 24
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 168,
+     "ea": [
+      -0.16751889578524873,
+      -0.23819498016744572,
+      -0.6952159382339024
+     ],
+     "ea_weight": [
+      0.9725378153856553,
+      0.9627188184345715,
+      0.5063890804030867
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 6.286890766521058e-06,
+      "npoles": 72,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.9806801445632387,
+      "terminal_dimension": 24
+     },
+     "ip": [
+      0.4119115784091921,
+      0.4931009571138562,
+      0.6496943753841324
+     ],
+     "ip_weight": [
+      0.8735102568731183,
+      0.8223239865910387,
+      0.8325036417919867
+     ],
+     "max_conserved_relative_error": 9.678732109198543e-15,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 4.815871847180246e-06,
+      "npoles": 72,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.287165354737491,
+      "terminal_dimension": 24
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/H2O/cc-pvdz/pbe/rpa/n5": {
+   "chemical_potential": -0.09535353788099221,
+   "contour": [
+    11.876258028794748,
+    11.74490991523189,
+    1.7270985653529234
+   ],
+   "hole_moment_norms": [
+    1.8858639320220971,
+    1.8798354534130393,
+    1.8639809432763248,
+    1.8429318889669704,
+    1.8203527000371913,
+    1.7981849392976994,
+    1.777760420075116
+   ],
+   "n_max": 6,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.132048237278463,
+    1.1228016086524863,
+    1.0971375400305303,
+    1.059649960932652,
+    1.0144484165857388,
+    0.9639595316277759,
+    0.9098588691562899
+   ],
+   "spectral_bounds": [
+    0.2590277451828995,
+    23.493488312406598
+   ],
+   "static_correction_norm": 2.481802808622688,
+   "upfold": {
+    "default": {
+     "dimension": 312,
+     "ea": [
+      -0.16752370854047227,
+      -0.2381986861635954,
+      -0.7047968081714258
+     ],
+     "ea_weight": [
+      0.9725816223541918,
+      0.9626659415955717,
+      0.6632806408962946
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 5.0797496148186325e-05,
+      "npoles": 144,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.788932546077534,
+      "terminal_dimension": 24
+     },
+     "ip": [
+      0.4117523135234636,
+      0.49362162674742943,
+      0.6566986847500472
+     ],
+     "ip_weight": [
+      0.8704874192327386,
+      0.8216533021331288,
+      0.8473990890507361
+     ],
+     "max_conserved_relative_error": 7.907316154126814e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.256446334163585e-05,
+      "npoles": 144,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.6906023019514147,
+      "terminal_dimension": 24
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 312,
+     "ea": [
+      -0.16752370854047227,
+      -0.2381986861635954,
+      -0.7047968081714258
+     ],
+     "ea_weight": [
+      0.9725816223541918,
+      0.9626659415955717,
+      0.6632806408962946
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 5.0797496148186325e-05,
+      "npoles": 144,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.788932546077534,
+      "terminal_dimension": 24
+     },
+     "ip": [
+      0.4117523135234636,
+      0.49362162674742943,
+      0.6566986847500472
+     ],
+     "ip_weight": [
+      0.8704874192327386,
+      0.8216533021331288,
+      0.8473990890507361
+     ],
+     "max_conserved_relative_error": 7.907316154126814e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.256446334163585e-05,
+      "npoles": 144,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.6906023019514147,
+      "terminal_dimension": 24
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/H2O/cc-pvdz/pbe/rpa/n8": {
+   "chemical_potential": -0.09535353788099221,
+   "contour": [
+    11.876258028794748,
+    11.74490991523189,
+    1.7270985653529234
+   ],
+   "hole_moment_norms": [
+    1.8858639320220971,
+    1.8798354534130393,
+    1.8639809432763248,
+    1.8429318889669704,
+    1.8203527000371913,
+    1.7981849392976994,
+    1.777760420075116,
+    1.7600087406145266,
+    1.7449959305584408,
+    1.732355249025829
+   ],
+   "n_max": 9,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.132048237278463,
+    1.1228016086524863,
+    1.0971375400305303,
+    1.059649960932652,
+    1.0144484165857388,
+    0.9639595316277759,
+    0.9098588691562899,
+    0.8538794846747952,
+    0.7975538664952286,
+    0.7421525506609988
+   ],
+   "spectral_bounds": [
+    0.2590277451828995,
+    23.493488312406598
+   ],
+   "static_correction_norm": 2.481802808622688,
+   "upfold": {
+    "default": {
+     "dimension": 345,
+     "ea": [
+      -0.16752370856618282,
+      -0.23819868807003428,
+      -0.7047928758479586
+     ],
+     "ea_weight": [
+      0.9725816227477633,
+      0.9626659899101363,
+      0.6631227090042737
+     ],
+     "hole": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 0.00031534884543895785,
+      "npoles": 159,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "ip": [
+      0.41175239200887614,
+      0.49362163487848354,
+      0.6567009004083227
+     ],
+     "ip_weight": [
+      0.8704893665415793,
+      0.8216542661038714,
+      0.8473999380081743
+     ],
+     "max_conserved_relative_error": 3.21939217417289e-11,
+     "particle": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 2.795432641757885e-05,
+      "npoles": 162,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 377,
+     "ea": [
+      -0.16752370856412216,
+      -0.23819868802054983,
+      -0.7047899414832316
+     ],
+     "ea_weight": [
+      0.9725816227167927,
+      0.9626659886967678,
+      0.6630309707477425
+     ],
+     "hole": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 7.191063617395021e-07,
+      "npoles": 174,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "ip": [
+      0.41175239164006333,
+      0.49362163486918426,
+      0.6567008852344289
+     ],
+     "ip_weight": [
+      0.8704893576711774,
+      0.8216542652043982,
+      0.8473998320063351
+     ],
+     "max_conserved_relative_error": 2.919507435560851e-13,
+     "particle": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 7.080120998086038e-07,
+      "npoles": 179,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/H2O/cc-pvdz/pbe/tda/n2": {
+   "chemical_potential": -0.09535353788099221,
+   "contour": [
+    14.824662943632212,
+    14.693324679933372,
+    1.9328893956027444
+   ],
+   "hole_moment_norms": [
+    2.7553959055986152,
+    2.747982644004697,
+    2.7286214119141157,
+    2.703167998680555
+   ],
+   "n_max": 3,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.635455891056932,
+    1.6242216910791876,
+    1.593150457117777,
+    1.5479986037941782
+   ],
+   "spectral_bounds": [
+    0.2590277451828995,
+    29.390298142081527
+   ],
+   "static_correction_norm": 2.481802808622688,
+   "upfold": {
+    "default": {
+     "dimension": 168,
+     "ea": [
+      -0.16357840315657995,
+      -0.23367421793268536,
+      -0.6829246622015666
+     ],
+     "ea_weight": [
+      0.9654304340788462,
+      0.9536660930230051,
+      0.570839924090054
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 5.362108144899726e-06,
+      "npoles": 72,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.9592044135328397,
+      "terminal_dimension": 24
+     },
+     "ip": [
+      0.38121409543242707,
+      0.4679435960526158,
+      0.6392376604071313
+     ],
+     "ip_weight": [
+      0.8543212713634576,
+      0.8290880577776988,
+      0.8190323546501572
+     ],
+     "max_conserved_relative_error": 1.0376465624147526e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 6.36964010955014e-06,
+      "npoles": 72,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.287165354737491,
+      "terminal_dimension": 24
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 168,
+     "ea": [
+      -0.16357840315657995,
+      -0.23367421793268536,
+      -0.6829246622015666
+     ],
+     "ea_weight": [
+      0.9654304340788462,
+      0.9536660930230051,
+      0.570839924090054
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 5.362108144899726e-06,
+      "npoles": 72,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.9592044135328397,
+      "terminal_dimension": 24
+     },
+     "ip": [
+      0.38121409543242707,
+      0.4679435960526158,
+      0.6392376604071313
+     ],
+     "ip_weight": [
+      0.8543212713634576,
+      0.8290880577776988,
+      0.8190323546501572
+     ],
+     "max_conserved_relative_error": 1.0376465624147526e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 6.36964010955014e-06,
+      "npoles": 72,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.287165354737491,
+      "terminal_dimension": 24
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/H2O/cc-pvdz/pbe/tda/n5": {
+   "chemical_potential": -0.09535353788099221,
+   "contour": [
+    14.824662943632212,
+    14.693324679933372,
+    1.9328893956027444
+   ],
+   "hole_moment_norms": [
+    2.7553959055986152,
+    2.747982644004697,
+    2.7286214119141157,
+    2.703167998680555,
+    2.6759739065055372,
+    2.6490238709435014,
+    2.6235933138441125
+   ],
+   "n_max": 6,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.635455891056932,
+    1.6242216910791876,
+    1.593150457117777,
+    1.5479986037941782,
+    1.4937421437725578,
+    1.433069943979566,
+    1.3676667452722644
+   ],
+   "spectral_bounds": [
+    0.2590277451828995,
+    29.390298142081527
+   ],
+   "static_correction_norm": 2.481802808622688,
+   "upfold": {
+    "default": {
+     "dimension": 312,
+     "ea": [
+      -0.1635825579197976,
+      -0.23367695275270253,
+      -0.6934156120669929
+     ],
+     "ea_weight": [
+      0.9654666654147721,
+      0.9535929966918146,
+      0.7512722526893656
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.0836555741981682e-05,
+      "npoles": 144,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.818078181047361,
+      "terminal_dimension": 24
+     },
+     "ip": [
+      0.38107233722035305,
+      0.46827512234529806,
+      0.6468327861607033
+     ],
+     "ip_weight": [
+      0.8520203684741141,
+      0.8334191043614303,
+      0.817091539686427
+     ],
+     "max_conserved_relative_error": 1.874699137728145e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 18,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.1026605985458435e-05,
+      "npoles": 144,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.6598867335189857,
+      "terminal_dimension": 24
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 312,
+     "ea": [
+      -0.1635825579197976,
+      -0.23367695275270253,
+      -0.6934156120669929
+     ],
+     "ea_weight": [
+      0.9654666654147721,
+      0.9535929966918146,
+      0.7512722526893656
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.0836555741981682e-05,
+      "npoles": 144,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.818078181047361,
+      "terminal_dimension": 24
+     },
+     "ip": [
+      0.38107233722035305,
+      0.46827512234529806,
+      0.6468327861607033
+     ],
+     "ip_weight": [
+      0.8520203684741141,
+      0.8334191043614303,
+      0.817091539686427
+     ],
+     "max_conserved_relative_error": 1.874699137728145e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 18,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.1026605985458435e-05,
+      "npoles": 144,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.6598867335189857,
+      "terminal_dimension": 24
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/H2O/cc-pvdz/pbe/tda/n8": {
+   "chemical_potential": -0.09535353788099221,
+   "contour": [
+    14.824662943632212,
+    14.693324679933372,
+    1.9328893956027444
+   ],
+   "hole_moment_norms": [
+    2.7553959055986152,
+    2.747982644004697,
+    2.7286214119141157,
+    2.703167998680555,
+    2.6759739065055372,
+    2.6490238709435014,
+    2.6235933138441125,
+    2.6005919622531706,
+    2.579934536530998,
+    2.5611298111465883
+   ],
+   "n_max": 9,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.635455891056932,
+    1.6242216910791876,
+    1.593150457117777,
+    1.5479986037941782,
+    1.4937421437725578,
+    1.433069943979566,
+    1.3676667452722644,
+    1.2992947555978787,
+    1.2294196273041753,
+    1.1590820311065757
+   ],
+   "spectral_bounds": [
+    0.2590277451828995,
+    29.390298142081527
+   ],
+   "static_correction_norm": 2.481802808622688,
+   "upfold": {
+    "default": {
+     "dimension": 344,
+     "ea": [
+      -0.16358255802326252,
+      -0.23367695755216938,
+      -0.693422392411585
+     ],
+     "ea_weight": [
+      0.9654666671552998,
+      0.9535931107289186,
+      0.7514028741134897
+     ],
+     "hole": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 0.0002952186807004373,
+      "npoles": 159,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "ip": [
+      0.3810723818885089,
+      0.46827512521119724,
+      0.6468360707468622
+     ],
+     "ip_weight": [
+      0.8520213410625669,
+      0.8334191573906025,
+      0.817098197456389
+     ],
+     "max_conserved_relative_error": 2.2302215764725567e-11,
+     "particle": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 3.373696840842904e-05,
+      "npoles": 161,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 376,
+     "ea": [
+      -0.16358255802113067,
+      -0.23367695750627482,
+      -0.6934215694952145
+     ],
+     "ea_weight": [
+      0.9654666671236138,
+      0.9535931096376652,
+      0.7513814264114612
+     ],
+     "hole": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 8.033586988679318e-07,
+      "npoles": 174,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "ip": [
+      0.3810723817244991,
+      0.4682751251987441,
+      0.6468360528633403
+     ],
+     "ip_weight": [
+      0.8520213376749972,
+      0.833419157327971,
+      0.8170981258600682
+     ],
+     "max_conserved_relative_error": 1.9459558897386884e-13,
+     "particle": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.100479269429493e-06,
+      "npoles": 178,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/H2O/cc-pvdz/rhf/rpa/n2": {
+   "chemical_potential": -0.15381787569849137,
+   "contour": [
+    13.300350827759114,
+    12.888527088320995,
+    2.60871255301977
+   ],
+   "hole_moment_norms": [
+    2.0268103382976594,
+    2.024410160412807,
+    2.017453774319875,
+    2.006620872566785
+   ],
+   "n_max": 3,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.2331520410041739,
+    1.2297059007480822,
+    1.2195430701216285,
+    1.203159585453022
+   ],
+   "spectral_bounds": [
+    0.6785938453853402,
+    25.92210781013289
+   ],
+   "static_correction_norm": 0.0,
+   "upfold": {
+    "default": {
+     "dimension": 168,
+     "ea": [
+      -0.1726876953937425,
+      -0.24419626140233888,
+      -0.7474315811906936
+     ],
+     "ea_weight": [
+      0.9886893216620949,
+      0.9876409823695996,
+      0.9696659196189219
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 3.536598500554718e-05,
+      "npoles": 72,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.5833791205008576,
+      "terminal_dimension": 24
+     },
+     "ip": [
+      0.4471063767701735,
+      0.5300043456061522,
+      0.6820843660204223
+     ],
+     "ip_weight": [
+      0.9514470907645663,
+      0.9515622426453065,
+      0.9545617715239945
+     ],
+     "max_conserved_relative_error": 5.2899332004775184e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 5.46193366975712e-06,
+      "npoles": 72,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.6860003595877577,
+      "terminal_dimension": 24
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 168,
+     "ea": [
+      -0.1726876953937425,
+      -0.24419626140233888,
+      -0.7474315811906936
+     ],
+     "ea_weight": [
+      0.9886893216620949,
+      0.9876409823695996,
+      0.9696659196189219
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 3.536598500554718e-05,
+      "npoles": 72,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.5833791205008576,
+      "terminal_dimension": 24
+     },
+     "ip": [
+      0.4471063767701735,
+      0.5300043456061522,
+      0.6820843660204223
+     ],
+     "ip_weight": [
+      0.9514470907645663,
+      0.9515622426453065,
+      0.9545617715239945
+     ],
+     "max_conserved_relative_error": 5.2899332004775184e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 5.46193366975712e-06,
+      "npoles": 72,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.6860003595877577,
+      "terminal_dimension": 24
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/H2O/cc-pvdz/rhf/rpa/n5": {
+   "chemical_potential": -0.15381787569849137,
+   "contour": [
+    13.300350827759114,
+    12.888527088320995,
+    2.60871255301977
+   ],
+   "hole_moment_norms": [
+    2.0268103382976594,
+    2.024410160412807,
+    2.017453774319875,
+    2.006620872566785,
+    1.9928851395347968,
+    1.9773278750457255,
+    1.9609617095785703
+   ],
+   "n_max": 6,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.2331520410041739,
+    1.2297059007480822,
+    1.2195430701216285,
+    1.203159585453022,
+    1.181287741072867,
+    1.1547804372332395,
+    1.1244941107293187
+   ],
+   "spectral_bounds": [
+    0.6785938453853402,
+    25.92210781013289
+   ],
+   "static_correction_norm": 0.0,
+   "upfold": {
+    "default": {
+     "dimension": 312,
+     "ea": [
+      -0.17268747857158678,
+      -0.24419567475709886,
+      -0.7474360157740098
+     ],
+     "ea_weight": [
+      0.9886875684208553,
+      0.9876360231617287,
+      0.9696726279556822
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 7.582493087749946e-05,
+      "npoles": 144,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.466796580621549,
+      "terminal_dimension": 24
+     },
+     "ip": [
+      0.4471068740407016,
+      0.5300067575093234,
+      0.6820813423457257
+     ],
+     "ip_weight": [
+      0.9514463143635021,
+      0.9515765101582756,
+      0.9545359217753682
+     ],
+     "max_conserved_relative_error": 1.142147210436366e-13,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.4562042469810159e-05,
+      "npoles": 144,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.804116880254952,
+      "terminal_dimension": 24
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 312,
+     "ea": [
+      -0.17268747857158678,
+      -0.24419567475709886,
+      -0.7474360157740098
+     ],
+     "ea_weight": [
+      0.9886875684208553,
+      0.9876360231617287,
+      0.9696726279556822
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 7.582493087749946e-05,
+      "npoles": 144,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.466796580621549,
+      "terminal_dimension": 24
+     },
+     "ip": [
+      0.4471068740407016,
+      0.5300067575093234,
+      0.6820813423457257
+     ],
+     "ip_weight": [
+      0.9514463143635021,
+      0.9515765101582756,
+      0.9545359217753682
+     ],
+     "max_conserved_relative_error": 1.142147210436366e-13,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.4562042469810159e-05,
+      "npoles": 144,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.804116880254952,
+      "terminal_dimension": 24
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/H2O/cc-pvdz/rhf/rpa/n8": {
+   "chemical_potential": -0.15381787569849137,
+   "contour": [
+    13.300350827759114,
+    12.888527088320995,
+    2.60871255301977
+   ],
+   "hole_moment_norms": [
+    2.0268103382976594,
+    2.024410160412807,
+    2.017453774319875,
+    2.006620872566785,
+    1.9928851395347968,
+    1.9773278750457255,
+    1.9609617095785703,
+    1.9446096459964963,
+    1.9288588823709265,
+    1.914079223531788
+   ],
+   "n_max": 9,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.2331520410041739,
+    1.2297059007480822,
+    1.2195430701216285,
+    1.203159585453022,
+    1.181287741072867,
+    1.1547804372332395,
+    1.1244941107293187,
+    1.0911995923127535,
+    1.0555402760205048,
+    1.0180406942520626
+   ],
+   "spectral_bounds": [
+    0.6785938453853402,
+    25.92210781013289
+   ],
+   "static_correction_norm": 0.0,
+   "upfold": {
+    "default": {
+     "dimension": 304,
+     "ea": [
+      -0.17268747857286948,
+      -0.24419567476203963,
+      -0.747436017047892
+     ],
+     "ea_weight": [
+      0.9886875684324289,
+      0.9876360232201882,
+      0.9696726498073687
+     ],
+     "hole": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 7.98264594345957e-05,
+      "npoles": 139,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "ip": [
+      0.4471068740458954,
+      0.5300067575110482,
+      0.6820813423518982
+     ],
+     "ip_weight": [
+      0.9514463144103903,
+      0.9515765101701424,
+      0.9545359218074878
+     ],
+     "max_conserved_relative_error": 1.3054212657402796e-11,
+     "particle": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 0.00017940958484301774,
+      "npoles": 141,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 333,
+     "ea": [
+      -0.1726874785718948,
+      -0.2441956747581208,
+      -0.747436015399254
+     ],
+     "ea_weight": [
+      0.9886875684250916,
+      0.9876360231768918,
+      0.9696726190789667
+     ],
+     "hole": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 2.214652389103286e-06,
+      "npoles": 154,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "ip": [
+      0.44710687404075805,
+      0.5300067575096394,
+      0.6820813423291422
+     ],
+     "ip_weight": [
+      0.9514463143632853,
+      0.9515765101623934,
+      0.9545359214982502
+     ],
+     "max_conserved_relative_error": 2.117563891983427e-13,
+     "particle": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.1406098403027504e-06,
+      "npoles": 155,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/H2O/cc-pvdz/rhf/tda/n2": {
+   "chemical_potential": -0.15381787569849137,
+   "contour": [
+    16.17500974626418,
+    15.763595094600173,
+    2.889986943481266
+   ],
+   "hole_moment_norms": [
+    2.707144060448774,
+    2.704348720805824,
+    2.696246938042369,
+    2.6836285540877314
+   ],
+   "n_max": 3,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.6268782230812735,
+    1.6228455228073282,
+    1.6109555112065137,
+    1.5917951020014123
+   ],
+   "spectral_bounds": [
+    0.6785938453853402,
+    31.671425647143018
+   ],
+   "static_correction_norm": 0.0,
+   "upfold": {
+    "default": {
+     "dimension": 168,
+     "ea": [
+      -0.17060506356679261,
+      -0.2419884393585854,
+      -0.7401994978620117
+     ],
+     "ea_weight": [
+      0.9862751752805676,
+      0.9847715573995927,
+      0.9645334787506866
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 4.853333406856089e-06,
+      "npoles": 72,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.5803111589250864,
+      "terminal_dimension": 24
+     },
+     "ip": [
+      0.43052678952603385,
+      0.5165229734532313,
+      0.6775663436157906
+     ],
+     "ip_weight": [
+      0.9406903925880309,
+      0.9409194338138384,
+      0.9453186501887182
+     ],
+     "max_conserved_relative_error": 1.2271742383420264e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 7.548747677041377e-06,
+      "npoles": 72,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.679864436436215,
+      "terminal_dimension": 24
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 168,
+     "ea": [
+      -0.17060506356679261,
+      -0.2419884393585854,
+      -0.7401994978620117
+     ],
+     "ea_weight": [
+      0.9862751752805676,
+      0.9847715573995927,
+      0.9645334787506866
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 4.853333406856089e-06,
+      "npoles": 72,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.5803111589250864,
+      "terminal_dimension": 24
+     },
+     "ip": [
+      0.43052678952603385,
+      0.5165229734532313,
+      0.6775663436157906
+     ],
+     "ip_weight": [
+      0.9406903925880309,
+      0.9409194338138384,
+      0.9453186501887182
+     ],
+     "max_conserved_relative_error": 1.2271742383420264e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 7.548747677041377e-06,
+      "npoles": 72,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.679864436436215,
+      "terminal_dimension": 24
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/H2O/cc-pvdz/rhf/tda/n5": {
+   "chemical_potential": -0.15381787569849137,
+   "contour": [
+    16.17500974626418,
+    15.763595094600173,
+    2.889986943481266
+   ],
+   "hole_moment_norms": [
+    2.707144060448774,
+    2.704348720805824,
+    2.696246938042369,
+    2.6836285540877314,
+    2.6676207111937216,
+    2.649467332826019,
+    2.630322279298968
+   ],
+   "n_max": 6,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.6268782230812735,
+    1.6228455228073282,
+    1.6109555112065137,
+    1.5917951020014123,
+    1.5662277889781564,
+    1.5352534043265769,
+    1.499866505836815
+   ],
+   "spectral_bounds": [
+    0.6785938453853402,
+    31.671425647143018
+   ],
+   "static_correction_norm": 0.0,
+   "upfold": {
+    "default": {
+     "dimension": 312,
+     "ea": [
+      -0.17060481639426434,
+      -0.24198778895853965,
+      -0.7402063333112399
+     ],
+     "ea_weight": [
+      0.9862732030891804,
+      0.9847660689670952,
+      0.9645558221526302
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 2.1869452659722087e-05,
+      "npoles": 144,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.463728619045778,
+      "terminal_dimension": 24
+     },
+     "ip": [
+      0.43052724794667757,
+      0.5165253721811408,
+      0.6775628186995712
+     ],
+     "ip_weight": [
+      0.940689015070879,
+      0.9409331876276985,
+      0.9452897741066396
+     ],
+     "max_conserved_relative_error": 3.01558748324457e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.544360015741041e-05,
+      "npoles": 144,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.808718822618609,
+      "terminal_dimension": 24
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 312,
+     "ea": [
+      -0.17060481639426434,
+      -0.24198778895853965,
+      -0.7402063333112399
+     ],
+     "ea_weight": [
+      0.9862732030891804,
+      0.9847660689670952,
+      0.9645558221526302
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 2.1869452659722087e-05,
+      "npoles": 144,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.463728619045778,
+      "terminal_dimension": 24
+     },
+     "ip": [
+      0.43052724794667757,
+      0.5165253721811408,
+      0.6775628186995712
+     ],
+     "ip_weight": [
+      0.940689015070879,
+      0.9409331876276985,
+      0.9452897741066396
+     ],
+     "max_conserved_relative_error": 3.01558748324457e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.544360015741041e-05,
+      "npoles": 144,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.808718822618609,
+      "terminal_dimension": 24
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/H2O/cc-pvdz/rhf/tda/n8": {
+   "chemical_potential": -0.15381787569849137,
+   "contour": [
+    16.17500974626418,
+    15.763595094600173,
+    2.889986943481266
+   ],
+   "hole_moment_norms": [
+    2.707144060448774,
+    2.704348720805824,
+    2.696246938042369,
+    2.6836285540877314,
+    2.6676207111937216,
+    2.649467332826019,
+    2.630322279298968,
+    2.611109678529399,
+    2.5924736244522046,
+    2.574804290363803
+   ],
+   "n_max": 9,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.6268782230812735,
+    1.6228455228073282,
+    1.6109555112065137,
+    1.5917951020014123,
+    1.5662277889781564,
+    1.5352534043265769,
+    1.499866505836815,
+    1.4609489888950742,
+    1.4192202638800162,
+    1.3752485682449118
+   ],
+   "spectral_bounds": [
+    0.6785938453853402,
+    31.671425647143018
+   ],
+   "static_correction_norm": 0.0,
+   "upfold": {
+    "default": {
+     "dimension": 304,
+     "ea": [
+      -0.17060481639564185,
+      -0.24198778896379416,
+      -0.7402063344415668
+     ],
+     "ea_weight": [
+      0.9862732031013807,
+      0.9847660690302883,
+      0.9645558416776279
+     ],
+     "hole": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 8.086327427764907e-05,
+      "npoles": 139,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "ip": [
+      0.43052724795159425,
+      0.5165253721830286,
+      0.6775628187324275
+     ],
+     "ip_weight": [
+      0.9406890151130243,
+      0.9409331876402902,
+      0.9452897745431328
+     ],
+     "max_conserved_relative_error": 1.1752705655166059e-11,
+     "particle": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 0.00018277310718467016,
+      "npoles": 141,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 333,
+     "ea": [
+      -0.17060481639457475,
+      -0.24198778895968298,
+      -0.7402063329663208
+     ],
+     "ea_weight": [
+      0.9862732030932613,
+      0.984766068984125,
+      0.9645558148011286
+     ],
+     "hole": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 3.918319190596353e-06,
+      "npoles": 154,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "ip": [
+      0.43052724794669966,
+      0.5165253721814307,
+      0.6775628187045438
+     ],
+     "ip_weight": [
+      0.9406890150701843,
+      0.9409331876313877,
+      0.945289774181426
+     ],
+     "max_conserved_relative_error": 1.6854410187009782e-13,
+     "particle": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.1180905540411552e-06,
+      "npoles": 155,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/N2/cc-pvdz/pbe/rpa/n2": {
+   "chemical_potential": -0.2046551769061234,
+   "contour": [
+    9.39708027322519,
+    9.233706325838746,
+    1.6111205569161797
+   ],
+   "hole_moment_norms": [
+    1.7579104902320215,
+    1.7514538234701278,
+    1.7346515059337513,
+    1.7134879838097168
+   ],
+   "n_max": 3,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.0613726942142205,
+    1.0456565397140307,
+    1.0042950233733297,
+    0.9505971381714422
+   ],
+   "spectral_bounds": [
+    0.3050165326371078,
+    18.489144013813274
+   ],
+   "static_correction_norm": 2.823470336740994,
+   "upfold": {
+    "default": {
+     "dimension": 196,
+     "ea": [
+      -0.15021965722029687,
+      -0.15021965722029848,
+      -0.5692660824422745
+     ],
+     "ea_weight": [
+      0.9184164964401303,
+      0.9184164964401301,
+      0.8749190338676547
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.0467747968139516e-05,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.7766606997744487,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.5282234978797704,
+      0.5836324590931103,
+      0.5836324590931119
+     ],
+     "ip_weight": [
+      0.8655509611003712,
+      0.8877754027758694,
+      0.8877754027758646
+     ],
+     "max_conserved_relative_error": 1.6505726204200684e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 3.5346164327282513e-06,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.5065246074051375,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 196,
+     "ea": [
+      -0.15021965722029687,
+      -0.15021965722029848,
+      -0.5692660824422745
+     ],
+     "ea_weight": [
+      0.9184164964401303,
+      0.9184164964401301,
+      0.8749190338676547
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.0467747968139516e-05,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.7766606997744487,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.5282234978797704,
+      0.5836324590931103,
+      0.5836324590931119
+     ],
+     "ip_weight": [
+      0.8655509611003712,
+      0.8877754027758694,
+      0.8877754027758646
+     ],
+     "max_conserved_relative_error": 1.6505726204200684e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 3.5346164327282513e-06,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.5065246074051375,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/N2/cc-pvdz/pbe/rpa/n5": {
+   "chemical_potential": -0.2046551769061234,
+   "contour": [
+    9.39708027322519,
+    9.233706325838746,
+    1.6111205569161797
+   ],
+   "hole_moment_norms": [
+    1.7579104902320215,
+    1.7514538234701278,
+    1.7346515059337513,
+    1.7134879838097168,
+    1.693652709275967,
+    1.677863388024385,
+    1.6659590150410624
+   ],
+   "n_max": 6,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.0613726942142205,
+    1.0456565397140307,
+    1.0042950233733297,
+    0.9505971381714422,
+    0.8961173057308975,
+    0.8437730728118729,
+    0.789501906915951
+   ],
+   "spectral_bounds": [
+    0.3050165326371078,
+    18.489144013813274
+   ],
+   "static_correction_norm": 2.8234703367409946,
+   "upfold": {
+    "default": {
+     "dimension": 364,
+     "ea": [
+      -0.15024647552272968,
+      -0.1502464755227316,
+      -0.4728819963642979
+     ],
+     "ea_weight": [
+      0.9185602704872531,
+      0.9185602704872148,
+      0.10904552969764217
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 3.957769057842515e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.7260393337742226,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.5282799687398346,
+      0.5836324342961966,
+      0.5836324342962022
+     ],
+     "ip_weight": [
+      0.8659152428015161,
+      0.887742994476514,
+      0.8877429944768528
+     ],
+     "max_conserved_relative_error": 6.317558053587896e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.0290332774389468e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.6323110320117604,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 364,
+     "ea": [
+      -0.15024647552272968,
+      -0.1502464755227316,
+      -0.4728819963642979
+     ],
+     "ea_weight": [
+      0.9185602704872531,
+      0.9185602704872148,
+      0.10904552969764217
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 3.957769057842515e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.7260393337742226,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.5282799687398346,
+      0.5836324342961966,
+      0.5836324342962022
+     ],
+     "ip_weight": [
+      0.8659152428015161,
+      0.887742994476514,
+      0.8877429944768528
+     ],
+     "max_conserved_relative_error": 6.317558053587896e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.0290332774389468e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.6323110320117604,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/N2/cc-pvdz/pbe/rpa/n8": {
+   "chemical_potential": -0.2046551769061234,
+   "contour": [
+    9.39708027322519,
+    9.233706325838746,
+    1.6111205569161797
+   ],
+   "hole_moment_norms": [
+    1.7579104902320215,
+    1.7514538234701278,
+    1.7346515059337513,
+    1.7134879838097168,
+    1.693652709275967,
+    1.677863388024385,
+    1.6659590150410624,
+    1.656708612874736,
+    1.6491813120946341,
+    1.6428604516512302
+   ],
+   "n_max": 9,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.0613726942142205,
+    1.0456565397140307,
+    1.0042950233733297,
+    0.9505971381714422,
+    0.8961173057308975,
+    0.8437730728118729,
+    0.789501906915951,
+    0.7294083122710924,
+    0.6643968695453697,
+    0.5994662193361372
+   ],
+   "spectral_bounds": [
+    0.3050165326371078,
+    18.489144013813274
+   ],
+   "static_correction_norm": 2.8234703367409946,
+   "upfold": {
+    "default": {
+     "dimension": 404,
+     "ea": [
+      -0.1502464756287727,
+      -0.15024647562877405,
+      -0.4728839129728863
+     ],
+     "ea_weight": [
+      0.9185602722859166,
+      0.9185602722859283,
+      0.10905294763304653
+     ],
+     "hole": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 3.0929542322528256e-05,
+      "npoles": 191,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "ip": [
+      0.5282799687433724,
+      0.5836324511979141,
+      0.5836324511979154
+     ],
+     "ip_weight": [
+      0.8659152428430023,
+      0.8877433694476898,
+      0.8877433694476395
+     ],
+     "max_conserved_relative_error": 8.730739048961541e-12,
+     "particle": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 2.449119728395855e-05,
+      "npoles": 185,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 443,
+     "ea": [
+      -0.1502464756247812,
+      -0.15024647562478397,
+      -0.47288387415075767
+     ],
+     "ea_weight": [
+      0.9185602722460159,
+      0.9185602722460195,
+      0.1090527755886571
+     ],
+     "hole": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 4.607901892946377e-07,
+      "npoles": 211,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "ip": [
+      0.5282799687255207,
+      0.5836324510937813,
+      0.5836324510938076
+     ],
+     "ip_weight": [
+      0.8659152426680204,
+      0.8877433669392414,
+      0.8877433669398818
+     ],
+     "max_conserved_relative_error": 2.1889603950737122e-13,
+     "particle": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.439548619756228e-06,
+      "npoles": 204,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/N2/cc-pvdz/pbe/tda/n2": {
+   "chemical_potential": -0.2046551769061234,
+   "contour": [
+    12.893421171651255,
+    12.73012424240963,
+    1.8942364877787716
+   ],
+   "hole_moment_norms": [
+    2.556107292681424,
+    2.547696264975916,
+    2.5255523142928404,
+    2.496996365010157
+   ],
+   "n_max": 3,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.5898887880742538,
+    1.569894253050488,
+    1.5166518443027144,
+    1.4458614276882469
+   ],
+   "spectral_bounds": [
+    0.3050165326371078,
+    25.481825810665402
+   ],
+   "static_correction_norm": 2.8234703367409946,
+   "upfold": {
+    "default": {
+     "dimension": 196,
+     "ea": [
+      -0.1496718246616489,
+      -0.14967182466165055,
+      -0.4743285477997244
+     ],
+     "ea_weight": [
+      0.8921185508017483,
+      0.8921185508017453,
+      0.19076463686720063
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 7.684719959471675e-06,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.813476238683704,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.4984436708128092,
+      0.5961684091021238,
+      0.5977025406012991
+     ],
+     "ip_weight": [
+      0.840657512758001,
+      0.7471976867887884,
+      0.8527149308810167
+     ],
+     "max_conserved_relative_error": 1.0706137414226078e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 4.672238235976559e-06,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.5019226650414805,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 196,
+     "ea": [
+      -0.1496718246616489,
+      -0.14967182466165055,
+      -0.4743285477997244
+     ],
+     "ea_weight": [
+      0.8921185508017483,
+      0.8921185508017453,
+      0.19076463686720063
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 7.684719959471675e-06,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.813476238683704,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.4984436708128092,
+      0.5961684091021238,
+      0.5977025406012991
+     ],
+     "ip_weight": [
+      0.840657512758001,
+      0.7471976867887884,
+      0.8527149308810167
+     ],
+     "max_conserved_relative_error": 1.0706137414226078e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 4.672238235976559e-06,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.5019226650414805,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/N2/cc-pvdz/pbe/tda/n5": {
+   "chemical_potential": -0.2046551769061234,
+   "contour": [
+    12.893421171651255,
+    12.73012424240963,
+    1.8942364877787716
+   ],
+   "hole_moment_norms": [
+    2.556107292681424,
+    2.547696264975916,
+    2.5255523142928404,
+    2.496996365010157,
+    2.4693210509116716,
+    2.446540958557475,
+    2.4291520688227597
+   ],
+   "n_max": 6,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.5898887880742538,
+    1.569894253050488,
+    1.5166518443027144,
+    1.4458614276882469,
+    1.3719858138333647,
+    1.3006610160770458,
+    1.229788846642441
+   ],
+   "spectral_bounds": [
+    0.3050165326371078,
+    25.481825810665402
+   ],
+   "static_correction_norm": 2.8234703367409946,
+   "upfold": {
+    "default": {
+     "dimension": 364,
+     "ea": [
+      -0.14970094563519645,
+      -0.14970094563520267,
+      -0.4867986429700249
+     ],
+     "ea_weight": [
+      0.8922637455711979,
+      0.8922637455713047,
+      0.26410140327725884
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 2.0058736005674064e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.71990341062268,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.4984914150682276,
+      0.5958053747019163,
+      0.597685414934484
+     ],
+     "ip_weight": [
+      0.8409309897690294,
+      0.7419051886965058,
+      0.8524445127374494
+     ],
+     "max_conserved_relative_error": 2.8138529477216836e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.27616806588743e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.6568547246179306,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 364,
+     "ea": [
+      -0.14970094563519645,
+      -0.14970094563520267,
+      -0.4867986429700249
+     ],
+     "ea_weight": [
+      0.8922637455711979,
+      0.8922637455713047,
+      0.26410140327725884
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 2.0058736005674064e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.71990341062268,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.4984914150682276,
+      0.5958053747019163,
+      0.597685414934484
+     ],
+     "ip_weight": [
+      0.8409309897690294,
+      0.7419051886965058,
+      0.8524445127374494
+     ],
+     "max_conserved_relative_error": 2.8138529477216836e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.27616806588743e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.6568547246179306,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/N2/cc-pvdz/pbe/tda/n8": {
+   "chemical_potential": -0.2046551769061234,
+   "contour": [
+    12.893421171651255,
+    12.73012424240963,
+    1.8942364877787716
+   ],
+   "hole_moment_norms": [
+    2.556107292681424,
+    2.547696264975916,
+    2.5255523142928404,
+    2.496996365010157,
+    2.4693210509116716,
+    2.446540958557475,
+    2.4291520688227597,
+    2.4159459520288116,
+    2.4056191575476107,
+    2.397166242094546
+   ],
+   "n_max": 9,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.5898887880742538,
+    1.569894253050488,
+    1.5166518443027144,
+    1.4458614276882469,
+    1.3719858138333647,
+    1.3006610160770458,
+    1.229788846642441,
+    1.1560740149971398,
+    1.0790651843821666,
+    1.0003363894136423
+   ],
+   "spectral_bounds": [
+    0.3050165326371078,
+    25.481825810665402
+   ],
+   "static_correction_norm": 2.8234703367409946,
+   "upfold": {
+    "default": {
+     "dimension": 401,
+     "ea": [
+      -0.1497009457196104,
+      -0.14970094571961207,
+      -0.48679964907038387
+     ],
+     "ea_weight": [
+      0.892263746920558,
+      0.8922637469205702,
+      0.26411197964209676
+     ],
+     "hole": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 3.6715804127422333e-05,
+      "npoles": 190,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "ip": [
+      0.49849141508785577,
+      0.5958053840102852,
+      0.5976854442677598
+     ],
+     "ip_weight": [
+      0.8409309900382839,
+      0.7419053838208117,
+      0.852445141380351
+     ],
+     "max_conserved_relative_error": 1.004328658199195e-11,
+     "particle": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 3.594645629953022e-05,
+      "npoles": 183,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 440,
+     "ea": [
+      -0.14970094571190531,
+      -0.14970094571190704,
+      -0.4867996114615001
+     ],
+     "ea_weight": [
+      0.8922637468406438,
+      0.8922637468406353,
+      0.2641115368346571
+     ],
+     "hole": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.3553767715089515e-06,
+      "npoles": 208,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "ip": [
+      0.4984914150695235,
+      0.5958053839567871,
+      0.5976854441132337
+     ],
+     "ip_weight": [
+      0.8409309898733539,
+      0.7419053832276473,
+      0.8524451377585425
+     ],
+     "max_conserved_relative_error": 2.0542595443304028e-13,
+     "particle": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.1625327233385911e-06,
+      "npoles": 204,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/N2/cc-pvdz/rhf/rpa/n2": {
+   "chemical_potential": -0.2162784507984879,
+   "contour": [
+    10.752483732123997,
+    10.271747387380932,
+    2.4751133166509733
+   ],
+   "hole_moment_norms": [
+    1.8766270184751785,
+    1.8742155747902596,
+    1.8672413124626732,
+    1.856438549920105
+   ],
+   "n_max": 3,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.180153868944172,
+    1.1746766724131181,
+    1.1586278171151996,
+    1.1331072050188857
+   ],
+   "spectral_bounds": [
+    0.7834011033208811,
+    20.721566360927113
+   ],
+   "static_correction_norm": 0.0,
+   "upfold": {
+    "default": {
+     "dimension": 196,
+     "ea": [
+      -0.14834896057083957,
+      -0.14834896057084399,
+      -0.566935507723884
+     ],
+     "ea_weight": [
+      0.9593297889848357,
+      0.959329788984832,
+      0.9792362870996101
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 5.1596143656072235e-06,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.454524734318464,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.5828081593907295,
+      0.6146916501182161,
+      0.6146916501182165
+     ],
+     "ip_weight": [
+      0.9426811048755236,
+      0.953330096781516,
+      0.9533300967815196
+     ],
+     "max_conserved_relative_error": 8.293032596475032e-15,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 4.470434103020594e-06,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.788777072376096,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 196,
+     "ea": [
+      -0.14834896057083957,
+      -0.14834896057084399,
+      -0.566935507723884
+     ],
+     "ea_weight": [
+      0.9593297889848357,
+      0.959329788984832,
+      0.9792362870996101
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 5.1596143656072235e-06,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.454524734318464,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.5828081593907295,
+      0.6146916501182161,
+      0.6146916501182165
+     ],
+     "ip_weight": [
+      0.9426811048755236,
+      0.953330096781516,
+      0.9533300967815196
+     ],
+     "max_conserved_relative_error": 8.293032596475032e-15,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 4.470434103020594e-06,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.788777072376096,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/N2/cc-pvdz/rhf/rpa/n5": {
+   "chemical_potential": -0.2162784507984879,
+   "contour": [
+    10.752483732123997,
+    10.271747387380932,
+    2.4751133166509733
+   ],
+   "hole_moment_norms": [
+    1.8766270184751785,
+    1.8742155747902596,
+    1.8672413124626732,
+    1.856438549920105,
+    1.8428881268011903,
+    1.8278358222221884,
+    1.8124972376849726
+   ],
+   "n_max": 6,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.180153868944172,
+    1.1746766724131181,
+    1.1586278171151996,
+    1.1331072050188857,
+    1.0997916589830967,
+    1.0607174687181473,
+    1.018012414956967
+   ],
+   "spectral_bounds": [
+    0.7834011033208811,
+    20.721566360927113
+   ],
+   "static_correction_norm": 0.0,
+   "upfold": {
+    "default": {
+     "dimension": 364,
+     "ea": [
+      -0.14835017890002844,
+      -0.14835017890003088,
+      -0.5669388968795632
+     ],
+     "ea_weight": [
+      0.9593358218885761,
+      0.9593358218885742,
+      0.9792537961976976
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 4.466495856393569e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.4944082348034904,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.5828096953651946,
+      0.6146916867644635,
+      0.6146916867644705
+     ],
+     "ip_weight": [
+      0.9426874583958321,
+      0.9533304062610332,
+      0.9533304062610427
+     ],
+     "max_conserved_relative_error": 6.918109793891468e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.2272127187193485e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.804116880254952,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 364,
+     "ea": [
+      -0.14835017890002844,
+      -0.14835017890003088,
+      -0.5669388968795632
+     ],
+     "ea_weight": [
+      0.9593358218885761,
+      0.9593358218885742,
+      0.9792537961976976
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 4.466495856393569e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.4944082348034904,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.5828096953651946,
+      0.6146916867644635,
+      0.6146916867644705
+     ],
+     "ip_weight": [
+      0.9426874583958321,
+      0.9533304062610332,
+      0.9533304062610427
+     ],
+     "max_conserved_relative_error": 6.918109793891468e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.2272127187193485e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.804116880254952,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/N2/cc-pvdz/rhf/rpa/n8": {
+   "chemical_potential": -0.2162784507984879,
+   "contour": [
+    10.752483732123997,
+    10.271747387380932,
+    2.4751133166509733
+   ],
+   "hole_moment_norms": [
+    1.8766270184751785,
+    1.8742155747902596,
+    1.8672413124626732,
+    1.856438549920105,
+    1.8428881268011903,
+    1.8278358222221884,
+    1.8124972376849726,
+    1.7978920626263344,
+    1.7847411114620917,
+    1.7734395584719558
+   ],
+   "n_max": 9,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.180153868944172,
+    1.1746766724131181,
+    1.1586278171151996,
+    1.1331072050188857,
+    1.0997916589830967,
+    1.0607174687181473,
+    1.018012414956967,
+    0.9736172078501701,
+    0.92904707797516,
+    0.8852453512824499
+   ],
+   "spectral_bounds": [
+    0.7834011033208811,
+    20.721566360927113
+   ],
+   "static_correction_norm": 0.0,
+   "upfold": {
+    "default": {
+     "dimension": 358,
+     "ea": [
+      -0.14835017890065452,
+      -0.1483501789006546,
+      -0.5669388969432277
+     ],
+     "ea_weight": [
+      0.95933582189285,
+      0.9593358218928476,
+      0.979253796946502
+     ],
+     "hole": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 5.6017414375417926e-05,
+      "npoles": 166,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "ip": [
+      0.5828096953655159,
+      0.6146916867639086,
+      0.6146916867639239
+     ],
+     "ip_weight": [
+      0.9426874583984481,
+      0.9533304062455306,
+      0.9533304062455319
+     ],
+     "max_conserved_relative_error": 8.108602832674202e-12,
+     "particle": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 0.00010317785900195728,
+      "npoles": 164,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 390,
+     "ea": [
+      -0.1483501789003068,
+      -0.14835017890031219,
+      -0.5669388969078026
+     ],
+     "ea_weight": [
+      0.9593358218917599,
+      0.9593358218917579,
+      0.9792537966267353
+     ],
+     "hole": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 5.811122550865458e-07,
+      "npoles": 184,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "ip": [
+      0.5828096953652908,
+      0.61469168676241,
+      0.6146916867624157
+     ],
+     "ip_weight": [
+      0.9426874583972109,
+      0.9533304062316847,
+      0.9533304062316804
+     ],
+     "max_conserved_relative_error": 1.3381246738856032e-13,
+     "particle": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.4962322634363647e-06,
+      "npoles": 178,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/N2/cc-pvdz/rhf/tda/n2": {
+   "chemical_potential": -0.2162784507984879,
+   "contour": [
+    14.14123948938238,
+    13.661467074058478,
+    2.86423397568107
+   ],
+   "hole_moment_norms": [
+    2.479070847840394,
+    2.4761689368194415,
+    2.4677564744693754,
+    2.4546648348519517
+   ],
+   "n_max": 3,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.581038442936375,
+    1.5744290015892979,
+    1.5550372354882103,
+    1.5241204619775324
+   ],
+   "spectral_bounds": [
+    0.7834011033208811,
+    27.49907787544388
+   ],
+   "static_correction_norm": 0.0,
+   "upfold": {
+    "default": {
+     "dimension": 196,
+     "ea": [
+      -0.14666246511993686,
+      -0.14666246511994407,
+      -0.5599651513681233
+     ],
+     "ea_weight": [
+      0.9482974043083364,
+      0.9482974043083339,
+      0.9746228870858807
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.4236071437687462e-05,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.4560587151063498,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.5662969115337985,
+      0.6248627486901384,
+      0.6248627486901428
+     ],
+     "ip_weight": [
+      0.9293458552395811,
+      0.9415614222916197,
+      0.9415614222916219
+     ],
+     "max_conserved_relative_error": 2.0052123296040246e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 5.166836228435148e-06,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.788777072376096,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 196,
+     "ea": [
+      -0.14666246511993686,
+      -0.14666246511994407,
+      -0.5599651513681233
+     ],
+     "ea_weight": [
+      0.9482974043083364,
+      0.9482974043083339,
+      0.9746228870858807
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.4236071437687462e-05,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.4560587151063498,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.5662969115337985,
+      0.6248627486901384,
+      0.6248627486901428
+     ],
+     "ip_weight": [
+      0.9293458552395811,
+      0.9415614222916197,
+      0.9415614222916219
+     ],
+     "max_conserved_relative_error": 2.0052123296040246e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 5.166836228435148e-06,
+      "npoles": 84,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.788777072376096,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/N2/cc-pvdz/rhf/tda/n5": {
+   "chemical_potential": -0.2162784507984879,
+   "contour": [
+    14.14123948938238,
+    13.661467074058478,
+    2.86423397568107
+   ],
+   "hole_moment_norms": [
+    2.479070847840394,
+    2.4761689368194415,
+    2.4677564744693754,
+    2.4546648348519517,
+    2.438128107205032,
+    2.419588738772725,
+    2.400484693776668
+   ],
+   "n_max": 6,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.581038442936375,
+    1.5744290015892979,
+    1.5550372354882103,
+    1.5241204619775324,
+    1.4836047222675917,
+    1.4358487916567082,
+    1.383352104598262
+   ],
+   "spectral_bounds": [
+    0.7834011033208811,
+    27.49907787544388
+   ],
+   "static_correction_norm": 0.0,
+   "upfold": {
+    "default": {
+     "dimension": 364,
+     "ea": [
+      -0.14666381391550978,
+      -0.14666381391551092,
+      -0.5599694553874237
+     ],
+     "ea_weight": [
+      0.9483038012779362,
+      0.9483038012779612,
+      0.9746464761002536
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 2.2181503078720124e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.4944082348034904,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.5662985295132614,
+      0.6248626818660641,
+      0.6248626818661027
+     ],
+     "ip_weight": [
+      0.9293524855978478,
+      0.9415610761595264,
+      0.9415610761599447
+     ],
+     "max_conserved_relative_error": 3.1478761207741645e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.5143317087363477e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.81178678419438,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 364,
+     "ea": [
+      -0.14666381391550978,
+      -0.14666381391551092,
+      -0.5599694553874237
+     ],
+     "ea_weight": [
+      0.9483038012779362,
+      0.9483038012779612,
+      0.9746464761002536
+     ],
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 2.2181503078720124e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.4944082348034904,
+      "terminal_dimension": 28
+     },
+     "ip": [
+      0.5662985295132614,
+      0.6248626818660641,
+      0.6248626818661027
+     ],
+     "ip_weight": [
+      0.9293524855978478,
+      0.9415610761595264,
+      0.9415610761599447
+     ],
+     "max_conserved_relative_error": 3.1478761207741645e-14,
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.5143317087363477e-05,
+      "npoles": 168,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.81178678419438,
+      "terminal_dimension": 28
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "contour/N2/cc-pvdz/rhf/tda/n8": {
+   "chemical_potential": -0.2162784507984879,
+   "contour": [
+    14.14123948938238,
+    13.661467074058478,
+    2.86423397568107
+   ],
+   "hole_moment_norms": [
+    2.479070847840394,
+    2.4761689368194415,
+    2.4677564744693754,
+    2.4546648348519517,
+    2.438128107205032,
+    2.419588738772725,
+    2.400484693776668,
+    2.382061881073757,
+    2.365247430085237,
+    2.3506010873775507
+   ],
+   "n_max": 9,
+   "n_q": 512,
+   "n_resolvent_evaluations": 256,
+   "particle_moment_norms": [
+    1.581038442936375,
+    1.5744290015892979,
+    1.5550372354882103,
+    1.5241204619775324,
+    1.4836047222675917,
+    1.4358487916567082,
+    1.383352104598262,
+    1.3284474280596426,
+    1.2730295677800207,
+    1.2183730589954989
+   ],
+   "spectral_bounds": [
+    0.7834011033208811,
+    27.49907787544388
+   ],
+   "static_correction_norm": 0.0,
+   "upfold": {
+    "default": {
+     "dimension": 356,
+     "ea": [
+      -0.14666381391619912,
+      -0.1466638139162043,
+      -0.5599694554517344
+     ],
+     "ea_weight": [
+      0.9483038012822466,
+      0.9483038012822469,
+      0.974646476814395
+     ],
+     "hole": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 5.222554497029537e-05,
+      "npoles": 166,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "ip": [
+      0.5662985295150483,
+      0.6248626818651402,
+      0.6248626818651434
+     ],
+     "ip_weight": [
+      0.9293524856060998,
+      0.9415610761369682,
+      0.9415610761369644
+     ],
+     "max_conserved_relative_error": 1.376450453281127e-11,
+     "particle": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 0.00020482853186182346,
+      "npoles": 162,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "reconstruction_passed": true
+    },
+    "library": {
+     "dimension": 388,
+     "ea": [
+      -0.14666381391579172,
+      -0.14666381391579553,
+      -0.5599694554143472
+     ],
+     "ea_weight": [
+      0.9483038012811202,
+      0.9483038012811225,
+      0.9746464765015304
+     ],
+     "hole": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 7.800822422946835e-07,
+      "npoles": 184,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "ip": [
+      0.5662985295133552,
+      0.6248626818632784,
+      0.6248626818632927
+     ],
+     "ip_weight": [
+      0.9293524855991302,
+      0.9415610761198143,
+      0.9415610761198175
+     ],
+     "max_conserved_relative_error": 1.8065167899317647e-13,
+     "particle": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.426136001767042e-06,
+      "npoles": 176,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "reconstruction_passed": true
+    }
+   }
+  },
+  "exact/H2/6-31g/rpa": {
+   "cayley_moment_norms": {
+    "hole": [
+     0.09233735807805178,
+     0.09140625398126809,
+     0.08883130190113753,
+     0.0852479264416467,
+     0.08162681094862043,
+     0.07906820726745263,
+     0.07843381633700057
+    ],
+    "particle": [
+     0.18546099718235579,
+     0.18389357223129515,
+     0.17935630941480493,
+     0.1723067508509926,
+     0.16339268881633456,
+     0.15331611447246266,
+     0.14271315929210138
+    ]
+   },
+   "chemical_potential": -0.17867236316632773,
+   "contour_vs_exact": {
+    "hole": 1.9491438476687567e-15,
+    "particle": 2.4306204958455228e-15
+   },
+   "hole": {
+    "npoles": 3,
+    "pole_range": [
+     -2.8636074498607984,
+     -1.5564296472831325
+    ],
+    "zeroth_moment_norm": 0.09233735807805178
+   },
+   "particle": {
+    "npoles": 9,
+    "pole_range": [
+     1.199084920950477,
+     3.672201813164281
+    ],
+    "zeroth_moment_norm": 0.18546099718235579
+   },
+   "realized": {
+    "1": {
+     "dimension": 15,
+     "frontier": {
+      "above": [
+       0.23987239549389786,
+       0.7496141925543028,
+       1.3240484591508135
+      ],
+      "above_weight": [
+       0.9927650001251952,
+       0.9776478365505388,
+       0.9159872058013053
+      ],
+      "below": [
+       -0.5908565943348735
+      ],
+      "below_weight": [
+       0.9725130302188819
+      ]
+     },
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 8.081185768389679e-08,
+      "npoles": 3,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 8,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 2.348048417027005e-07,
+      "npoles": 8,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.377670221222744,
+      "terminal_dimension": 4
+     }
+    },
+    "2": {
+     "dimension": 16,
+     "frontier": {
+      "above": [
+       0.23986925560869937,
+       0.7497123218985645,
+       1.3197230105930746
+      ],
+      "above_weight": [
+       0.992757460027927,
+       0.9776980373701583,
+       0.8951339430971256
+      ],
+      "below": [
+       -0.5908565918045512
+      ],
+      "below_weight": [
+       0.9725070794842035
+      ]
+     },
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.1112370974502458e-07,
+      "npoles": 3,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 8,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 7.17654783062658e-07,
+      "npoles": 9,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.3914760483137147,
+      "terminal_dimension": 1
+     }
+    },
+    "3": {
+     "dimension": 16,
+     "frontier": {
+      "above": [
+       0.23986925560869718,
+       0.74971232189891,
+       1.3197230105930737
+      ],
+      "above_weight": [
+       0.9927574600279261,
+       0.9776980373716216,
+       0.8951339430971256
+      ],
+      "below": [
+       -0.5908565918045374
+      ],
+      "below_weight": [
+       0.9725070794842118
+      ]
+     },
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.3002522029256685e-07,
+      "npoles": 3,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 33,
+      "discarded_total_weight": 1.8588434445120168e-17,
+      "maximum_conservation_ratio": 1.2681622347465323e-06,
+      "npoles": 9,
+      "rank_floor_attempts": 1,
+      "selected_phase": 5.540738605842936,
+      "terminal_dimension": 1
+     }
+    }
+   },
+   "static_correction_norm": 0.0,
+   "untruncated": {
+    "frontier": {
+     "above": [
+      0.23986925560869712,
+      0.7497123218989092,
+      1.3197230105930715
+     ],
+     "above_weight": [
+      0.9927574600279296,
+      0.9776980373716228,
+      0.8951339430971191
+     ],
+     "below": [
+      -0.5908565918045374
+     ],
+     "below_weight": [
+      0.9725070794842118
+     ]
+    },
+    "nstates": 16
+   }
+  },
+  "exact/LiH/6-31g/rpa": {
+   "cayley_moment_norms": {
+    "hole": [
+     0.0807497131995035,
+     0.07554399904642055,
+     0.06310638368165612,
+     0.05249948519466085,
+     0.05243158345469429,
+     0.05885512968153147,
+     0.06258859219166749
+    ],
+    "particle": [
+     0.15385316133059865,
+     0.1494658795320623,
+     0.13881707213406486,
+     0.1273527957273041,
+     0.11846337360319036,
+     0.11062744654712897,
+     0.10049472092080415
+    ]
+   },
+   "chemical_potential": -0.14567033576599875,
+   "contour_vs_exact": {
+    "hole": 8.185395643390426e-15,
+    "particle": 5.8045590437819845e-15
+   },
+   "hole": {
+    "npoles": 36,
+    "pole_range": [
+     -6.229005568138259,
+     -0.6225482051091202
+    ],
+    "zeroth_moment_norm": 0.0807497131995035
+   },
+   "particle": {
+    "npoles": 162,
+    "pole_range": [
+     0.3312075335771227,
+     5.09398669400793
+    ],
+    "zeroth_moment_norm": 0.15385316133059865
+   },
+   "realized": {
+    "2": {
+     "dimension": 76,
+     "frontier": {
+      "above": [
+       0.006510712512221661,
+       0.05822068818798736,
+       0.058220688187987396
+      ],
+      "above_weight": [
+       0.992388722750687,
+       0.9950178954890869,
+       0.9950178954890875
+      ],
+      "below": [
+       -0.28001158154910255,
+       -2.418738904494992,
+       -2.458607873253406
+      ],
+      "below_weight": [
+       0.9338825617440331,
+       0.8511950607822486,
+       0.11619461705970267
+      ]
+     },
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 2.68938738723144e-07,
+      "npoles": 32,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.8748354701991294,
+      "terminal_dimension": 10
+     },
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 3.8132960387818113e-07,
+      "npoles": 33,
+      "rank_floor_attempts": 1,
+      "selected_phase": 1.6873788666742053,
+      "terminal_dimension": 11
+     }
+    },
+    "4": {
+     "dimension": 102,
+     "frontier": {
+      "above": [
+       0.006499319754239279,
+       0.05821621014098043,
+       0.05821621014098081
+      ],
+      "above_weight": [
+       0.9922845664500147,
+       0.9949660567380115,
+       0.9949660567380121
+      ],
+      "below": [
+       -0.28001251746165623,
+       -2.422663914514612
+      ],
+      "below_weight": [
+       0.9338768396262755,
+       0.9649313750702339
+      ]
+     },
+     "hole": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 2.934202398310096e-06,
+      "npoles": 36,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 3.574871952051247e-07,
+      "npoles": 55,
+      "rank_floor_attempts": 1,
+      "selected_phase": 1.736466251886546,
+      "terminal_dimension": 11
+     }
+    }
+   },
+   "static_correction_norm": 0.0,
+   "untruncated": {
+    "frontier": {
+     "above": [
+      0.006499310851428848,
+      0.058216323733662784,
+      0.05821632373366443
+     ],
+     "above_weight": [
+      0.9922844511725156,
+      0.9949678605717273,
+      0.994967860571728
+     ],
+     "below": [
+      -0.28001251673208166,
+      -2.4226639143730235
+     ],
+     "below_weight": [
+      0.9338768456133547,
+      0.9649313751280137
+     ]
+    },
+    "nstates": 209
+   }
+  },
+  "exact/LiH/sto-3g/rpa": {
+   "cayley_moment_norms": {
+    "hole": [
+     0.07386083789992634,
+     0.07335358738862323,
+     0.07204385898671235,
+     0.07048647758153652,
+     0.06934815874776072,
+     0.0690961174387448,
+     0.069765052069697
+    ],
+    "particle": [
+     0.061987081322140675,
+     0.061719915085124505,
+     0.060989682347511745,
+     0.05997262396808248,
+     0.058858225737378596,
+     0.05775865762791086,
+     0.056679800331369455
+    ]
+   },
+   "chemical_potential": -0.10372144929702345,
+   "contour_vs_exact": {
+    "hole": 2.7750160274212936e-15,
+    "particle": 1.7446751006028503e-15
+   },
+   "hole": {
+    "npoles": 16,
+    "pole_range": [
+     -5.2633931637064375,
+     -0.667020742656427
+    ],
+    "zeroth_moment_norm": 0.07386083789992635
+   },
+   "particle": {
+    "npoles": 32,
+    "pole_range": [
+     0.4595778440623801,
+     3.4638782558932246
+    ],
+    "zeroth_moment_norm": 0.061987081322140675
+   },
+   "realized": {
+    "1": {
+     "dimension": 30,
+     "frontier": {
+      "above": [
+       0.07598873500045336,
+       0.16219612426370397,
+       0.1621961242637043
+      ],
+      "above_weight": [
+       0.9931705541387019,
+       0.9939525542343488,
+       0.9939525542343498
+      ],
+      "below": [
+       -0.2733450150330635,
+       -2.329710210009124
+      ],
+      "below_weight": [
+       0.9561435748041436,
+       0.991768019264188
+      ]
+     },
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.114417614726801e-07,
+      "npoles": 12,
+      "rank_floor_attempts": 1,
+      "selected_phase": 4.236854936140141,
+      "terminal_dimension": 6
+     },
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 6.582068462195761e-08,
+      "npoles": 12,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.462039164556454,
+      "terminal_dimension": 6
+     }
+    },
+    "2": {
+     "dimension": 37,
+     "frontier": {
+      "above": [
+       0.0759948616066101,
+       0.16208680836879263,
+       0.1620868083687949
+      ],
+      "above_weight": [
+       0.9931852023756612,
+       0.9933692157725239,
+       0.9933692157725217
+      ],
+      "below": [
+       -0.27328692323383813,
+       -2.328479159912904
+      ],
+      "below_weight": [
+       0.9556929048740348,
+       0.9886074366485652
+      ]
+     },
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 3.447972892590595e-07,
+      "npoles": 15,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.436116964863836,
+      "terminal_dimension": 3
+     },
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.4245804988553833e-07,
+      "npoles": 16,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.2442138926766932,
+      "terminal_dimension": 4
+     }
+    },
+    "3": {
+     "dimension": 41,
+     "frontier": {
+      "above": [
+       0.07599424131193948,
+       0.16209192069262288,
+       0.16209192069262465
+      ],
+      "above_weight": [
+       0.9931789262765645,
+       0.9934277951739241,
+       0.9934277951739237
+      ],
+      "below": [
+       -0.2732870327984659,
+       -2.328479158204021
+      ],
+      "below_weight": [
+       0.9556926078426051,
+       0.9886074361711872
+      ]
+     },
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 4.6588711824040464e-18,
+      "maximum_conservation_ratio": 7.382913017177912e-07,
+      "npoles": 17,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.5036121195308043,
+      "terminal_dimension": 3
+     },
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 8.131471149010097e-07,
+      "npoles": 18,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.4344275103745123,
+      "terminal_dimension": 2
+     }
+    },
+    "4": {
+     "dimension": 42,
+     "frontier": {
+      "above": [
+       0.07599424131194078,
+       0.16209191800292172,
+       0.16209191800292327
+      ],
+      "above_weight": [
+       0.9931789262765638,
+       0.9934277473766049,
+       0.9934277473766052
+      ],
+      "below": [
+       -0.273287032798466,
+       -2.3284791582043307
+      ],
+      "below_weight": [
+       0.9556926078426047,
+       0.988607436174922
+      ]
+     },
+     "hole": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 7.286722839851291e-08,
+      "npoles": 16,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 8,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 2.9750468928604713e-06,
+      "npoles": 20,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.377670221222744,
+      "terminal_dimension": 2
+     }
+    },
+    "5": {
+     "dimension": 44,
+     "frontier": {
+      "above": [
+       0.07599424131193813,
+       0.16209191760979128,
+       0.16209191760979286
+      ],
+      "above_weight": [
+       0.9931789262765649,
+       0.9934277386358645,
+       0.9934277386358646
+      ],
+      "below": [
+       -0.27328703279846694,
+       -2.328479158204333
+      ],
+      "below_weight": [
+       0.9556926078426041,
+       0.9886074361749336
+      ]
+     },
+     "hole": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.2071018287469844e-07,
+      "npoles": 16,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 7.6054661599102165e-06,
+      "npoles": 22,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.2212041808584084,
+      "terminal_dimension": 2
+     }
+    }
+   },
+   "static_correction_norm": 0.0,
+   "untruncated": {
+    "frontier": {
+     "above": [
+      0.07599424131193937,
+      0.1620919176094695,
+      0.16209191760946975
+     ],
+     "above_weight": [
+      0.9931789262765655,
+      0.993427738628192,
+      0.9934277386281939
+     ],
+     "below": [
+      -0.27328703279846756,
+      -2.328479158204337
+     ],
+     "below_weight": [
+      0.9556926078426047,
+      0.9886074361749535
+     ]
+    },
+    "nstates": 54
+   }
+  },
+  "exact/LiH/sto-3g/tda": {
+   "cayley_moment_norms": {
+    "hole": [
+     0.08817291514389891,
+     0.08746767693125343,
+     0.08565524148695274,
+     0.08353380621021039,
+     0.08206537624744001,
+     0.08190453986502834,
+     0.08303937738965426
+    ],
+    "particle": [
+     0.08015473540192355,
+     0.07982477538145231,
+     0.07891953842190406,
+     0.0776486460937496,
+     0.07623913419972492,
+     0.07483058589842762,
+     0.07344308297044314
+    ]
+   },
+   "chemical_potential": -0.10372144929702345,
+   "contour_vs_exact": {
+    "hole": 3.986999221317576e-15,
+    "particle": 2.7053211883384642e-15
+   },
+   "hole": {
+    "npoles": 16,
+    "pole_range": [
+     -5.263451077105797,
+     -0.6688698450957807
+    ],
+    "zeroth_moment_norm": 0.08817291514389893
+   },
+   "particle": {
+    "npoles": 32,
+    "pole_range": [
+     0.4614269465017338,
+     3.4639361692925843
+    ],
+    "zeroth_moment_norm": 0.08015473540192354
+   },
+   "realized": {
+    "1": {
+     "dimension": 30,
+     "frontier": {
+      "above": [
+       0.07580221576976293,
+       0.161948494477035,
+       0.16194849447703544
+      ],
+      "above_weight": [
+       0.992123168304913,
+       0.9932798524570154,
+       0.9932798524570159
+      ],
+      "below": [
+       -0.27036976124800927,
+       -2.3288008635627118
+      ],
+      "below_weight": [
+       0.947545822243052,
+       0.9911819093758822
+      ]
+     },
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.7331740018192323e-07,
+      "npoles": 12,
+      "rank_floor_attempts": 1,
+      "selected_phase": 4.244524840079569,
+      "terminal_dimension": 6
+     },
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 3.564731527317498e-08,
+      "npoles": 12,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.425223625647199,
+      "terminal_dimension": 6
+     }
+    },
+    "2": {
+     "dimension": 37,
+     "frontier": {
+      "above": [
+       0.07581277803089992,
+       0.16183666265538382,
+       0.16183666265538593
+      ],
+      "above_weight": [
+       0.9921619837268829,
+       0.99269402770369,
+       0.9926940277036894
+      ],
+      "below": [
+       -0.27031889294806666,
+       -2.327463840006021
+      ],
+      "below_weight": [
+       0.9471557365968627,
+       0.9877437238994944
+      ]
+     },
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 10,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 4.2732125087437223e-07,
+      "npoles": 15,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.4345829840759508,
+      "terminal_dimension": 3
+     },
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 8.725448173605018e-08,
+      "npoles": 16,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.2718255468586346,
+      "terminal_dimension": 4
+     }
+    },
+    "3": {
+     "dimension": 41,
+     "frontier": {
+      "above": [
+       0.07581224880020178,
+       0.16184179303655732,
+       0.16184179303655932
+      ],
+      "above_weight": [
+       0.9921566529421244,
+       0.9927521870912697,
+       0.9927521870912697
+      ],
+      "below": [
+       -0.2703189959294697,
+       -2.327463838397755
+      ],
+      "below_weight": [
+       0.9471554568342146,
+       0.9877437234457731
+      ]
+     },
+     "hole": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 1.725740873728392e-18,
+      "maximum_conservation_ratio": 8.310794162418557e-07,
+      "npoles": 17,
+      "rank_floor_attempts": 1,
+      "selected_phase": 3.5036121195308043,
+      "terminal_dimension": 3
+     },
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 2.8824173872207986e-07,
+      "npoles": 18,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.4221556640714272,
+      "terminal_dimension": 2
+     }
+    },
+    "4": {
+     "dimension": 42,
+     "frontier": {
+      "above": [
+       0.07581224880020106,
+       0.16184178996197135,
+       0.16184178996197285
+      ],
+      "above_weight": [
+       0.9921566529421241,
+       0.9927521326975166,
+       0.9927521326975157
+      ],
+      "below": [
+       -0.27031899592947084,
+       -2.3274638383981783
+      ],
+      "below_weight": [
+       0.9471554568342141,
+       0.9877437234519627
+      ]
+     },
+     "hole": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.5073421007688417e-07,
+      "npoles": 16,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 8,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 1.2676656708290296e-06,
+      "npoles": 20,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.3439226438892597,
+      "terminal_dimension": 2
+     }
+    },
+    "5": {
+     "dimension": 44,
+     "frontier": {
+      "above": [
+       0.07581224880020235,
+       0.1618417895052447,
+       0.161841789505245
+      ],
+      "above_weight": [
+       0.9921566529421236,
+       0.9927521225198102,
+       0.9927521225198107
+      ],
+      "below": [
+       -0.27031899592946945,
+       -2.3274638383981485
+      ],
+      "below_weight": [
+       0.9471554568342141,
+       0.9877437234517469
+      ]
+     },
+     "hole": {
+      "algorithm": "toeplitz",
+      "candidates_evaluated": 1,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 7.391950166192712e-08,
+      "npoles": 16,
+      "rank_floor_attempts": 1,
+      "selected_phase": null,
+      "terminal_dimension": 0
+     },
+     "particle": {
+      "algorithm": "block-cmv",
+      "candidates_evaluated": 9,
+      "discarded_total_weight": 0.0,
+      "maximum_conservation_ratio": 3.169832470469644e-06,
+      "npoles": 22,
+      "rank_floor_attempts": 1,
+      "selected_phase": 2.2794954507980627,
+      "terminal_dimension": 2
+     }
+    }
+   },
+   "static_correction_norm": 0.0,
+   "untruncated": {
+    "frontier": {
+     "above": [
+      0.0758122488002019,
+      0.16184178950496467,
+      0.16184178950496658
+     ],
+     "above_weight": [
+      0.9921566529421247,
+      0.9927521225131697,
+      0.9927521225131686
+     ],
+     "below": [
+      -0.27031899592946934,
+      -2.327463838398145
+     ],
+     "below_weight": [
+      0.9471554568342152,
+      0.9877437234517247
+     ]
+    },
+    "nstates": 54
+   }
+  }
+ },
+ "metadata": {
+  "MKL_NUM_THREADS": "1",
+  "OMP_NUM_THREADS": "1",
+  "OPENBLAS_NUM_THREADS": "1",
+  "cpu_count": "4",
+  "machine": "x86_64",
+  "note": "One single-threaded machine's answer to the regression protocol; energies in Hartree.",
+  "numpy": "2.4.6",
+  "platform": "Linux-6.18.44-fc-v37-x86_64-with-glibc2.39",
+  "processor": "x86_64"
+ }
+}
