@@ -8,12 +8,11 @@ stops describing its result fails here.
 
 from __future__ import annotations
 
-from pathlib import Path
 import re
 import runpy
+from pathlib import Path
 
 import pytest
-
 
 EXAMPLES = Path(__file__).resolve().parents[1] / "examples"
 pytestmark = pytest.mark.pyscf
@@ -93,17 +92,15 @@ def test_the_parts_reuse_one_build_and_match_the_kernel(capsys) -> None:
     assert captured.err.count("Moments C_0..C_8 converged at N_q") == 2
     assert captured.err.count("Upfolded Hamiltonian of dimension") == 8
     kernel = re.search(
-        r"gw\.kernel\(7\) against the four calls at n=7: IP ([+-]\d+\.\d+) meV, EA ([+-]\d+\.\d+) meV",
+        r"gw\.kernel\(7\) against the four calls at n=7: "
+        r"IP ([+-]\d+\.\d+) meV, EA ([+-]\d+\.\d+) meV",
         out,
     )
     assert kernel and float(kernel.group(1)) == 0.0 and float(kernel.group(2)) == 0.0
     assert "  1  C_0..C_1 + C_2" in out
     assert "  7  C_0..C_7 + C_8" in out
     assert "deviation from the n=7 result (meV):" in out
-    deviations = {
-        int(n): float(ip)
-        for n, ip in re.findall(r"n=(\d): IP\s+(\d+\.\d+)", out)
-    }
+    deviations = {int(n): float(ip) for n, ip in re.findall(r"n=(\d): IP\s+(\d+\.\d+)", out)}
     assert deviations[1] > 1.0
     assert deviations[3] < 0.05
     assert deviations[5] < 0.01
@@ -149,12 +146,18 @@ def test_screening_and_reference_table(capsys) -> None:
     rows = {
         label.strip(): (int(n_mo), float(ip))
         for label, n_mo, ip in re.findall(
-            r"^  (RHF, RPA screening|RHF, TDA screening|PBE, RPA screening|RHF, RPA, frozen=2)\s+(\d+)\s+\d+\s+(-?\d+\.\d+)",
+            r"^  (RHF, RPA screening|RHF, TDA screening|PBE, RPA screening|RHF, RPA, frozen=2)"
+            r"\s+(\d+)\s+\d+\s+(-?\d+\.\d+)",
             out,
             flags=re.M,
         )
     }
-    assert set(rows) == {"RHF, RPA screening", "RHF, TDA screening", "PBE, RPA screening", "RHF, RPA, frozen=2"}
+    assert set(rows) == {
+        "RHF, RPA screening",
+        "RHF, TDA screening",
+        "PBE, RPA screening",
+        "RHF, RPA, frozen=2",
+    }
     assert rows["RHF, RPA screening"][0] == 28
     assert rows["RHF, RPA, frozen=2"][0] == 26
     assert abs(rows["RHF, RPA screening"][1] - rows["RHF, RPA, frozen=2"][1]) < 0.05
@@ -289,5 +292,13 @@ def test_pyscf_comparison_agrees_on_the_diagonal_equation(capsys) -> None:
     assert "gw_exact" in out and "gw_cd" in out
     for label in ("HOMO-1", "HOMO ", "LUMO ", "LUMO+1"):
         assert label in out
-    assert _value_after(out, "largest difference between gw_exact and the cayleygw diagonal equation:") < 0.01
-    assert _value_after(out, "largest difference between the exact and the Cayley-moment full solution:") < 1.0
+    assert (
+        _value_after(out, "largest difference between gw_exact and the cayleygw diagonal equation:")
+        < 0.01
+    )
+    assert (
+        _value_after(
+            out, "largest difference between the exact and the Cayley-moment full solution:"
+        )
+        < 1.0
+    )

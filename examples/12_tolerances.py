@@ -16,7 +16,6 @@ from pyscf import gto, scf
 
 from cayleygw import CayleyGW, Tolerances, enable_logging, extract_ip_ea
 
-
 # --- controls ---------------------------------------------------------------
 ATOM = "O 0 0 0.1173; H 0 0.7572 -0.4692; H 0 -0.7572 -0.4692"  # geometry, Angstrom
 BASIS = "cc-pvdz"  # orbital basis
@@ -52,7 +51,9 @@ def main() -> None:
     gw = CayleyGW(mean_field, n_q_tolerance=N_Q_TOLERANCE, verbose=VERBOSE)
     gw.kernel(N_CONSERVED, terminal_phase_count=TERMINAL_PHASE_COUNT, tolerances=tolerances)
     # The kernel reads its IPs and EAs at the default weight; minimum_weight belongs to extract_ip_ea.
-    spelled_out = extract_ip_ea(gw.spectrum, n_ip=3, n_ea=3, minimum_weight=MINIMUM_WEIGHT, verbose=0)
+    spelled_out = extract_ip_ea(
+        gw.spectrum, n_ip=3, n_ea=3, minimum_weight=MINIMUM_WEIGHT, verbose=0
+    )
 
     # The same order again with every default: the kernel reuses the moments.
     defaults = gw.kernel(N_CONSERVED)

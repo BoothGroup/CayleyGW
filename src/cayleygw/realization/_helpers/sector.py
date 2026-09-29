@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import math
-from typing import Any, Callable, Sequence, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Callable, Sequence
 
 import numpy as np
 from numpy.typing import NDArray
@@ -62,9 +62,7 @@ def _finalize_first_viable_closure(
     ranked = scan.ranked_indices
     for rank, index in enumerate(ranked):
         try:
-            result = _finalize_sector_candidate(
-                scan, index, rank, sector, mapping, tolerances
-            )
+            result = _finalize_sector_candidate(scan, index, rank, sector, mapping, tolerances)
         except RefusalError as error:
             if error.kind != "sector":
                 raise
@@ -84,9 +82,7 @@ def _conservation_ratio(
 ) -> float:
     """Return the worst fitted moment residual in units of its own threshold."""
 
-    return float(
-        np.max(moment_residuals[: n_conserved + 1] / fitted_thresholds)
-    )
+    return float(np.max(moment_residuals[: n_conserved + 1] / fitted_thresholds))
 
 
 def _zeroth_moment_congruence(
@@ -122,9 +118,7 @@ def _zeroth_moment_congruence(
             kind="sector",
             diagnostics=diagnostics,
         )
-    inverse_root = (
-        eigenvectors / np.sqrt(eigenvalues)[None, :]
-    ) @ eigenvectors.conj().T
+    inverse_root = (eigenvectors / np.sqrt(eigenvalues)[None, :]) @ eigenvectors.conj().T
     return factor @ inverse_root @ pseudoinverse
 
 
@@ -195,9 +189,7 @@ def _finalize_sector_candidate(
         )
         if _conservation_ratio(
             repaired_residuals, fitted_thresholds, scan.n_conserved
-        ) <= _conservation_ratio(
-            moment_residuals, fitted_thresholds, scan.n_conserved
-        ):
+        ) <= _conservation_ratio(moment_residuals, fitted_thresholds, scan.n_conserved):
             zeroth_weight_redistributed = True
             couplings = transform @ couplings
             reconstructed = repaired
@@ -235,17 +227,11 @@ def _finalize_sector_candidate(
         poles=_check.readonly_real(poles, "sector poles"),
         couplings=_check.readonly_complex(couplings, "sector couplings"),
         moment_residuals=_check.readonly_real(moment_residuals, "moment_residuals"),
-        discarded_wrong_arc_weight=float(
-            np.sum(weights[selected.wrong_arc_mask])
-        ),
-        discarded_near_singular_weight=float(
-            np.sum(weights[selected.near_singular_mask])
-        ),
+        discarded_wrong_arc_weight=float(np.sum(weights[selected.wrong_arc_mask])),
+        discarded_near_singular_weight=float(np.sum(weights[selected.near_singular_mask])),
         discarded_total_weight=discarded_total_weight,
         closure_rank=rank,
-        conservation_is_marginal=bool(
-            np.any(fitted_residuals > fitted_thresholds)
-        ),
+        conservation_is_marginal=bool(np.any(fitted_residuals > fitted_thresholds)),
         maximum_conservation_ratio=maximum_conservation_ratio,
         zeroth_weight_redistributed=zeroth_weight_redistributed,
         redistributed_zeroth_weight=redistributed_zeroth_weight,
@@ -314,27 +300,19 @@ def _candidate_diagnostics(
         spectrum=spectrum,
         correct_arc_mask=_check.readonly_bool(correct, "correct_arc_mask"),
         wrong_arc_mask=_check.readonly_bool(wrong, "wrong_arc_mask"),
-        near_singular_mask=_check.readonly_bool(
-            near_singular, "near_singular_mask"
-        ),
+        near_singular_mask=_check.readonly_bool(near_singular, "near_singular_mask"),
         total_weight=total_weight,
         weight_threshold=weight_threshold,
         wrong_arc_weight=wrong_weight,
         near_singular_weight=near_singular_weight,
         minimum_correct_node_distance_from_one=minimum_distance,
         inverse_conditioning_penalty=inverse_penalty,
-        withheld_moment_residuals=_check.readonly_real(
-            residuals, "withheld_moment_residuals"
-        ),
-        withheld_relative_residuals=_check.readonly_real(
-            relative, "withheld_relative_residuals"
-        ),
+        withheld_moment_residuals=_check.readonly_real(residuals, "withheld_moment_residuals"),
+        withheld_relative_residuals=_check.readonly_real(relative, "withheld_relative_residuals"),
         support_acceptable=(wrong_weight <= weight_threshold),
         # Arc weight moves by tens of percent with the BLAS thread count, hence the band.
         support_marginal=(
-            weight_threshold
-            < wrong_weight
-            <= tolerances.arc_margin * weight_threshold
+            weight_threshold < wrong_weight <= tolerances.arc_margin * weight_threshold
         ),
         inverse_safe=(near_singular_weight <= weight_threshold),
     )
@@ -432,10 +410,7 @@ def _phase_evaluator(
         )
         if failures:
             index, error = failures[0]
-            if (
-                isinstance(error, RefusalError)
-                and error.kind == "block-cmv"
-            ):
+            if isinstance(error, RefusalError) and error.kind == "block-cmv":
                 # Re-raised as a "sector" refusal so the "auto" fallback catches it.
                 raise RefusalError(
                     f"the {realization_algorithm} closure at phase "
@@ -469,15 +444,11 @@ def _restricted_phase_search(
             "n_conserved; lower n_conserved or use phase_refinement='fixed'"
         )
     denominators = 1.0 + np.linalg.norm(
-        np.asarray(source.values)[
-            fitted_order + 1: source.n_max + 1
-        ],
+        np.asarray(source.values)[fitted_order + 1 : source.n_max + 1],
         axis=(1, 2),
     )
     grid = [2.0 * np.pi * index / count for index in range(count)]
-    seen: dict[int, SectorClosureDiagnostics] = {
-        0: canonical_candidate
-    }
+    seen: dict[int, SectorClosureDiagnostics] = {0: canonical_candidate}
 
     def take(wanted: Any) -> list[SectorClosureDiagnostics]:
         """Realize the requested grid indices, reusing what exists."""
@@ -485,9 +456,7 @@ def _restricted_phase_search(
         indices = list(wanted)
         fresh = [i for i in sorted(set(indices)) if i not in seen]
         if fresh:
-            for index, candidate in zip(
-                fresh, evaluate_phases([grid[i] for i in fresh])
-            ):
+            for index, candidate in zip(fresh, evaluate_phases([grid[i] for i in fresh])):
                 seen[index] = candidate
         return [seen[i] for i in indices]
 
@@ -499,22 +468,16 @@ def _restricted_phase_search(
 
         ordered = [seen[i] for i in range(0, count, step_size)]
         squares = np.asarray(
-            [np.asarray(item.withheld_moment_residuals) ** 2
-             for item in ordered],
+            [np.asarray(item.withheld_moment_residuals) ** 2 for item in ordered],
             dtype=np.float64,
         )
         spectra = np.fft.fft(squares, axis=0) / len(ordered)
-        frequencies = np.fft.fftfreq(
-            len(ordered), d=1.0 / len(ordered)
-        )
+        frequencies = np.fft.fftfreq(len(ordered), d=1.0 / len(ordered))
 
         def predict(thetas: Any) -> FloatArray:
-            basis = np.exp(1.0j * np.outer(
-                np.asarray(thetas, dtype=np.float64), frequencies
-            ))
+            basis = np.exp(1.0j * np.outer(np.asarray(thetas, dtype=np.float64), frequencies))
             return np.max(
-                np.sqrt(np.maximum(np.real(basis @ spectra), 0.0))
-                / denominators,
+                np.sqrt(np.maximum(np.real(basis @ spectra), 0.0)) / denominators,
                 axis=1,
             )
 
@@ -531,12 +494,8 @@ def _restricted_phase_search(
         checks = list(range(stride // 2, count, stride))[:3]
         actual = take(checks)
         forecast = predict([grid[i] for i in checks])
-        scale = max(
-            [objective_of(item) for item in seen.values()]
-            + [np.finfo(np.float64).tiny]
-        )
-        if max(abs(float(a) - objective_of(b))
-               for a, b in zip(forecast, actual)) <= 1.0e-6 * scale:
+        scale = max([objective_of(item) for item in seen.values()] + [np.finfo(np.float64).tiny])
+        if max(abs(float(a) - objective_of(b)) for a, b in zip(forecast, actual)) <= 1.0e-6 * scale:
             break
         # Aliased: complete the finer level and reconstruct on it.
         stride //= 2
@@ -549,9 +508,7 @@ def _restricted_phase_search(
         if item.acceptable:
             best_value = min(best_value, objective_of(item))
     # Bound each interval by its floor, not its grid value: the optimum can lie between points.
-    dense = np.linspace(
-        0.0, 2.0 * np.pi, max(4096, 64 * count), endpoint=False
-    )
+    dense = np.linspace(0.0, 2.0 * np.pi, max(4096, 64 * count), endpoint=False)
     dense_values = predict(dense)
     owner = np.round(dense * count / (2.0 * np.pi)).astype(int) % count
     cell_floor = np.full(count, np.inf, dtype=np.float64)
@@ -613,9 +570,7 @@ def _restricted_phase_search(
 
     candidates = [seen[0]] + sorted(
         [item for index, item in seen.items() if index] + extra,
-        key=lambda item: (
-            0.0 if item.phase is None else float(item.phase)
-        ),
+        key=lambda item: 0.0 if item.phase is None else float(item.phase),
     )
     return candidates
 
@@ -625,9 +580,7 @@ def _selected_candidate(
 ) -> int | None:
     """Return the index of the best-ranked acceptable candidate, or ``None``."""
 
-    feasible = [
-        index for index, candidate in enumerate(candidates) if candidate.acceptable
-    ]
+    feasible = [index for index, candidate in enumerate(candidates) if candidate.acceptable]
     if feasible:
         selected_index = min(
             feasible,

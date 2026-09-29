@@ -1,4 +1,4 @@
-"""Report how far the machine-sensitive quantities sit from a recorded reference.
+r"""Report how far the machine-sensitive quantities sit from a recorded reference.
 
 The suite asserts what holds on any machine: an identity, an ordering, or an
 inequality with margin. A weight, a residual, a retained rank or an attempt
@@ -13,7 +13,7 @@ can be described against it. It is not a target. Regenerate it single-threaded,
 or it records the core count as well as the BLAS; ``tests/conftest.py`` writes
 it at session end::
 
-    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 \\
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 \
         CAYLEYGW_DRIFT_CAPTURE=1 pytest tests/
 """
 
@@ -118,14 +118,12 @@ def write_reference(path: Path | None = None) -> Path:
     payload = {
         "metadata": {
             "note": "One machine's answer, kept so another machine's can be "
-                    "described relative to it. Not a target.",
+            "described relative to it. Not a target.",
             **machine_description(),
         },
         "values": _OBSERVED,
     }
-    target.write_text(
-        json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8"
-    )
+    target.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     return target
 
 

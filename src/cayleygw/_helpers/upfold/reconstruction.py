@@ -29,9 +29,7 @@ def _sector_reconstruction(
     else:
         order = _check.nonnegative_integer(n_max, "n_max")
         if order > source.closure_scan.moments.n_max:
-            raise ValidationError(
-                "n_max exceeds the moments retained by the realization"
-            )
+            raise ValidationError("n_max exceeds the moments retained by the realization")
     input_moments = supplied[: order + 1]
     nodes = np.asarray(source.mapping.forward(source.poles), dtype=np.complex128)
     powers = np.ones((order + 1, nodes.size), dtype=np.complex128)
@@ -48,17 +46,15 @@ def _sector_reconstruction(
     scales = np.linalg.norm(input_moments, axis=(1, 2))
     relative = absolute / np.maximum(scales, np.finfo(np.float64).eps)
     generic_thresholds = hamiltonian.tolerances.moment_conservation * (1.0 + scales)
-    fitted_thresholds = (
-        source.selected_closure.realization.physical_moment_acceptance_thresholds(
-            base_tolerance=hamiltonian.tolerances.moment_conservation,
-        )[: order + 1]
-    )
+    fitted_thresholds = source.selected_closure.realization.physical_moment_acceptance_thresholds(
+        base_tolerance=hamiltonian.tolerances.moment_conservation,
+    )[: order + 1]
     if fitted_thresholds.size == order + 1:
         thresholds = fitted_thresholds
     else:
         # Orders above a lower n_conserved have no rank-deflation budget, so keep the generic rule.
         thresholds = np.concatenate(
-            (fitted_thresholds, generic_thresholds[fitted_thresholds.size:])
+            (fitted_thresholds, generic_thresholds[fitted_thresholds.size :])
         )
     conserved_order = min(source.conserved_order, order)
     return SectorMomentReconstruction(

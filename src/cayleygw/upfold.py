@@ -19,9 +19,9 @@ quasiparticles from satellites. All energies are in Hartree.
 
 from __future__ import annotations
 
+import logging
 from contextlib import nullcontext
 from dataclasses import dataclass, field
-import logging
 from typing import Any, Literal, TypeAlias
 
 import numpy as np
@@ -44,7 +44,6 @@ from .tools.records.upfold import (
     MomentReconstructionResult,
     SectorMomentReconstruction,
 )
-
 
 TerminalSelection: TypeAlias = Literal["scan", "restricted"]
 LOGGER = logging.getLogger(__name__)
@@ -94,9 +93,7 @@ class UpfoldedDysonHamiltonian(DysonProblem):
 
     def __post_init__(self) -> None:
         if not isinstance(self.tolerances, Tolerances):
-            raise ValidationError(
-                "tolerances must be a Tolerances instance"
-            )
+            raise ValidationError("tolerances must be a Tolerances instance")
         reference = _validated_hermitian(self.reference_operator, "reference_operator")
         if self.static_correction is None:
             static_input = np.zeros_like(reference)
@@ -112,16 +109,14 @@ class UpfoldedDysonHamiltonian(DysonProblem):
             ("particle", self.particle, Sector.PARTICLE),
         ):
             if getattr(source, "sector", None) is not sector:
-                raise ValidationError(
-                    f"{label} source must carry Sector.{sector.name}"
-                )
+                raise ValidationError(f"{label} source must carry Sector.{sector.name}")
             poles = getattr(source, "poles", None)
-            if np.ndim(poles) != 1 or np.shape(
-                getattr(source, "couplings", None)
-            ) != (reference.shape[0], np.size(poles)):
+            if np.ndim(poles) != 1 or np.shape(getattr(source, "couplings", None)) != (
+                reference.shape[0],
+                np.size(poles),
+            ):
                 raise ValidationError(
-                    f"{label} couplings must have shape (physical dimension, "
-                    "number of poles)"
+                    f"{label} couplings must have shape (physical dimension, number of poles)"
                 )
         if self.mo_indices is not None:
             indices = tuple(
@@ -194,9 +189,7 @@ class UpfoldedDysonHamiltonian(DysonProblem):
         result[self.physical_slice, self.hole_slice] = self.hole.couplings
         result[self.physical_slice, self.particle_slice] = self.particle.couplings
         result[self.hole_slice, self.physical_slice] = self.hole.couplings.conj().T
-        result[self.particle_slice, self.physical_slice] = (
-            self.particle.couplings.conj().T
-        )
+        result[self.particle_slice, self.physical_slice] = self.particle.couplings.conj().T
         np.fill_diagonal(result[self.hole_slice, self.hole_slice], self.hole.poles)
         np.fill_diagonal(
             result[self.particle_slice, self.particle_slice],
@@ -219,12 +212,13 @@ class UpfoldedDysonHamiltonian(DysonProblem):
         tolerances: Tolerances = DEFAULT_TOLERANCES,
         verbose: int = 1,
     ) -> UpfoldedDysonHamiltonian:
-        """Realize the moments and assemble the Hamiltonian; see :func:`build_upfolded_hamiltonian`."""
+        """Realize the moments and assemble the Hamiltonian.
+
+        See :func:`build_upfolded_hamiltonian`.
+        """
 
         if not isinstance(moments, G0W0CayleyMoments):
-            raise ValidationError(
-                "moments must be a G0W0CayleyMoments result"
-            )
+            raise ValidationError("moments must be a G0W0CayleyMoments result")
         stages = Stages(_check.nonnegative_integer(verbose, "verbose"), LOGGER)
         settings = _checked_settings(
             moments,
@@ -298,9 +292,7 @@ class UpfoldedDysonHamiltonian(DysonProblem):
             energies = np.ascontiguousarray(energies, dtype=np.float64)
             energies.setflags(write=False)
             eigenvectors.setflags(write=False)
-            return DysonSpectrum(
-                energies=energies, eigenvectors=eigenvectors, problem=self
-            )
+            return DysonSpectrum(energies=energies, eigenvectors=eigenvectors, problem=self)
 
     def reconstruction_test(
         self,
@@ -324,9 +316,7 @@ class UpfoldedDysonHamiltonian(DysonProblem):
                         "SectorSelfEnergyRealization.realize, which "
                         "build_upfolded_hamiltonian makes"
                     )
-                reconstructions[sector] = _sector_reconstruction(
-                    self, sector, n_max
-                )
+                reconstructions[sector] = _sector_reconstruction(self, sector, n_max)
             result = MomentReconstructionResult(
                 hole=reconstructions[Sector.HOLE],
                 particle=reconstructions[Sector.PARTICLE],
@@ -424,9 +414,7 @@ def diagonalize_upfolded(
     """
 
     if not isinstance(hamiltonian, UpfoldedDysonHamiltonian):
-        raise ValidationError(
-            "hamiltonian must be an UpfoldedDysonHamiltonian"
-        )
+        raise ValidationError("hamiltonian must be an UpfoldedDysonHamiltonian")
     return hamiltonian.diagonalize(verbose=verbose, native_threads=native_threads)
 
 
@@ -462,9 +450,7 @@ def reconstruction_test(
     """
 
     if not isinstance(hamiltonian, UpfoldedDysonHamiltonian):
-        raise ValidationError(
-            "hamiltonian must be an UpfoldedDysonHamiltonian"
-        )
+        raise ValidationError("hamiltonian must be an UpfoldedDysonHamiltonian")
     return hamiltonian.reconstruction_test(n_max=n_max, verbose=verbose)
 
 

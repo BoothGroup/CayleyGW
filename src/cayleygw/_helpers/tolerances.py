@@ -6,8 +6,8 @@ this module, so one patch here reaches all.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 import math
+from dataclasses import dataclass
 from numbers import Real
 
 from .errors import ValidationError
@@ -27,8 +27,10 @@ class Tolerances:
         rank_floor: Rank cut of the block-Toeplitz Gram and the block-CMV defect matrices.
         moment_conservation: Absolute-plus-relative tolerance on conserved moments after discards.
         conservation_margin: Multiple of ``moment_conservation`` that passes as marginal.
-        arc_margin: Multiple of the negligible weight that wrong-arc atoms may carry, flagged marginal.
-        positivity: Allowed breach of moment positivity, in the Toeplitz Gram and the Schur contractions.
+        arc_margin: Multiple of the negligible weight that wrong-arc atoms may carry,
+            flagged marginal.
+        positivity: Allowed breach of moment positivity, in the Toeplitz Gram and the Schur
+            contractions.
 
     Raises:
         ValidationError: If a value is not a positive finite number, or a margin is below one.
@@ -41,7 +43,13 @@ class Tolerances:
     positivity: float = 1.0e-10
 
     def __post_init__(self) -> None:
-        names = ("rank_floor", "moment_conservation", "conservation_margin", "arc_margin", "positivity")
+        names = (
+            "rank_floor",
+            "moment_conservation",
+            "conservation_margin",
+            "arc_margin",
+            "positivity",
+        )
         for name in names:
             value = getattr(self, name)
             if isinstance(value, bool) or not isinstance(value, Real) or not math.isfinite(value):

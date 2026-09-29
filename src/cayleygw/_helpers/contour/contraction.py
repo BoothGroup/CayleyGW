@@ -121,9 +121,7 @@ def _contract_moments(
     naux = resolvent.factors.shape[0]
     reference = resolvent.reference
     order_count = order + 1
-    quadrature_weights = float(resolvent.screening.spectral_parameter_power) * (
-        0.5 * weights
-    )
+    quadrature_weights = float(resolvent.screening.spectral_parameter_power) * (0.5 * weights)
     projected_matrix = projected_working.reshape(
         projected_working.shape[0],
         naux * naux,
@@ -131,12 +129,9 @@ def _contract_moments(
     moment_shape = (order_count, reference.nmo, reference.nmo)
     # One running total per sector; a per-orbital stack is the largest array at scale.
     totals_by_sector: dict[Sector, ComplexArray] = {
-        sector: np.zeros(moment_shape, dtype=np.complex128)
-        for sector in Sector
+        sector: np.zeros(moment_shape, dtype=np.complex128) for sector in Sector
     }
-    parked: dict[Sector, dict[int, ComplexArray]] = {
-        sector: {} for sector in Sector
-    }
+    parked: dict[Sector, dict[int, ComplexArray]] = {sector: {} for sector in Sector}
     next_start = {sector: 0 for sector in Sector}
     fold_lock = Lock()
 
@@ -175,23 +170,16 @@ def _contract_moments(
         stop = min(start + block_size, sector_internal.size)
         orbital_block = sector_internal[start:stop]
 
-        frequencies = (
-            reference.mo_energy[orbital_block, None]
-            + sign * nodes[None, :]
-        )
+        frequencies = reference.mo_energy[orbital_block, None] + sign * nodes[None, :]
         offsets = frequencies - mapping.center
-        cayley_values = (offsets + 1j * mapping.scale) / (
-            offsets - 1j * mapping.scale
-        )
+        cayley_values = (offsets + 1j * mapping.scale) / (offsets - 1j * mapping.scale)
         powers = np.empty(
             (stop - start, order_count, node_count),
             dtype=np.complex128,
         )
         powers[:, 0] = 1.0
         for moment_order in range(order):
-            powers[:, moment_order + 1] = (
-                powers[:, moment_order] * cayley_values
-            )
+            powers[:, moment_order + 1] = powers[:, moment_order] * cayley_values
         power_rows = (stop - start) * order_count
         # Partner n-1-r has matrix conj(S_r): its half is conj(sum conj(p) S_r).
         upper = slice(0, local_node_count)
@@ -200,13 +188,8 @@ def _contract_moments(
             node_count - 1 - local_node_count,
             -1,
         )
-        upper_powers = (
-            powers[:, :, upper]
-            * quadrature_weights[None, None, upper]
-        )
-        lower_powers = (
-            powers[:, :, lower] * quadrature_weights[None, None, lower]
-        )
+        upper_powers = powers[:, :, upper] * quadrature_weights[None, None, upper]
+        lower_powers = powers[:, :, lower] * quadrature_weights[None, None, lower]
         stacked_powers = np.concatenate(
             (
                 upper_powers.reshape(power_rows, local_node_count),
@@ -236,9 +219,7 @@ def _contract_moments(
                 "blocked auxiliary-space",
             )
 
-        block_contributions = np.empty(
-            (stop - start,) + moment_shape, dtype=np.complex128
-        )
+        block_contributions = np.empty((stop - start,) + moment_shape, dtype=np.complex128)
         for local_position, orbital in enumerate(orbital_block):
             external_factors = resolvent.factors[:, :, orbital].T
             contribution = contract_external_moments(

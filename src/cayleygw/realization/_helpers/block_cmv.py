@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
 import math
-from typing import Any, TYPE_CHECKING
+from dataclasses import dataclass, field
+from typing import TYPE_CHECKING, Any
 
 import numpy as np
 
@@ -17,7 +17,6 @@ from .base import _canonical_terminal_unitary, _conserved_fields, _unitarity_res
 
 if TYPE_CHECKING:
     from ...tools.records.realization import NormalizedMatrixCayleyMoments
-
 
 
 def _initial_choice_series(moments: ComplexArray) -> ComplexArray:
@@ -102,9 +101,7 @@ def _step_from_choice(
         ]
     )
     unitarity_residual = _unitarity_residual(rotation)
-    threshold = limits.ROUNDOFF_TOLERANCE * max(
-        1.0, np.sqrt(rotation.shape[0])
-    )
+    threshold = limits.ROUNDOFF_TOLERANCE * max(1.0, np.sqrt(rotation.shape[0]))
     if unitarity_residual > threshold:
         raise RefusalError(
             "rank-deflated Julia rotation is not unitary within tolerance: "
@@ -116,9 +113,7 @@ def _step_from_choice(
         choice_parameter=_check.readonly_complex(choice, "choice_parameter"),
         left_defect_basis=_check.readonly_complex(left_basis, "left_defect_basis"),
         right_defect_basis=_check.readonly_complex(right_basis, "right_defect_basis"),
-        defect_eigenvalues=_check.readonly_real(
-            defect_values, "defect_eigenvalues"
-        ),
+        defect_eigenvalues=_check.readonly_real(defect_values, "defect_eigenvalues"),
         rotation=_check.readonly_complex(rotation, "rotation"),
         contraction_ratio=contraction_ratio,
     )
@@ -143,9 +138,7 @@ def _next_choice_series(
         mobius[order] = left_inverse @ series[order + 1] @ right_inverse
 
     coupling = (
-        step.right_defect_basis.conj().T
-        @ step.choice_parameter.conj().T
-        @ step.left_defect_basis
+        step.right_defect_basis.conj().T @ step.choice_parameter.conj().T @ step.left_defect_basis
     )
     result = np.empty_like(mobius)
     # Shmul'yan: with A(z) = D_left+ (Theta - Gamma) / z D_right+, X = A + z A Gamma.H X.
@@ -153,9 +146,7 @@ def _next_choice_series(
         coefficient = mobius[order].copy()
         for left_order in range(order):
             right_order = order - 1 - left_order
-            coefficient += (
-                mobius[left_order] @ coupling @ result[right_order]
-            )
+            coefficient += mobius[left_order] @ coupling @ result[right_order]
         result[order] = coefficient
     return result
 
@@ -279,9 +270,7 @@ def _certify_assembled_factors(
         return
     identity = np.eye(total_dimension, dtype=np.complex128)
     for label, value in (("left", left), ("right", right), ("full", matrix)):
-        exact = float(
-            np.linalg.norm(value.conj().T @ value - identity, ord="fro")
-        )
+        exact = float(np.linalg.norm(value.conj().T @ value - identity, ord="fro"))
         if exact > threshold:
             raise RefusalError(
                 f"assembled {label} block-CMV factor is not unitary: "
@@ -314,11 +303,7 @@ def _assemble_block_cmv(
         terminal = steps[-1].verblunsky_coefficient
         terminal_from_moments = True
     else:
-        current_dimension = (
-            parameters.initial_dimension
-            if not steps
-            else steps[-1].defect_rank
-        )
+        current_dimension = parameters.initial_dimension if not steps else steps[-1].defect_rank
         terminal = _canonical_terminal_unitary(
             terminal_unitary,
             current_dimension,
@@ -346,9 +331,7 @@ def _assemble_block_cmv(
     block_dimensions.extend(step.defect_rank for step in complete[:-1])
     total_dimension = int(sum(block_dimensions))
     offsets = np.cumsum([0, *block_dimensions])
-    threshold = limits.ROUNDOFF_TOLERANCE * max(
-        1.0, np.sqrt(total_dimension)
-    )
+    threshold = limits.ROUNDOFF_TOLERANCE * max(1.0, np.sqrt(total_dimension))
     if prefix is None:
         left = np.eye(total_dimension, dtype=np.complex128)
         right = np.eye(total_dimension, dtype=np.complex128)
@@ -395,16 +378,12 @@ def _assemble_block_cmv(
             left = prefix.left.copy()
             right = prefix.right
             left[start:stop, start:stop] = terminal_step.rotation
-            matrix[start:stop, :] = (
-                terminal_step.rotation @ right[start:stop, :]
-            )
+            matrix[start:stop, :] = terminal_step.rotation @ right[start:stop, :]
         else:
             left = prefix.left
             right = prefix.right.copy()
             right[start:stop, start:stop] = terminal_step.rotation
-            matrix[:, start:stop] = (
-                left[:, start:stop] @ terminal_step.rotation
-            )
+            matrix[:, start:stop] = left[:, start:stop] @ terminal_step.rotation
         # The moved factor's term is the cached fixed-block sum plus the closure's block.
         terminal_square = _block_diagonal_residual_square(
             left if prefix.in_left else right,
@@ -469,12 +448,8 @@ def _assembly_prefix(
         start=start,
         stop=stop,
         in_left=in_left,
-        left_residual_square=_block_diagonal_residual_square(
-            left, tuple(fixed_left)
-        ),
-        right_residual_square=_block_diagonal_residual_square(
-            right, tuple(fixed_right)
-        ),
+        left_residual_square=_block_diagonal_residual_square(left, tuple(fixed_left)),
+        right_residual_square=_block_diagonal_residual_square(right, tuple(fixed_right)),
     )
 
 

@@ -43,7 +43,9 @@ other combinations; example 02 takes it apart:
 
 ```python
 from cayleygw import (
-    build_cayley_moments, build_upfolded_hamiltonian, diagonalize_upfolded,
+    build_cayley_moments,
+    build_upfolded_hamiltonian,
+    diagonalize_upfolded,
     extract_ip_ea,
 )
 
@@ -139,7 +141,9 @@ from cayleygw import ExactG0W0SelfEnergy, UpfoldedDysonHamiltonian
 exact = ExactG0W0SelfEnergy.from_mean_field(mf, use_density_fitting=True)
 exact_moments = exact.cayley_moments(moments.mapping, moments.n_max)
 untruncated = UpfoldedDysonHamiltonian(
-    np.diag(exact.reference.mo_energy), exact.hole, exact.particle,
+    np.diag(exact.reference.mo_energy),
+    exact.hole,
+    exact.particle,
     static_correction=exact.static_correction,
 )
 ```

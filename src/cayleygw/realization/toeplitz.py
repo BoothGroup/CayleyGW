@@ -21,13 +21,13 @@ from .._helpers.validate import ComplexArray, FloatArray, _check
 from ..tools.records.realization import MatrixCayleyMoments, ToeplitzDiagnostics
 from ._helpers.base import _canonical_terminal_unitary
 from ._helpers.toeplitz import (
-    _UnitarityCertificate,
     _certified_minimum,
     _gram_square_root,
     _moment_acceptance_thresholds,
     _projection_scale,
     _seal,
     _shift_completion,
+    _UnitarityCertificate,
     _validated_realization,
     build_gram_spectrum,
 )
@@ -53,9 +53,7 @@ class ToeplitzRealization(UnitaryMomentRealization):
     diagnostics: ToeplitzDiagnostics
     _fixed_matrix: ComplexArray | None = field(default=None, repr=False)
     _terminal_left_basis: ComplexArray | None = field(default=None, repr=False)
-    _terminal_right_adjoint: ComplexArray | None = field(
-        default=None, repr=False
-    )
+    _terminal_right_adjoint: ComplexArray | None = field(default=None, repr=False)
     # Closed-form unitarity residual for reclose; ``None`` if the moments fix the closure.
     _unitarity_certificate: _UnitarityCertificate | None = field(
         default=None, repr=False, compare=False
@@ -167,9 +165,7 @@ class ToeplitzRealization(UnitaryMomentRealization):
         )
         hermitian_residual = gram_spectrum.hermitian_residual
         minimum = _certified_minimum(gram_spectrum.eigenvalues, tolerances.positivity)
-        root, floor, gram_residual = _gram_square_root(
-            gram_spectrum, tolerances.rank_floor
-        )
+        root, floor, gram_residual = _gram_square_root(gram_spectrum, tolerances.rank_floor)
         dimension = root.shape[0]
         (
             selector,
@@ -194,9 +190,7 @@ class ToeplitzRealization(UnitaryMomentRealization):
                 normalization=normalization,
                 terminal=terminal,
                 fixed_matrix=_seal(fixed_matrix, "fixed_matrix"),
-                terminal_left_basis=_check.readonly_complex(
-                    terminal_left, "terminal_left_basis"
-                ),
+                terminal_left_basis=_check.readonly_complex(terminal_left, "terminal_left_basis"),
                 terminal_right_adjoint=_check.readonly_complex(
                     terminal_right_adjoint, "terminal_right_adjoint"
                 ),

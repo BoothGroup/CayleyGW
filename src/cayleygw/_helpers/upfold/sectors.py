@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Callable, NamedTuple, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Callable, NamedTuple
 
 from ...tools.parallel import evaluate_by_index, resolve_native_threads
 from ..errors import ValidationError
@@ -41,13 +41,9 @@ def _checked_settings(
     """Check the realization arguments against the moments and fill in the defaults."""
 
     if terminal_selection not in ("scan", "restricted"):
-        raise ValidationError(
-            "terminal_selection must be 'scan' or 'restricted'"
-        )
+        raise ValidationError("terminal_selection must be 'scan' or 'restricted'")
     if realization not in ("auto", "block-cmv", "toeplitz"):
-        raise ValidationError(
-            "realization must be 'auto', 'block-cmv', or 'toeplitz'"
-        )
+        raise ValidationError("realization must be 'auto', 'block-cmv', or 'toeplitz'")
     if n_conserved is None:
         selected_n_conserved = moments.n_conserved
     else:
@@ -67,9 +63,7 @@ def _checked_settings(
             terminal_phase_count,
             "terminal_phase_count",
         )
-    phase_refinement = (
-        "restricted" if terminal_selection == "restricted" else "fixed"
-    )
+    phase_refinement = "restricted" if terminal_selection == "restricted" else "fixed"
     selected_tolerances = _check.tolerances(tolerances)
     # Resolved once so the sectors and the later Dyson solve use one count.
     threads = resolve_native_threads(native_threads, n_workers)
@@ -198,7 +192,6 @@ def _realize_sectors(
             # Hole is index 0, so this raises what a serial run would, unchanged.
             raise sector_failures[0][1]
     realized: dict[Sector, SectorSelfEnergyRealization] = {
-        sector_inputs[index][0]: completed[index]
-        for index in range(len(sector_inputs))
+        sector_inputs[index][0]: completed[index] for index in range(len(sector_inputs))
     }
     return realized

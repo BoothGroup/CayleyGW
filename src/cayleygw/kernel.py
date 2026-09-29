@@ -25,7 +25,8 @@ class CayleyGW:
     Args:
         mean_field: Converged restricted PySCF mean field (RHF or RKS).
         omega_p: Scale of the Cayley map in Hartree.
-        n_q: Contour nodes, even, or ``"auto"`` to double them, reusing each, until the moments converge.
+        n_q: Contour nodes, even, or ``"auto"`` to double them, reusing each, until the
+            moments converge.
         n_q_tolerance: Relative moment change at which ``"auto"`` stops.
         screening: ``"rpa"`` or ``"tda"``.
         frozen: Number of lowest occupied orbitals to freeze.
@@ -93,7 +94,8 @@ class CayleyGW:
             terminal_selection: ``"restricted"`` or ``"scan"`` choice of the closure.
             terminal_phase_count: Candidate closure phases; 64 by default.
             realization: ``"auto"``, ``"block-cmv"`` or ``"toeplitz"``.
-            tolerances: The safeguards of the realization; a refusal names larger rank floors to try.
+            tolerances: The safeguards of the realization; a refusal names larger rank floors
+                to try.
             n_ip: Ionization potentials to return.
             n_ea: Electron affinities to return.
 

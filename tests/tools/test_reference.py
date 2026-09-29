@@ -21,7 +21,6 @@ from cayleygw._helpers.pyscf import RestrictedPySCFAdapter
 from cayleygw._helpers.screening.response import solve_response
 from cayleygw.tools.reference import SelfEnergySector
 
-
 pytestmark = pytest.mark.pyscf
 
 
@@ -53,9 +52,7 @@ def _pyscf_transition_couplings(mean_field, direct_rpa, integrals):
         virtual.size,
     )
     nmo = integrals.shape[0]
-    transition_integrals = integrals[
-        np.ix_(occupied, virtual, np.arange(nmo), np.arange(nmo))
-    ]
+    transition_integrals = integrals[np.ix_(occupied, virtual, np.arange(nmo), np.arange(nmo))]
     return np.einsum(
         "via,iapq->vpq",
         td_z,
@@ -92,15 +89,10 @@ def test_sector_cayley_moments_and_read_only_contract() -> None:
     cayley = sector.cayley_moments(mapping, 3)
     points = mapping.forward(sector.poles)
     expected_cayley = np.stack(
-        [
-            np.einsum("l,lpq->pq", points**order, explicit_residues)
-            for order in range(4)
-        ]
+        [np.einsum("l,lpq->pq", points**order, explicit_residues) for order in range(4)]
     )
     np.testing.assert_allclose(cayley, expected_cayley, atol=2.0e-15)
-    np.testing.assert_allclose(
-        cayley[0], np.sum(explicit_residues, axis=0), atol=2.0e-15
-    )
+    np.testing.assert_allclose(cayley[0], np.sum(explicit_residues, axis=0), atol=2.0e-15)
     assert np.max(np.abs(cayley[1] - cayley[1].conj().T)) > 0.1
     for array in (sector.poles, sector.couplings, cayley):
         assert not array.flags.writeable
@@ -153,14 +145,8 @@ def test_molecular_poles_follow_the_orbital_energies_and_rpa_modes(
     occupied = np.asarray(reference.occupied_positions)
     virtual = np.asarray(reference.virtual_positions)
 
-    expected_hole = (
-        reference.mo_energy[occupied, None]
-        - energies[None, :]
-    ).reshape(-1)
-    expected_particle = (
-        reference.mo_energy[virtual, None]
-        + energies[None, :]
-    ).reshape(-1)
+    expected_hole = (reference.mo_energy[occupied, None] - energies[None, :]).reshape(-1)
+    expected_particle = (reference.mo_energy[virtual, None] + energies[None, :]).reshape(-1)
     np.testing.assert_allclose(water_exact.hole.poles, expected_hole, atol=0.0)
     np.testing.assert_allclose(
         water_exact.particle.poles,
@@ -195,14 +181,10 @@ def test_time_ordered_matrix_and_quasiparticle_roots_match_pyscf(
 
     for frequency in (-0.4, 0.2, 1.1):
         denominator_hole = (
-            frequency
-            - (energies[occupied][None, :] - direct_rpa.e[:, None])
-            - 1j * eta
+            frequency - (energies[occupied][None, :] - direct_rpa.e[:, None]) - 1j * eta
         )
         denominator_particle = (
-            frequency
-            - (energies[virtual][None, :] + direct_rpa.e[:, None])
-            + 1j * eta
+            frequency - (energies[virtual][None, :] + direct_rpa.e[:, None]) + 1j * eta
         )
         expected = np.einsum(
             "vpi,vi,vqi->pq",
@@ -253,15 +235,9 @@ def test_full_matrix_time_ordered_self_energy_matches_pyscf_water(
     virtual = np.flatnonzero(water_rks_hf.mo_occ == 0.0)
     eta = 3.0e-6
     frequency = 0.37
-    denominator_hole = (
-        frequency
-        - (energies[occupied][None, :] - direct_rpa.e[:, None])
-        - 1j * eta
-    )
+    denominator_hole = frequency - (energies[occupied][None, :] - direct_rpa.e[:, None]) - 1j * eta
     denominator_particle = (
-        frequency
-        - (energies[virtual][None, :] + direct_rpa.e[:, None])
-        + 1j * eta
+        frequency - (energies[virtual][None, :] + direct_rpa.e[:, None]) + 1j * eta
     )
     expected = np.einsum(
         "vpi,vi,vqi->pq",
@@ -428,9 +404,7 @@ def test_pbe_static_correction_retains_offdiagonal_and_frozen_projection(
     frozen_correction = frozen_core.build_static_self_energy_correction()
     offdiagonal = full_correction - np.diag(np.diag(full_correction))
     active = np.asarray([1, 2, 3, 4, 5, 6])
-    np.testing.assert_array_equal(
-        frozen_core.reference.mo_energy, water_pbe.mo_energy[active]
-    )
+    np.testing.assert_array_equal(frozen_core.reference.mo_energy, water_pbe.mo_energy[active])
 
     assert np.linalg.norm(offdiagonal) > 1.0e-3
     np.testing.assert_allclose(
@@ -443,7 +417,9 @@ def test_pbe_static_correction_retains_offdiagonal_and_frozen_projection(
     assert not frozen_correction.flags.writeable
 
 
-def test_hartree_fock_static_correction_is_zero_without_touching_the_integrals(h2_rhf, monkeypatch) -> None:
+def test_hartree_fock_static_correction_is_zero_without_touching_the_integrals(
+    h2_rhf, monkeypatch
+) -> None:
     """An HF reference's correction is identically zero; nothing may rebuild _cderi for it."""
 
     def forbidden(*args, **kwargs):
@@ -495,9 +471,7 @@ def test_density_fitted_moments_converge_to_the_density_fitted_reference_only(
     exact = ExactG0W0SelfEnergy.from_mean_field(water_rhf_df)
     errors = {}
     for n_q in (64, 256):
-        moments = build_cayley_moments(
-            water_rhf_df, n_conserved=3, n_q=n_q, omega_p=1.0, verbose=0
-        )
+        moments = build_cayley_moments(water_rhf_df, n_conserved=3, n_q=n_q, omega_p=1.0, verbose=0)
         built = {Sector.HOLE: moments.hole.moments, Sector.PARTICLE: moments.particle.moments}
         for label, reference in (("fitted", fitted), ("exact", exact)):
             expected = reference.cayley_moments(moments.mapping, moments.n_max)

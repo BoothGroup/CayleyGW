@@ -7,12 +7,12 @@ from contextlib import contextmanager
 import numpy as np
 import pytest
 
+from cayleygw.tools import parallel as parallel_module
 from cayleygw.tools.parallel import (
     ambient_native_threads,
     evaluate_by_index,
     limited_native_threads,
 )
-from cayleygw.tools import parallel as parallel_module
 
 
 def test_limit_is_installed_and_restores_the_previous_setting() -> None:
@@ -58,14 +58,10 @@ def test_lowest_failing_index_is_reported_whatever_order_they_surface() -> None:
         return index * index
 
     for workers in (2, 4, 8):
-        results, failures = evaluate_by_index(
-            failing, range(12), n_workers=workers
-        )
+        results, failures = evaluate_by_index(failing, range(12), n_workers=workers)
         # Work in flight still finishes, but nothing new is fed after a failure.
         assert failures[0][0] == 3
-        assert [index for index, _ in failures] == sorted(
-            index for index, _ in failures
-        )
+        assert [index for index, _ in failures] == sorted(index for index, _ in failures)
         assert 3 not in results
         assert len(results) + len(failures) <= 3 + 2 * workers + 1
 
@@ -98,9 +94,7 @@ def test_results_are_keyed_by_index_not_completion_order() -> None:
 
     results, failures = evaluate_by_index(uneven, range(16), n_workers=8)
     assert not failures
-    assert [results[index] for index in range(16)] == [
-        index * 10 for index in range(16)
-    ]
+    assert [results[index] for index in range(16)] == [index * 10 for index in range(16)]
 
 
 @pytest.mark.parametrize("n_workers", [1, 2, 4])
@@ -134,9 +128,7 @@ def test_a_sink_frees_each_evaluation_before_waiting_on_the_next(
             gc.collect()
             peak = max(peak, sum(1 for ref in made if ref() is not None))
 
-        results, failures = evaluate_by_index(
-            make, range(count), n_workers=n_workers, sink=sink
-        )
+        results, failures = evaluate_by_index(make, range(count), n_workers=n_workers, sink=sink)
         assert not failures
         assert not results, "a sink must not also retain values in the mapping"
         assert sorted(seen) == list(range(count))
@@ -147,17 +139,13 @@ def test_a_sink_frees_each_evaluation_before_waiting_on_the_next(
         f"live evaluations grew from {small} to {large} when the sweep grew "
         "eightfold, so the sweep is being retained rather than consumed as it goes"
     )
-    assert large <= 4 * n_workers, (
-        f"{large} evaluations live at once for {n_workers} worker(s)"
-    )
+    assert large <= 4 * n_workers, f"{large} evaluations live at once for {n_workers} worker(s)"
 
 
 @pytest.mark.parametrize("value", [0, -1, True, 1.5, "2"])
 def test_dispatch_rejects_invalid_native_thread_counts(value) -> None:
     with pytest.raises(ValueError, match="positive integer"):
-        evaluate_by_index(
-            lambda index: index, range(3), native_threads=value
-        )
+        evaluate_by_index(lambda index: index, range(3), native_threads=value)
 
 
 def test_native_threads_are_bounded_on_the_serial_path_too(monkeypatch) -> None:
@@ -180,9 +168,7 @@ def test_native_threads_are_bounded_on_the_serial_path_too(monkeypatch) -> None:
         )
         assert not failures
         assert sorted(results) == [0, 1, 2, 3]
-        assert requested == [1], (
-            f"{workers} workers entered the limiter {len(requested)} times"
-        )
+        assert requested == [1], f"{workers} workers entered the limiter {len(requested)} times"
 
 
 def test_nested_regions_at_one_count_share_a_single_installation(monkeypatch) -> None:
@@ -256,9 +242,9 @@ def test_the_dyson_solve_inherits_the_count_the_cell_was_given() -> None:
     """The Hamiltonian carries a thread count for the Dyson solve, ``None`` if not given."""
 
     import numpy as np
+    from conftest import sector_source
 
     from cayleygw import Sector, UpfoldedDysonHamiltonian, diagonalize_upfolded
-    from conftest import sector_source
 
     reference = np.eye(2, dtype=complex)
     hole = sector_source(Sector.HOLE, [-1.0], [[0.1], [0.0]])
@@ -266,9 +252,7 @@ def test_the_dyson_solve_inherits_the_count_the_cell_was_given() -> None:
     plain = UpfoldedDysonHamiltonian(reference, hole, particle)
     assert plain.native_threads is None
 
-    declared = UpfoldedDysonHamiltonian(
-        reference, hole, particle, native_threads=4
-    )
+    declared = UpfoldedDysonHamiltonian(reference, hole, particle, native_threads=4)
     assert declared.native_threads == 4
     # The count changes the cost, not the energies.
     np.testing.assert_allclose(
@@ -318,9 +302,7 @@ def test_on_complete_does_not_fire_for_a_failing_index() -> None:
         return index
 
     seen: list[int] = []
-    _, failures = evaluate_by_index(
-        evaluate, range(4), n_workers=1, on_complete=seen.append
-    )
+    _, failures = evaluate_by_index(evaluate, range(4), n_workers=1, on_complete=seen.append)
     assert [index for index, _ in failures] == [2]
     assert 2 not in seen
 

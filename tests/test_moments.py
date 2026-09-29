@@ -21,8 +21,7 @@ def _atomic_moments(nodes, residues, n_max):
     return np.einsum(
         "l,klpq->kpq",
         np.ones(nodes.size),
-        nodes[None, :, None, None]
-        ** np.arange(n_max + 1)[:, None, None, None]
+        nodes[None, :, None, None] ** np.arange(n_max + 1)[:, None, None, None]
         * residues[None, :, :, :],
         optimize=True,
     )
@@ -80,9 +79,7 @@ def test_noncommuting_block_measure_with_repeated_nodes_is_feasible() -> None:
         np.array([0.3j, 0.8]),
         np.array([0.6, 0.4 + 0.1j]),
     )
-    residues = np.asarray(
-        [np.outer(vector, vector.conj()) for vector in vectors]
-    )
+    residues = np.asarray([np.outer(vector, vector.conj()) for vector in vectors])
     moments = _atomic_moments(nodes, residues, 4)
     assert feasibility_violations(moments, Sector.PARTICLE) == ()
 
@@ -335,13 +332,9 @@ def test_certified_bound_strategies_avoid_the_exact_rpa_spectrum(
         np.max(np.square(gaps)) + 2.0 * np.linalg.norm(coupling, ord=2) ** 2
     )
     assert frobenius.rpa_spectral_bounds.lower == pytest.approx(np.min(gaps))
-    assert frobenius.rpa_spectral_bounds.upper == pytest.approx(
-        expected_frobenius
-    )
+    assert frobenius.rpa_spectral_bounds.upper == pytest.approx(expected_frobenius)
     assert spectral.rpa_spectral_bounds.upper == pytest.approx(expected_spectral)
-    assert spectral.rpa_spectral_bounds.upper <= (
-        frobenius.rpa_spectral_bounds.upper
-    )
+    assert spectral.rpa_spectral_bounds.upper <= (frobenius.rpa_spectral_bounds.upper)
 
 
 @pytest.mark.pyscf
@@ -467,17 +460,10 @@ def test_the_defaults_the_regression_reference_assumes_are_pinned() -> None:
     def default(callable_, name):
         return inspect.signature(callable_).parameters[name].default
 
-    assert default(build_cayley_moments, "spectral_bound") == (
-        "spectral"
-    )
-    assert default(
-        ProjectedRPAResolvent.from_adapter, "spectral_bound_strategy"
-    ) == "spectral"
+    assert default(build_cayley_moments, "spectral_bound") == ("spectral")
+    assert default(ProjectedRPAResolvent.from_adapter, "spectral_bound_strategy") == "spectral"
     assert (
-        ProjectedRPAResolvent.__dataclass_fields__[
-            "spectral_bound_strategy"
-        ].default
-        == "spectral"
+        ProjectedRPAResolvent.__dataclass_fields__["spectral_bound_strategy"].default == "spectral"
     )
     assert moments_module._N_Q_INITIAL == 128
     assert moments_module._N_Q_MAXIMUM == 4096

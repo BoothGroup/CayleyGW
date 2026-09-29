@@ -86,21 +86,16 @@ def _automatic_n_q_moments(
 
     coarse_n_q = _N_Q_INITIAL
     coarse = build(coarse_n_q, coarse_n_q, "trapezoid")
-    refinements: list[
-        tuple[AutomaticNQSectorDiagnostics, AutomaticNQSectorDiagnostics]
-    ] = []
+    refinements: list[tuple[AutomaticNQSectorDiagnostics, AutomaticNQSectorDiagnostics]] = []
     while 2 * coarse_n_q <= _N_Q_MAXIMUM:
         fine_n_q = 2 * coarse_n_q
         fine = refined(coarse, build(fine_n_q, coarse_n_q, "midpoint"))
         errors = {
-            sector: _moment_errors(
-                coarse[sector].moments, fine[sector].moments, tolerance
-            )
+            sector: _moment_errors(coarse[sector].moments, fine[sector].moments, tolerance)
             for sector in Sector
         }
         check_feasibility = n_max >= 1 and all(
-            bool(np.all(absolute <= thresholds))
-            for absolute, _, thresholds in errors.values()
+            bool(np.all(absolute <= thresholds)) for absolute, _, thresholds in errors.values()
         )
         hole, particle = (
             AutomaticNQSectorDiagnostics(
@@ -108,9 +103,7 @@ def _automatic_n_q_moments(
                 coarse_n_q,
                 fine_n_q,
                 *errors[sector],
-                feasibility_violations=(
-                    violations(fine, sector) if check_feasibility else ()
-                ),
+                feasibility_violations=(violations(fine, sector) if check_feasibility else ()),
             )
             for sector in Sector
         )

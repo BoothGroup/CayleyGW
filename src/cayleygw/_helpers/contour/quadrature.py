@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import cmath
 import math
-from typing import Any, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 import numpy as np
 
@@ -18,7 +18,6 @@ from ..validate import ComplexArray, IntArray
 if TYPE_CHECKING:
     from ...contour import EllipseContour
     from ...screening import ProjectedRPAResolvent
-
 
 
 def _raise_lowest_node_failure(
@@ -72,9 +71,7 @@ def _equioscillation_sigma_min(
     kernel = math.inf
     for sector in (Sector.HOLE, Sector.PARTICLE):
         internal = np.asarray(
-            reference.occupied_positions
-            if sector is Sector.HOLE
-            else reference.virtual_positions
+            reference.occupied_positions if sector is Sector.HOLE else reference.virtual_positions
         )
         shifted = energies[internal] - mapping.center
         if sector is Sector.PARTICLE:
@@ -82,14 +79,11 @@ def _equioscillation_sigma_min(
         for real_part in shifted:
             kernel = min(
                 kernel,
-                _confocal_sigma(complex(float(real_part), mapping.scale),
-                                center, focal),
+                _confocal_sigma(complex(float(real_part), mapping.scale), center, focal),
             )
     candidates = [(kernel, "kernel")]
     if screening is Screening.RPA:
-        candidates.append(
-            (_confocal_sigma(complex(-lower, 0.0), center, focal), "mirror")
-        )
+        candidates.append((_confocal_sigma(complex(-lower, 0.0), center, focal), "mirror"))
     return min(candidates, key=lambda item: item[0])
 
 
@@ -112,13 +106,9 @@ def _validate_enclosure(
     )
     scale = max(resolvent.spectral_upper_bound, contour.rightmost)
     geometry_threshold = limits.ABSOLUTE_TOLERANCE + limits.RELATIVE_TOLERANCE * scale
-    if (
-        resolvent.screening is Screening.RPA
-        and contour.leftmost <= geometry_threshold
-    ):
+    if resolvent.screening is Screening.RPA and contour.leftmost <= geometry_threshold:
         raise ValidationError(
-            "contour reaches or crosses the imaginary axis, so zeta "
-            "squared is not one-to-one"
+            "contour reaches or crosses the imaginary axis, so zeta squared is not one-to-one"
         )
     radii = np.asarray(contour.normalized_radius(enclosure_points))
     missed = radii >= 1.0 - limits.ROUNDOFF_TOLERANCE
@@ -156,22 +146,12 @@ def _kernel_pole_orbitals(
             f"strictly below the reference LUMO at {reference.lumo_energy:.6f} Ha"
         )
     internal = (
-        reference.occupied_positions
-        if sector is Sector.HOLE
-        else reference.virtual_positions
+        reference.occupied_positions if sector is Sector.HOLE else reference.virtual_positions
     )
     if sector is Sector.HOLE:
-        poles = (
-            reference.mo_energy[internal]
-            - mapping.center
-            - 1j * mapping.scale
-        )
+        poles = reference.mo_energy[internal] - mapping.center - 1j * mapping.scale
     else:
-        poles = (
-            mapping.center
-            - reference.mo_energy[internal]
-            + 1j * mapping.scale
-        )
+        poles = mapping.center - reference.mo_energy[internal] + 1j * mapping.scale
     radii = np.asarray(contour.normalized_radius(poles))
     enclosed = radii <= 1.0 + limits.ROUNDOFF_TOLERANCE
     if np.any(enclosed):

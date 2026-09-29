@@ -13,17 +13,17 @@ standard output.
 
 from __future__ import annotations
 
-from contextlib import contextmanager
 import functools
 import inspect
 import logging
 import os
 import threading
 import time
+from contextlib import contextmanager
 from typing import Any, Callable, Iterator, Literal, TextIO
 
 from .._helpers.errors import ValidationError
-from .._helpers.tools.logging import _ACTIVE, _ACTIVE_LOCK, _Function, _duration
+from .._helpers.tools.logging import _ACTIVE, _ACTIVE_LOCK, _duration, _Function
 from .console import ConsoleHandler
 from .logfile import LogFileHandler
 
@@ -69,9 +69,7 @@ def enable_logging(
     """
 
     if style not in ("standard", "bare"):
-        raise ValidationError(
-            f"style must be 'standard' or 'bare'; got {style!r}"
-        )
+        raise ValidationError(f"style must be 'standard' or 'bare'; got {style!r}")
     level = LEVELS[max(0, min(int(verbose), 2))]
     for handler in list(LOGGER.handlers):
         if getattr(handler, "cayleygw_handler", False):
@@ -186,9 +184,7 @@ class Stages:
             return
         step = max(1, total // 10)
         if done >= total or done % step == 0:
-            self.logger.debug(
-                "%s: %d of %d", name, done, total, extra={"cayleygw": event}
-            )
+            self.logger.debug("%s: %d of %d", name, done, total, extra={"cayleygw": event})
 
     def options(
         self,
@@ -272,9 +268,7 @@ def summarized(title: str, logger: logging.Logger) -> Callable[[_Function], _Fun
             verbose = kwargs.get("verbose", default)
             level = (
                 verbose
-                if isinstance(verbose, int)
-                and not isinstance(verbose, bool)
-                and verbose >= 0
+                if isinstance(verbose, int) and not isinstance(verbose, bool) and verbose >= 0
                 else 0
             )
             result = None

@@ -60,9 +60,7 @@ def _weighted_gram(
 
     rows = coupling.shape[0]
     if rows <= _GRAM_ROW_BLOCK:
-        gram = (
-            coupling.T @ (weights.real[:, None] * coupling)
-        ).astype(np.complex128)
+        gram = (coupling.T @ (weights.real[:, None] * coupling)).astype(np.complex128)
         gram += 1j * (coupling.T @ (weights.imag[:, None] * coupling))
         return gram
     # Bounds the scaled copy w * V; the blocked sum agrees to roundoff, not bitwise.
@@ -72,9 +70,7 @@ def _weighted_gram(
     for start in range(0, rows, _GRAM_ROW_BLOCK):
         block = coupling[start : start + _GRAM_ROW_BLOCK]
         real_part += block.T @ (weights.real[start : start + _GRAM_ROW_BLOCK, None] * block)
-        imaginary_part += block.T @ (
-            weights.imag[start : start + _GRAM_ROW_BLOCK, None] * block
-        )
+        imaginary_part += block.T @ (weights.imag[start : start + _GRAM_ROW_BLOCK, None] * block)
     gram = real_part.astype(np.complex128)
     gram += 1j * imaginary_part
     return gram

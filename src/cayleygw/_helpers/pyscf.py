@@ -8,9 +8,9 @@ Hamiltonian.
 
 from __future__ import annotations
 
+import logging
 from contextlib import nullcontext
 from dataclasses import dataclass, field
-import logging
 from typing import Any
 
 import numpy as np
@@ -102,16 +102,10 @@ class RestrictedPySCFAdapter:
     """
 
     def __init__(self, mean_field: Any, *, frozen: int = 0) -> None:
-        if not isinstance(mean_field, scf.hf.RHF) or isinstance(
-            mean_field, scf.rohf.ROHF
-        ):
-            raise ValidationError(
-                "only molecular RHF and RKS references are supported"
-            )
+        if not isinstance(mean_field, scf.hf.RHF) or isinstance(mean_field, scf.rohf.ROHF):
+            raise ValidationError("only molecular RHF and RKS references are supported")
         if int(mean_field.mol.spin) != 0:
-            raise ValidationError(
-                "a closed-shell molecule with mol.spin == 0 is required"
-            )
+            raise ValidationError("a closed-shell molecule with mol.spin == 0 is required")
         if not bool(getattr(mean_field, "converged", False)):
             raise ValidationError("the PySCF mean-field calculation is not converged")
 
@@ -132,34 +126,26 @@ class RestrictedPySCFAdapter:
             atol=limits.REFERENCE_TOLERANCE,
         )
         if not np.all(occupied_mask | virtual_mask):
-            raise ValidationError(
-                "fractional or singly occupied orbitals are not supported"
-            )
+            raise ValidationError("fractional or singly occupied orbitals are not supported")
         occupied_indices = np.flatnonzero(occupied_mask)
         virtual_indices = np.flatnonzero(virtual_mask)
         if occupied_indices.size == 0 or virtual_indices.size == 0:
-            raise ValidationError(
-                "the reference must contain occupied and virtual orbitals"
-            )
+            raise ValidationError("the reference must contain occupied and virtual orbitals")
 
         homo_energy = float(np.max(energies[occupied_indices]))
         lumo_energy = float(np.min(energies[virtual_indices]))
         gap = lumo_energy - homo_energy
         if gap <= limits.REFERENCE_TOLERANCE:
             raise ValidationError(
-                "the restricted HOMO-LUMO gap is too small; "
-                f"gap={gap:.3e} Hartree"
+                f"the restricted HOMO-LUMO gap is too small; gap={gap:.3e} Hartree"
             )
 
         count = _check.nonnegative_integer(frozen, "frozen")
         if count >= occupied_indices.size:
             raise ValidationError(
-                f"frozen must leave an occupied orbital; got {count} of "
-                f"{occupied_indices.size}"
+                f"frozen must leave an occupied orbital; got {count} of {occupied_indices.size}"
             )
-        ordered_occupied = occupied_indices[
-            np.argsort(energies[occupied_indices], kind="stable")
-        ]
+        ordered_occupied = occupied_indices[np.argsort(energies[occupied_indices], kind="stable")]
         frozen_indices = tuple(int(index) for index in ordered_occupied[:count])
         active_mask = np.ones(nmo, dtype=bool)
         active_mask[list(frozen_indices)] = False
@@ -215,9 +201,7 @@ class RestrictedPySCFAdapter:
         nmo = self.reference.nmo
         # The thread count also covers the three-centre integrals and the metric Cholesky.
         with (
-            nullcontext()
-            if native_threads is None
-            else limited_native_threads(int(native_threads))
+            nullcontext() if native_threads is None else limited_native_threads(int(native_threads))
         ):
             if getattr(df_object, "_cderi", None) is None:
                 with stages.stage("three-centre integrals"):
@@ -279,13 +263,10 @@ class RestrictedPySCFAdapter:
             nactive = int(coefficients.shape[1])
             return _sealed(np.zeros((nactive, nactive)))
         density = mean_field.make_rdm1(mean_field.mo_coeff, mean_field.mo_occ)
-        mean_field_potential = (
-            mean_field.get_veff(mean_field.mol, density)
-            - mean_field.get_j(mean_field.mol, density)
+        mean_field_potential = mean_field.get_veff(mean_field.mol, density) - mean_field.get_j(
+            mean_field.mol, density
         )
         exact_exchange = -0.5 * mean_field.get_k(mean_field.mol, density)
-        correction = coefficients.T @ (
-            exact_exchange - mean_field_potential
-        ) @ coefficients
+        correction = coefficients.T @ (exact_exchange - mean_field_potential) @ coefficients
         correction = np.asarray(correction, dtype=np.float64)
         return _sealed(0.5 * (correction + correction.T))

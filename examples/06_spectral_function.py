@@ -16,7 +16,6 @@ from pyscf import dft, gto
 
 from cayleygw import CayleyGW, calculate_spectrum, enable_logging, plot_spectrum
 
-
 # --- controls ---------------------------------------------------------------
 ATOM = "C 0 0 0; O 0 0 1.128"  # geometry, Angstrom
 BASIS = "cc-pvdz"  # orbital basis
@@ -63,8 +62,7 @@ def main() -> None:
     reference = gw.moments.adapter.reference
     nocc = reference.nocc
     positions = {
-        name: (nocc + offset if offset < 0 else nocc + offset)
-        for name, offset in ORBITALS.items()
+        name: (nocc + offset if offset < 0 else nocc + offset) for name, offset in ORBITALS.items()
     }
     chemical_potential = gw.moments.chemical_potential
     energies = np.asarray(spectrum.energies)
@@ -90,7 +88,9 @@ def main() -> None:
                 f"    satellite at {(pole_energies[index] - chemical_potential) * HARTREE_TO_EV:8.3f} eV"
                 f" with weight {weights[index]:.3f}"
             )
-        report.append(f"    weight of this orbital in poles with weight below {SATELLITE_WEIGHT}: {weights[weights < SATELLITE_WEIGHT].sum():.3f}")
+        report.append(
+            f"    weight of this orbital in poles with weight below {SATELLITE_WEIGHT}: {weights[weights < SATELLITE_WEIGHT].sum():.3f}"
+        )
 
     window = tuple(chemical_potential + edge / HARTREE_TO_EV for edge in WINDOW_EV)
     broadened = calculate_spectrum(

@@ -16,7 +16,6 @@ from pyscf import gto, scf
 
 from cayleygw import CayleyGW, enable_logging
 
-
 # --- controls ---------------------------------------------------------------
 ATOM = "O 0 0 0.1173; H 0 0.7572 -0.4692; H 0 -0.7572 -0.4692"  # geometry, Angstrom
 BASIS = "cc-pvdz"  # orbital basis; density fitting picks the matching auxiliary basis

@@ -6,8 +6,8 @@ full-pole moments and a contour padded around the certified interval.
 
 from __future__ import annotations
 
-import math
 import logging
+import math
 
 import numpy as np
 import pytest
@@ -56,8 +56,7 @@ def _padded_contour(
     half_width = 0.5 * (upper - lower)
     return EllipseContour(
         center=0.5 * (upper + lower),
-        horizontal_radius=half_width
-        + max(relative_padding * half_width, absolute_padding),
+        horizontal_radius=half_width + max(relative_padding * half_width, absolute_padding),
         vertical_radius=vertical_radius,
     )
 
@@ -141,15 +140,8 @@ def test_midpoint_nodes_and_weights_follow_counterclockwise_formula() -> None:
     contour = EllipseContour(1.5, 0.6, 0.2)
     nodes, weights = contour.midpoint_rule(8)
     expected_angles = 2.0 * np.pi * (np.arange(8) + 0.5) / 8
-    expected_nodes = (
-        1.5
-        + 0.6 * np.cos(expected_angles)
-        + 0.2j * np.sin(expected_angles)
-    )
-    expected_weights = (2.0 / 8) * (
-        0.2 * np.cos(expected_angles)
-        + 0.6j * np.sin(expected_angles)
-    )
+    expected_nodes = 1.5 + 0.6 * np.cos(expected_angles) + 0.2j * np.sin(expected_angles)
+    expected_weights = (2.0 / 8) * (0.2 * np.cos(expected_angles) + 0.6j * np.sin(expected_angles))
     np.testing.assert_allclose(nodes, expected_nodes, atol=2.0e-16)
     np.testing.assert_allclose(weights, expected_weights, atol=2.0e-16)
     np.testing.assert_array_equal(nodes[::-1], nodes.conj())
@@ -160,10 +152,7 @@ def test_midpoint_nodes_and_weights_follow_counterclockwise_formula() -> None:
 def test_scalar_residue_fixes_orientation_and_cauchy_prefactor() -> None:
     _, coupling, excitation, resolvent, contour = _scalar_contour_problem()
     nodes, weights = contour.midpoint_rule(64)
-    integrated = sum(
-        weight * resolvent.woodbury(node)
-        for node, weight in zip(nodes, weights)
-    )
+    integrated = sum(weight * resolvent.woodbury(node) for node, weight in zip(nodes, weights))
     expected = coupling**2 / excitation
     np.testing.assert_allclose(integrated, [[expected]], atol=3.0e-15, rtol=0.0)
 
@@ -199,9 +188,7 @@ def test_certified_automatic_bounds_enclose_molecular_spectrum(
     h2_contour_oracles,
 ) -> None:
     adapter, _, resolvent, mapping, _ = h2_contour_oracles
-    contour = EllipseContour.from_equioscillation(
-        resolvent, adapter.reference, mapping
-    )
+    contour = EllipseContour.from_equioscillation(resolvent, adapter.reference, mapping)
     energies = _resolvent_spectrum(resolvent)
     assert resolvent.spectral_bound_source == "D_min and spectral-norm upper bound"
     assert resolvent.spectral_lower_bound <= energies[0]
@@ -220,9 +207,7 @@ def test_contour_moments_match_the_projected_total(h2_contour_oracles) -> None:
     _, oracle, resolvent, mapping, contour = h2_contour_oracles
     n_max = 8
     exact = oracle.cayley_moments(mapping, n_max)
-    contour_results = contour.moments(
-        resolvent, mapping, n_max, 128
-    )
+    contour_results = contour.moments(resolvent, mapping, n_max, 128)
     for sector in Sector:
         result = contour_results[sector]
         np.testing.assert_allclose(
@@ -255,12 +240,9 @@ def test_conjugate_paired_moments_keep_c0_hermitian_without_hermitianizing_ck(
             paired[sector].moments[0],
             paired[sector].moments[0].conj().T,
         )
-        assert np.max(
-            np.abs(
-                paired[sector].moments[1]
-                - paired[sector].moments[1].conj().T
-            )
-        ) > 1.0e-3
+        assert (
+            np.max(np.abs(paired[sector].moments[1] - paired[sector].moments[1].conj().T)) > 1.0e-3
+        )
 
 
 @pytest.mark.pyscf
@@ -285,13 +267,19 @@ def test_blocked_conjugate_pairing_reuses_each_projected_resolvent_once(
         counted_woodbury,
     )
     small_blocks = contour.moments(
-        resolvent, mapping, 3, 32,
+        resolvent,
+        mapping,
+        3,
+        32,
         orbital_block_size=1,
     )
     assert calls == 16
     calls = 0
     large_blocks = contour.moments(
-        resolvent, mapping, 3, 32,
+        resolvent,
+        mapping,
+        3,
+        32,
         orbital_block_size=100,
     )
     assert calls == 16
@@ -312,19 +300,11 @@ def test_geometric_convergence_and_zeroth_moment_gate(h2_contour_oracles) -> Non
     zeroth_errors: dict[Sector, list[float]] = {sector: [] for sector in Sector}
     # Padding the certified interval, not the one excitation, costs one doubling.
     for n_points in (32, 64, 128):
-        result = contour.moments(
-            resolvent, mapping, 6, n_points
-        )
+        result = contour.moments(resolvent, mapping, 6, n_points)
         for sector in Sector:
-            errors[sector].append(
-                float(np.linalg.norm(result[sector].moments - exact[sector]))
-            )
+            errors[sector].append(float(np.linalg.norm(result[sector].moments - exact[sector])))
             zeroth_errors[sector].append(
-                float(
-                    np.linalg.norm(
-                        result[sector].moments[0] - exact[sector][0]
-                    )
-                )
+                float(np.linalg.norm(result[sector].moments[0] - exact[sector][0]))
             )
     for sector in Sector:
         assert errors[sector][1] < 0.02 * errors[sector][0]
@@ -342,16 +322,10 @@ def test_doubling_estimate_tracks_observed_highest_order_error(
     coarse = contour.moments(resolvent, mapping, n_max, 32)
     fine = contour.moments(resolvent, mapping, n_max, 64)
     for sector in Sector:
-        observed = float(
-            np.linalg.norm(coarse[sector].moments[-1] - exact[sector][-1])
-        )
-        fine_error = float(
-            np.linalg.norm(fine[sector].moments[-1] - exact[sector][-1])
-        )
+        observed = float(np.linalg.norm(coarse[sector].moments[-1] - exact[sector][-1]))
+        fine_error = float(np.linalg.norm(fine[sector].moments[-1] - exact[sector][-1]))
         # The automatic N_q ladder reads this coarse-to-fine change of the top order.
-        estimate = float(
-            np.linalg.norm(fine[sector].moments[-1] - coarse[sector].moments[-1])
-        )
+        estimate = float(np.linalg.norm(fine[sector].moments[-1] - coarse[sector].moments[-1]))
         # Reverse triangle inequality: |estimate - observed| <= fine-grid error.
         roundoff = 64.0 * np.finfo(float).eps * max(estimate, observed, 1.0)
         assert abs(estimate - observed) <= fine_error + roundoff
@@ -393,9 +367,7 @@ def test_contour_padding_height_map_scale_and_order_variations(
         absolute_padding=absolute_padding,
     )
     exact = oracle.cayley_moments(mapping, n_max)
-    result = contour.moments(
-        resolvent, mapping, n_max, 192
-    )
+    result = contour.moments(resolvent, mapping, n_max, 192)
     for sector in Sector:
         np.testing.assert_allclose(
             result[sector].moments,
@@ -417,19 +389,14 @@ def test_complete_contour_does_not_force_higher_moments_hermitian(
             result[sector].moments[0].conj().T,
             atol=2.0e-14,
         )
-        assert np.max(
-            np.abs(
-                result[sector].moments[1]
-                - result[sector].moments[1].conj().T
-            )
-        ) > 1.0e-3
+        assert (
+            np.max(np.abs(result[sector].moments[1] - result[sector].moments[1].conj().T)) > 1.0e-3
+        )
 
 
 @pytest.mark.pyscf
 def test_zero_interaction_limit_gives_zero_contour_moments(h2_rks_hf) -> None:
-    interacting = ProjectedRPAResolvent.from_adapter(
-        RestrictedPySCFAdapter(h2_rks_hf)
-    )
+    interacting = ProjectedRPAResolvent.from_adapter(RestrictedPySCFAdapter(h2_rks_hf))
     resolvent = ProjectedRPAResolvent(
         interacting.particle_hole_gaps,
         np.zeros_like(interacting.v_matrix),
@@ -515,7 +482,10 @@ def test_prohibited_node_keeps_its_index_and_diagnostics_under_workers(
     monkeypatch.setattr(ProjectedRPAResolvent, "woodbury", rejecting_woodbury)
     with pytest.raises(RefusalError, match="node 1") as error:
         contour.moments(
-            resolvent, mapping, 2, 10,
+            resolvent,
+            mapping,
+            2,
+            10,
             n_workers=workers,
             native_threads=1,
         )
@@ -589,7 +559,10 @@ def test_blocked_contraction_logs_one_stage_per_region(
     _, _, resolvent, mapping, contour = h2_contour_oracles
     with caplog.at_level(logging.INFO, logger="cayleygw"):
         contour.moments(
-            resolvent, mapping, 2, 32,
+            resolvent,
+            mapping,
+            2,
+            32,
             n_workers=workers,
             native_threads=1,
             verbose=1,
@@ -671,9 +644,7 @@ def test_external_contraction_uses_real_arithmetic_for_real_factors() -> None:
     auxiliary = rng.standard_normal((orders, naux, naux)) + 1j * rng.standard_normal(
         (orders, naux, naux)
     )
-    reference = np.einsum(
-        "pP,kPQ,qQ->kpq", factors, auxiliary, factors, optimize=True
-    )
+    reference = np.einsum("pP,kPQ,qQ->kpq", factors, auxiliary, factors, optimize=True)
     result = contract_external_moments(factors, auxiliary)
     assert result.shape == (orders, nmo, nmo)
     assert result.dtype == np.complex128
@@ -696,18 +667,14 @@ def test_equioscillation_excludes_every_kernel_pole_and_equioscillates(
     """The contour sits at half the nearest excluded singularity, exactly."""
 
     adapter, exact, resolvent, mapping, _ = h2_contour_oracles
-    contour = EllipseContour.from_equioscillation(
-        resolvent, adapter.reference, mapping
-    )
+    contour = EllipseContour.from_equioscillation(resolvent, adapter.reference, mapping)
     diagnostics = contour.equioscillation_diagnostics
     assert diagnostics is not None
     assert diagnostics.sigma_c == pytest.approx(0.5 * diagnostics.sigma_min)
     assert diagnostics.limiting_singularity in ("kernel", "mirror")
 
     # Foci on the certified bounds put the enclosed excitations at sigma = 0.
-    half_width = 0.5 * (
-        resolvent.spectral_upper_bound - resolvent.spectral_lower_bound
-    )
+    half_width = 0.5 * (resolvent.spectral_upper_bound - resolvent.spectral_lower_bound)
     assert contour.horizontal_radius**2 - contour.vertical_radius**2 == (
         pytest.approx(half_width**2)
     )
@@ -730,25 +697,15 @@ def test_equioscillation_enumerates_poles_rather_than_assuming_d_min(
         scale=0.5,
     )
     for strategy in ("frobenius", "spectral"):
-        resolvent = ProjectedRPAResolvent.from_adapter(
-            adapter, spectral_bound_strategy=strategy
-        )
-        contour = EllipseContour.from_equioscillation(
-            resolvent, adapter.reference, mapping
-        )
+        resolvent = ProjectedRPAResolvent.from_adapter(adapter, spectral_bound_strategy=strategy)
+        contour = EllipseContour.from_equioscillation(resolvent, adapter.reference, mapping)
         sigma_min = contour.equioscillation_diagnostics.sigma_min
         contour_module._validate_enclosure(resolvent, contour)
 
         centre = contour.center
-        focal = math.sqrt(
-            contour.horizontal_radius**2 - contour.vertical_radius**2
-        )
+        focal = math.sqrt(contour.horizontal_radius**2 - contour.vertical_radius**2)
         shortcut = abs(
-            np.arccosh(
-                complex(
-                    -0.5 * resolvent.spectral_lower_bound - centre, 0.5
-                ) / focal
-            ).real
+            np.arccosh(complex(-0.5 * resolvent.spectral_lower_bound - centre, 0.5) / focal).real
         )
         assert shortcut == pytest.approx(sigma_min)
 
@@ -774,12 +731,8 @@ def test_equioscillation_gives_the_tda_no_mirror_family(h2_rks_hf) -> None:
         center=adapter.reference.chemical_potential,
         scale=1.0,
     )
-    resolvent = ProjectedRPAResolvent.from_adapter(
-        adapter, screening=Screening.TDA
-    )
-    contour = EllipseContour.from_equioscillation(
-        resolvent, adapter.reference, mapping
-    )
+    resolvent = ProjectedRPAResolvent.from_adapter(adapter, screening=Screening.TDA)
+    contour = EllipseContour.from_equioscillation(resolvent, adapter.reference, mapping)
     assert contour.equioscillation_diagnostics.limiting_singularity == "kernel"
 
 
@@ -790,9 +743,7 @@ def test_the_mirror_family_binds_at_a_large_cayley_scale(
     """At a large enough scale the mirror pole at ``-Omega_L`` is the nearest."""
 
     adapter, _, resolvent, _, _ = h2_contour_oracles
-    mapping = CayleyMap(
-        center=adapter.reference.chemical_potential, scale=20.0
-    )
+    mapping = CayleyMap(center=adapter.reference.chemical_potential, scale=20.0)
     record = EllipseContour.from_equioscillation(
         resolvent, adapter.reference, mapping
     ).equioscillation_diagnostics
@@ -805,9 +756,7 @@ def test_the_axis_guard_applies_to_rpa_and_not_to_the_tda(h2_rks_hf) -> None:
     """Crossing the imaginary axis folds ``zeta**2``, so RPA refuses it and the TDA does not."""
 
     adapter = RestrictedPySCFAdapter(h2_rks_hf)
-    mapping = CayleyMap(
-        center=adapter.reference.chemical_potential, scale=1.0
-    )
+    mapping = CayleyMap(center=adapter.reference.chemical_potential, scale=1.0)
     for name, screening in (("rpa", Screening.RPA), ("tda", Screening.TDA)):
         resolvent = ProjectedRPAResolvent.from_adapter(adapter, screening=screening)
         lower = resolvent.spectral_lower_bound
@@ -825,7 +774,5 @@ def test_the_axis_guard_applies_to_rpa_and_not_to_the_tda(h2_rks_hf) -> None:
                 contour_module._validate_enclosure(resolvent, crossing)
             continue
         contour_module._validate_enclosure(resolvent, crossing)
-        moments = crossing.moments(
-            resolvent, mapping, 2, 32
-        )
+        moments = crossing.moments(resolvent, mapping, 2, 32)
         assert all(np.all(np.isfinite(moments[s].moments)) for s in Sector)

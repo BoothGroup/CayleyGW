@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import numpy as np
 import pytest
+from conftest import _exact_upfolded, dyson_greens_function
 
 from cayleygw import (
     CayleyGW,
@@ -18,8 +19,6 @@ from cayleygw import (
 from cayleygw.moments import G0W0CayleyMoments
 from cayleygw.screening import ProjectedRPAResolvent
 
-from conftest import _exact_upfolded, dyson_greens_function
-
 pytestmark = pytest.mark.pyscf
 
 
@@ -29,7 +28,9 @@ def test_the_kernel_is_the_four_calls(water_rhf) -> None:
 
     moments = build_cayley_moments(water_rhf, n_conserved=3, n_q=256, verbose=0)
     hamiltonian = build_upfolded_hamiltonian(moments, verbose=0)
-    expected = extract_ip_ea(diagonalize_upfolded(hamiltonian, verbose=0), n_ip=3, n_ea=3, verbose=0)
+    expected = extract_ip_ea(
+        diagonalize_upfolded(hamiltonian, verbose=0), n_ip=3, n_ea=3, verbose=0
+    )
 
     assert result is gw.result
     assert gw.hamiltonian.dimension == hamiltonian.dimension
@@ -47,7 +48,9 @@ def test_a_lower_order_reuses_the_moments_and_a_higher_one_rebuilds(water_rhf) -
     lower = gw.kernel(2)
     assert gw.moments is built
     expected = extract_ip_ea(
-        diagonalize_upfolded(build_upfolded_hamiltonian(built, n_conserved=2, verbose=0), verbose=0),
+        diagonalize_upfolded(
+            build_upfolded_hamiltonian(built, n_conserved=2, verbose=0), verbose=0
+        ),
         n_ip=3,
         n_ea=3,
         verbose=0,
@@ -78,15 +81,11 @@ def test_two_call_molecular_workflow_has_complete_provenance(
     assert moments.n_q == 32
     assert moments.automatic_n_q_diagnostics is None
     assert moments.mapping.scale == pytest.approx(1.0)
-    assert moments.chemical_potential == pytest.approx(
-        moments.adapter.reference.chemical_potential
-    )
+    assert moments.chemical_potential == pytest.approx(moments.adapter.reference.chemical_potential)
     assert isinstance(moments.resolvent, ProjectedRPAResolvent)
     assert moments.interaction_backend == "exact"
     assert moments.spectral_bound == "spectral"
-    assert moments.rpa_spectral_bounds.source == (
-        "D_min and spectral-norm upper bound"
-    )
+    assert moments.rpa_spectral_bounds.source == ("D_min and spectral-norm upper bound")
     assert moments.conjugate_paired
     assert moments.hole.moments.shape == (4, 2, 2)
     assert moments.particle.moments.shape == (4, 2, 2)
@@ -124,9 +123,7 @@ def test_density_fitted_restricted_workflow_matches_dense_df_oracle(
     exact = ExactG0W0SelfEnergy.from_integrals(
         moments.adapter.reference,
         fitted_integrals,
-        static_correction=(
-            moments.adapter.build_static_self_energy_correction()
-        ),
+        static_correction=(moments.adapter.build_static_self_energy_correction()),
     )
     if mean_field_name == "h2_rhf_df":
         assert np.linalg.norm(exact.static_correction) < 1.0e-9

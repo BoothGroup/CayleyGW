@@ -66,12 +66,8 @@ class UnitaryMomentRealization:
     moment_residuals: FloatArray = field(repr=False)
     maximum_contraction_ratio: float = 0.0
     # The contract check's normalized moments and chain state; later orders continue it.
-    _normalized_reconstructed: ComplexArray | None = field(
-        default=None, repr=False, compare=False
-    )
-    _selector_state: ComplexArray | None = field(
-        default=None, repr=False, compare=False
-    )
+    _normalized_reconstructed: ComplexArray | None = field(default=None, repr=False, compare=False)
+    _selector_state: ComplexArray | None = field(default=None, repr=False, compare=False)
 
     @staticmethod
     def normalize(moments: MatrixCayleyMoments | Any) -> NormalizedMatrixCayleyMoments:
@@ -92,18 +88,12 @@ class UnitaryMomentRealization:
         """
 
         source = (
-            moments
-            if isinstance(moments, MatrixCayleyMoments)
-            else MatrixCayleyMoments(moments)
+            moments if isinstance(moments, MatrixCayleyMoments) else MatrixCayleyMoments(moments)
         )
-        return NormalizedMatrixCayleyMoments(
-            source=source, **_support_compression(source)
-        )
+        return NormalizedMatrixCayleyMoments(source=source, **_support_compression(source))
 
     @classmethod
-    def empty(
-        cls, normalization: NormalizedMatrixCayleyMoments, **fields: Any
-    ) -> Any:
+    def empty(cls, normalization: NormalizedMatrixCayleyMoments, **fields: Any) -> Any:
         """Return the zero-dimensional realization of a measure with no support."""
 
         empty = _check.readonly_complex(np.zeros((0, 0)), "empty matrix")
@@ -158,8 +148,7 @@ class UnitaryMomentRealization:
 
         if self.matrix is None:
             raise RefusalError(
-                "this realization released its dense matrices, which the "
-                "moment methods need",
+                "this realization released its dense matrices, which the moment methods need",
                 kind="block-cmv",
             )
         return self.matrix
@@ -179,9 +168,7 @@ class UnitaryMomentRealization:
         """
 
         base = (
-            limits.BLOCK_CMV_MOMENT_TOLERANCE
-            if base_tolerance is None
-            else float(base_tolerance)
+            limits.BLOCK_CMV_MOMENT_TOLERANCE if base_tolerance is None else float(base_tolerance)
         )
         scales = np.linalg.norm(self.normalization.source.values, axis=(1, 2))
         if absolute_tolerance is None:

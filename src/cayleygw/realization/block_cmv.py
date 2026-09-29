@@ -40,12 +40,8 @@ class BlockCMVRealization(UnitaryMomentRealization):
     """
 
     # Kept for :meth:`reclose`.
-    _parameters: BlockSchurParameters | None = field(
-        default=None, repr=False, compare=False
-    )
-    _prefix: _AssemblyPrefix | None = field(
-        default=None, repr=False, compare=False
-    )
+    _parameters: BlockSchurParameters | None = field(default=None, repr=False, compare=False)
+    _prefix: _AssemblyPrefix | None = field(default=None, repr=False, compare=False)
 
     def without_matrices(self) -> "BlockCMVRealization":
         """Release the dense matrices as the base class does, and the cached assembly."""

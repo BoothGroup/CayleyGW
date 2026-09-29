@@ -8,7 +8,6 @@ from typing import Any, Callable
 
 from threadpoolctl import ThreadpoolController
 
-
 _THREAD_VARIABLES = ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS")
 
 _controller: Any = None

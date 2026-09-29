@@ -19,8 +19,8 @@ are checked again, and a congruence of the couplings can restore
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field, replace
 import logging
+from dataclasses import dataclass, field, replace
 from typing import Any, cast
 
 import numpy as np
@@ -238,15 +238,11 @@ class SectorSelfEnergyRealization:
                     construction_error = error
                     continue
                 if realization_algorithm == "auto":
-                    scan = replace(
-                        scan, requested_realization_algorithm=realization_algorithm
-                    )
+                    scan = replace(scan, requested_realization_algorithm=realization_algorithm)
                 try:
                     with stages.stage(f"{sector.name.lower()} poles and couplings"):
                         result = cls(
-                            **_finalize_first_viable_closure(
-                                scan, sector, mapping, tolerances
-                            )
+                            **_finalize_first_viable_closure(scan, sector, mapping, tolerances)
                         )
                 except RefusalError as error:
                     if error.kind != "sector":
@@ -332,26 +328,18 @@ class SectorSelfEnergyRealization:
         if not isinstance(sector, Sector):
             raise ValidationError("sector must be a Sector value")
         if realization_algorithm not in ("toeplitz", "block-cmv"):
-            raise ValidationError(
-                "realization_algorithm must be 'toeplitz' or 'block-cmv'"
-            )
+            raise ValidationError("realization_algorithm must be 'toeplitz' or 'block-cmv'")
         if phase_refinement not in ("fixed", "restricted"):
-            raise ValidationError(
-                "phase_refinement must be 'fixed' or 'restricted'"
-            )
+            raise ValidationError("phase_refinement must be 'fixed' or 'restricted'")
         source = (
-            moments
-            if isinstance(moments, MatrixCayleyMoments)
-            else MatrixCayleyMoments(moments)
+            moments if isinstance(moments, MatrixCayleyMoments) else MatrixCayleyMoments(moments)
         )
         if n_conserved is None:
             fitted_order = source.n_max
         else:
             fitted_order = _check.nonnegative_integer(n_conserved, "n_conserved")
             if fitted_order > source.n_max:
-                raise ValidationError(
-                    "n_conserved cannot exceed the highest supplied moment order"
-                )
+                raise ValidationError("n_conserved cannot exceed the highest supplied moment order")
         # The exclusion radius around the inverse-map singularity ``u = 1``.
         minimum_distance = limits.ABSOLUTE_TOLERANCE
         fitted = MatrixCayleyMoments(source.values[: fitted_order + 1])
@@ -428,9 +416,7 @@ class SectorSelfEnergyRealization:
                     # The identity closure is grid phase 0, so only phases 1 onward are evaluated.
                     candidates = [canonical_candidate]
                     candidates.extend(
-                        evaluate_phases(
-                            [2.0 * np.pi * index / count for index in range(1, count)]
-                        )
+                        evaluate_phases([2.0 * np.pi * index / count for index in range(1, count)])
                     )
                 else:
                     candidates = _restricted_phase_search(

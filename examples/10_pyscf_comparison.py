@@ -24,7 +24,6 @@ from cayleygw import (
     enable_logging,
 )
 
-
 # --- controls ---------------------------------------------------------------
 ATOM = "O 0 0 0.1173; H 0 0.7572 -0.4692; H 0 -0.7572 -0.4692"  # geometry, Angstrom
 BASIS = "cc-pvdz"  # orbital basis; no density fitting, which gw_exact does not support
@@ -47,7 +46,9 @@ def main() -> None:
     nvir = mean_field.mo_occ.size - nocc
     positions = [nocc - 1 + offset for offset in ORBITAL_OFFSETS]
     labels = [
-        "HOMO" if offset == 0 else ("LUMO" if offset == 1 else (f"HOMO{offset}" if offset < 0 else f"LUMO+{offset - 1}"))
+        "HOMO"
+        if offset == 0
+        else ("LUMO" if offset == 1 else (f"HOMO{offset}" if offset < 0 else f"LUMO+{offset - 1}"))
         for offset in ORBITAL_OFFSETS
     ]
 
@@ -89,11 +90,15 @@ def main() -> None:
         f"\n{'=' * 78}\nResults: H2O/{BASIS} G0W0@{XC.upper()}, {nocc * nvir} RPA excitations;"
         f" quasiparticle energies in eV\n{'=' * 78}"
     )
-    print(f"interaction: {gw.moments.interaction_backend} for cayleygw and gw_exact; gw_cd density-fits ({pyscf_cd.with_df.auxbasis})")
+    print(
+        f"interaction: {gw.moments.interaction_backend} for cayleygw and gw_exact; gw_cd density-fits ({pyscf_cd.with_df.auxbasis})"
+    )
     print(f"exact upfolded dimension {exact_hamiltonian.dimension}")
     print()
     print("                       diagonal quasiparticle equation             full Dyson solution")
-    print(f"  orbital        {XC.upper():>6}    gw_exact   cayleygw exact W      gw_cd   exact W (weight)   Cayley n={N_CONSERVED} (weight)")
+    print(
+        f"  orbital        {XC.upper():>6}    gw_exact   cayleygw exact W      gw_cd   exact W (weight)   Cayley n={N_CONSERVED} (weight)"
+    )
     largest_diagonal = 0.0
     largest_full = 0.0
     for label, position, energy in zip(labels, positions, diagonal):
@@ -110,9 +115,15 @@ def main() -> None:
             f"  {energies[dominant] * HARTREE_TO_EV:11.4f} ({orbital_weights[position, dominant]:.3f})"
         )
     print()
-    print(f"largest difference between gw_exact and the cayleygw diagonal equation: {largest_diagonal * HARTREE_TO_EV * 1e3:.3f} meV")
-    print(f"largest difference between the exact and the Cayley-moment full solution: {largest_full * HARTREE_TO_EV * 1e3:.3f} meV")
-    print("the diagonal and the full solutions differ by the off-diagonal self-energy, static correction included")
+    print(
+        f"largest difference between gw_exact and the cayleygw diagonal equation: {largest_diagonal * HARTREE_TO_EV * 1e3:.3f} meV"
+    )
+    print(
+        f"largest difference between the exact and the Cayley-moment full solution: {largest_full * HARTREE_TO_EV * 1e3:.3f} meV"
+    )
+    print(
+        "the diagonal and the full solutions differ by the off-diagonal self-energy, static correction included"
+    )
 
 
 if __name__ == "__main__":

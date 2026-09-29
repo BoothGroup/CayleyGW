@@ -22,9 +22,9 @@ from rich.text import Text
 from rich.theme import Theme
 
 from .._helpers.tools.logging import (
-    PACKAGES,
     _RESULTS,
     _SUMMARIES,
+    PACKAGES,
     _duration,
     _git_hash,
     _table,
@@ -176,9 +176,7 @@ class ConsoleHandler(logging.Handler):
 
         title, result, total = event["title"], event["result"], event["total"]
         if result is None:
-            parts: list[RenderableType] = [
-                f"{title} [bad]failed[/] after {_duration(total)}."
-            ]
+            parts: list[RenderableType] = [f"{title} [bad]failed[/] after {_duration(total)}."]
         else:
             describe = _SUMMARIES.get(title)
             parts = (

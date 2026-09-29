@@ -7,9 +7,9 @@ energies that place the contour.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
 import logging
 import math
+from dataclasses import dataclass, field
 from typing import Any, Literal, Self
 
 import numpy as np
@@ -75,25 +75,17 @@ class ProjectedRPAResolvent:
 
     def __post_init__(self) -> None:
         if self.spectral_bound_strategy not in ("frobenius", "spectral"):
-            raise ValidationError(
-                "spectral_bound_strategy must be 'frobenius' or 'spectral'"
-            )
+            raise ValidationError("spectral_bound_strategy must be 'frobenius' or 'spectral'")
         if not isinstance(self.screening, Screening):
             raise ValidationError("screening must be a Screening value")
         gaps = _check.readonly_real(self.particle_hole_gaps, "particle_hole_gaps")
         coupling = _sealed_coupling(self.v_matrix)
         if gaps.ndim != 1 or gaps.size == 0:
-            raise ValidationError(
-                "particle_hole_gaps must be a nonempty vector"
-            )
+            raise ValidationError("particle_hole_gaps must be a nonempty vector")
         if np.any(gaps <= 0.0):
-            raise ValidationError(
-                "particle_hole_gaps must be strictly positive"
-            )
+            raise ValidationError("particle_hole_gaps must be strictly positive")
         if coupling.ndim != 2 or coupling.shape[0] != gaps.size:
-            raise ValidationError(
-                "v_matrix must have shape (ntransition, naux)"
-            )
+            raise ValidationError("v_matrix must have shape (ntransition, naux)")
         power = self.screening.spectral_parameter_power
         multiplier = self.screening.kernel_multiplier
         diagonal = _check.readonly_real(np.power(gaps, power), "response diagonal")
@@ -172,8 +164,7 @@ class ProjectedRPAResolvent:
             occupied = np.asarray(reference.occupied_positions)
             virtual = np.asarray(reference.virtual_positions)
             gaps = (
-                reference.mo_energy[virtual][None, :]
-                - reference.mo_energy[occupied][:, None]
+                reference.mo_energy[virtual][None, :] - reference.mo_energy[occupied][:, None]
             ).reshape(-1)
             transition_factors = factors[
                 :,
@@ -181,15 +172,9 @@ class ProjectedRPAResolvent:
                 np.tile(virtual, occupied.size),
             ]
             # Direct RPA's squared matrix D^2 + 2 D^1/2 K D^1/2 puts D^1/2 in V.
-            gap_weight = (
-                np.sqrt(gaps)[:, None]
-                if screening is Screening.RPA
-                else 1.0
-            )
+            gap_weight = np.sqrt(gaps)[:, None] if screening is Screening.RPA else 1.0
             # C order: the bits of every BLAS product downstream depend on the layout.
-            v_matrix = np.ascontiguousarray(
-                gap_weight * (math.sqrt(2.0) * transition_factors).T
-            )
+            v_matrix = np.ascontiguousarray(gap_weight * (math.sqrt(2.0) * transition_factors).T)
             v_matrix.setflags(write=False)
         with stages.stage(
             "spectral bounds and resolvent",
@@ -204,9 +189,7 @@ class ProjectedRPAResolvent:
                 screening=screening,
                 reference=reference,
                 factors=factors,
-                interaction_backend=(
-                    "density-fitting" if density_fitted else "exact"
-                ),
+                interaction_backend=("density-fitting" if density_fitted else "exact"),
             )
 
     def woodbury(self, zeta: Any) -> ComplexArray:
@@ -265,6 +248,4 @@ class ProjectedRPAResolvent:
                 "singular auxiliary system", node, free_distance, rpa_distance, threshold
             )
         # C order: the symmetry gate downstream sums its Frobenius norms in memory order.
-        return np.ascontiguousarray(
-            lu_solve(factorization, q_matrix, check_finite=False)
-        )
+        return np.ascontiguousarray(lu_solve(factorization, q_matrix, check_finite=False))
