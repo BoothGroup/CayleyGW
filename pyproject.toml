@@ -47,7 +47,7 @@ test = [
 ]
 
 [project.urls]
-Repository = "https://github.com/mkakcl/cayleygw"
+Repository = "https://github.com/BoothGroup/CayleyGW"
 Paper = "https://arxiv.org/abs/2609.29271"
 
 [tool.setuptools]

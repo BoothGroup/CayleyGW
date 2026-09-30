@@ -4,7 +4,7 @@ title: cayleygw
 type: software
 version: 1.0.0
 license: Apache-2.0
-repository-code: https://github.com/mkakcl/cayleygw
+repository-code: https://github.com/BoothGroup/CayleyGW
 abstract: >-
   Cayley-moment G0W0 for closed-shell molecules on top of PySCF: the
   self-energy spectral moments after a Cayley transform, built by contour
